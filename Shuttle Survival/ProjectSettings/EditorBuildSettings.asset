@@ -23,4 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SceneDongeon.unity
     guid: c88b95f259e2f7f4d97196816a0d5530
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: db891326291db124b8763f67222e6992,
+      type: 2}

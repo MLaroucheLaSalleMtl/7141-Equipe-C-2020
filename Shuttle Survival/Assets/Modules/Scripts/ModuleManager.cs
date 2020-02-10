@@ -1,13 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ModuleManager : MonoBehaviour
 {
     public static ModuleManager moduleManager;
     public Color32 hoverColor = Color.black;
+    [HideInInspector]
     public Module currentModule;
+    [HideInInspector]
+    public Module hoveredModule;
     public GameObject modulePanel;
     public GameObject moduleCreationPanel;
     UIModule currentUImodule;
@@ -19,11 +24,25 @@ public class ModuleManager : MonoBehaviour
     [SerializeField] GameObject salvageModuleButton;
     [SerializeField] GameObject useModuleButton;
     [SerializeField] GameObject upgradeModuleButton;
+    [SerializeField] GameObject underConstructionPanel;
+    [SerializeField] Image underConstructionProgressBar;
+    [SerializeField] TextMeshProUGUI turnsRemainingText;
+    [SerializeField] TextMeshProUGUI buildingModuleText;
 
     [Header("All modules")]
     public List<GameObject> modulePrefabs = new List<GameObject>();
     public GameObject emptyModule;
-    public GameObject healthModule;
+    [SerializeField] GameObject underConstructionModulePrefab;
+    [SerializeField] Inventaire inventaire;
+
+
+    public void OnPanelOpened(object source, EventArgs args)
+    {
+        modulePanel.SetActive(false);
+        moduleCreationPanel.SetActive(false);
+        underConstructionPanel.SetActive(false);
+    }
+
     private void Awake()
     {
         if(ModuleManager.moduleManager == null)
@@ -44,12 +63,24 @@ public class ModuleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(hoveredModule != null && Input.GetMouseButtonDown(0))
+        {
+            if (hoveredModule.moduleType != ModuleType.UnderConstruction)
+            {
+                GenerateModulePanel(hoveredModule);
+            }
+            else
+            {
+                GenerateUnderConstructionPanel((UnderConstructionModule)hoveredModule);
+            }
+        }
         
     }
-    
+
+
     public void GenerateModuleCreationPanel()
     {
-        modulePanel.SetActive(false);
+        PanelManager.panelManager.OnPanelOpened_Caller();
         moduleCreationPanel.SetActive(true);
         foreach (Transform transform in moduleCreationGrid)
         {
@@ -67,18 +98,39 @@ public class ModuleManager : MonoBehaviour
 
     public void CreateModule(int moduleIndex)
     {
-        Instantiate(modulePrefabs[moduleIndex], currentModule.transform.position, Quaternion.identity);
-        Destroy(currentModule.gameObject);
-        if (currentModule.unique)
+        if (inventaire.PayRessource(modulePrefabs[moduleIndex].GetComponent<Module>().ressourcesCost)) //if it can pay
         {
-            modulePrefabs.RemoveAt(moduleIndex);
+            GameObject underConstructionModule = Instantiate(underConstructionModulePrefab, currentModule.transform.position, Quaternion.identity);
+            underConstructionModule.GetComponent<UnderConstructionModule>().SetTurnsToBuild(modulePrefabs[moduleIndex].GetComponent<Module>().turnsToBuild);
+            underConstructionModule.GetComponent<UnderConstructionModule>().moduleToBuild = modulePrefabs[moduleIndex];
+            Destroy(currentModule.gameObject);
+            if (currentModule.unique)
+            {
+                modulePrefabs.RemoveAt(moduleIndex);
+            }
+            moduleCreationPanel.SetActive(false);
         }
+        else
+        {
+            MessagePopup.MessagePopupManager.SetStringAndShowPopup("Not enough ressources");
+        }
+
         currentUImodule.GetComponent<TooltipHandler>().OnPointerExit(null);
-        moduleCreationPanel.SetActive(false);
+    }
+
+    private void GenerateUnderConstructionPanel(UnderConstructionModule currentModule)
+    {
+        PanelManager.panelManager.OnPanelOpened_Caller();
+        this.currentModule = currentModule;
+        underConstructionPanel.SetActive(true);
+        buildingModuleText.text = "Building <b>" + currentModule.moduleToBuild.GetComponent<Module>().moduleName + "</b>";
+        underConstructionProgressBar.fillAmount = Mathf.Abs(1 - ((float)currentModule.turnsRemainingToBuild) / currentModule.totalTurnsToBuild);
+        turnsRemainingText.text = "<b>" + currentModule.turnsRemainingToBuild + " <sprite=0>remaining";
     }
 
     public void GenerateModulePanel(Module currentModule)
     {
+        PanelManager.panelManager.OnPanelOpened_Caller();
         foreach (Transform transform in moduleOptionsGrid)
         {
             Destroy(transform.gameObject);
@@ -108,11 +160,17 @@ public class ModuleManager : MonoBehaviour
         }
     }
 
-    public void SalvageModule()
+    public void SalvageModule(bool underConstruction = false) //and cancel construction
     {
+        if (underConstruction)
+        {
+            //refund all resources
+        }
         currentModule.GetComponent<TooltipHandler>().OnPointerExit(null);
         Destroy(currentModule.gameObject);
+        Instantiate(emptyModule, currentModule.transform.position, Quaternion.identity);
         modulePanel.SetActive(false);
+        underConstructionPanel.SetActive(false);
     }
 
     public void UseModule()

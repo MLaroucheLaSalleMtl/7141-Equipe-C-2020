@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3038175937380403564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3038175937380403566}
+  - component: {fileID: 3038175937380403567}
+  m_Layer: 0
+  m_Name: ModuleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3038175937380403566
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3038175937380403564}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3038175937380403567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3038175937380403564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f09177ca9b054524ab19466a912d4a32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverColor:
+    serializedVersion: 2
+    rgba: 4285164138
+  currentModule: {fileID: 0}
+  modulePanel: {fileID: 0}
+  moduleCreationPanel: {fileID: 0}
+  moduleCreationPrefab: {fileID: 1454476509448547356, guid: c1c13b1b822c7634297b19c5b3369cb9,
+    type: 3}
+  moduleCreationGrid: {fileID: 0}
+  modulePanelTitle: {fileID: 0}
+  moduleOptionsGrid: {fileID: 0}
+  createModuleButton: {fileID: 5132089435791375102, guid: b99d2ecf2e358de4992cd7343b0311be,
+    type: 3}
+  salvageModuleButton: {fileID: 2432022914553297143, guid: d532fbf2304780d48a118539cad540ee,
+    type: 3}
+  useModuleButton: {fileID: 6895693630982399754, guid: a5f7034cdd0f4614ba04af92bfa83906,
+    type: 3}
+  upgradeModuleButton: {fileID: 5119136126004782073, guid: a2d63a0f6023f0a44ae17f30153e81e4,
+    type: 3}
+  modulePrefabs:
+  - {fileID: 4034520693683049931, guid: c61f2c67493c5844ba7153ce73f1f146, type: 3}
+  - {fileID: 4034520693683049931, guid: 5a9c144d70b53434ca62d173fee8b62c, type: 3}
+  emptyModule: {fileID: 6630272795529094907, guid: 358ae44332f59bd4c8c6dfdf98832cf1,
+    type: 3}
+  healthModule: {fileID: 4034520693683049931, guid: c61f2c67493c5844ba7153ce73f1f146,
+    type: 3}

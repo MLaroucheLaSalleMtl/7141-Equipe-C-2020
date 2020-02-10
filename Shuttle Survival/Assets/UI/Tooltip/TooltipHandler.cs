@@ -11,7 +11,7 @@ public class TooltipHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     GameObject tooltip;
     [TextArea(2,4)]
-    [SerializeField] string simpleTextString;
+    [SerializeField] public string simpleTextString;
     [SerializeField] TooltipType tooltipsType;
     TextMeshProUGUI tooltipText;
 

@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &454034107824259029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 454034107824259026}
+  - component: {fileID: 454034107824259027}
+  m_Layer: 0
+  m_Name: Inventaire Blueprint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &454034107824259026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454034107824259029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7463229, y: -1.9313194, z: -34.835938}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &454034107824259027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454034107824259029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1672b41067731c42baf0d14e7cb8904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ressources:
+  - {fileID: 11400000, guid: 144a50012896c664ba5927f0bd35c66d, type: 2}
+  - {fileID: 11400000, guid: ef701c2a1edc51a43b53384049058ff8, type: 2}
+  - {fileID: 11400000, guid: 5c5a5043fb6357a4aa702c9c64345373, type: 2}
+  - {fileID: 11400000, guid: 06b119347138c4240b8d924db7d96580, type: 2}
+  - {fileID: 11400000, guid: 69d644a61c3c387479e8df05a82ad5a7, type: 2}
+  - {fileID: 11400000, guid: b58dc59b1ce8f6e4683ec54e35514375, type: 2}
+  - {fileID: 11400000, guid: b7979b4401f57bb498bc85db23f2efde, type: 2}
+  - {fileID: 11400000, guid: 5ed498840d114de459f60f5fcb3506f5, type: 2}
+  - {fileID: 11400000, guid: a9f7c94674f9d974ebb065ddfce6ca10, type: 2}
+  - {fileID: 11400000, guid: 0674dbe68479c9b448b870791aab0504, type: 2}
+  - {fileID: 11400000, guid: acf87b4909a24064f9e451bd345ec232, type: 2}
+  - {fileID: 11400000, guid: 38e0b97fd9cb8ff4d93b92499cebcf00, type: 2}
+  - {fileID: 11400000, guid: 9e456b4c5041cbd48906e9a074e411b2, type: 2}
+  - {fileID: 11400000, guid: e1cdd9ca69529b742944f7ac65f5ae69, type: 2}
+  - {fileID: 11400000, guid: 23898349c121e684e93c0d8d51cc227a, type: 2}
+  - {fileID: 11400000, guid: c2685561b677e9843bd3bda17b70846f, type: 2}
+  - {fileID: 11400000, guid: 0b3000ea1f6355c49aa2784ad8f9a296, type: 2}
+  taille: 30

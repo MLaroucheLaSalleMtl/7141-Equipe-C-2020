@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ItemStack 
 {
-    private ItemClass item;
-    private int quantite;
+    [SerializeField] private ItemClass item;
+    [SerializeField] private int quantite;
 
     public int Quantite { get => quantite; set => quantite = value; }
     public ItemClass Item { get => item; set => item = value; }
@@ -15,4 +16,11 @@ public class ItemStack
         this.item = item;
         this.quantite = quantite;
     }
+}
+
+[System.Serializable]
+public class ResourcesCost
+{
+    [SerializeField] public ItemStack[] resources;
+    
 }

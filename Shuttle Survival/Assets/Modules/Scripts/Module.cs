@@ -6,14 +6,15 @@ public class Module : MonoBehaviour
 {
     public Sprite sprite;
     public ModuleType moduleType;
+    public int turnsToBuild = 1;
     public bool salvageable = false;
     public bool useable = false;
     public bool unique = false;
     public bool upgradable = false;
     public string moduleName;
+    public ResourcesCost ressourcesCost;
     [TextArea(2, 5)]
     public string moduleDescription;
-    bool interactable = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,21 +24,18 @@ public class Module : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if(interactable && Input.GetMouseButtonDown(0))
-        {
-            ModuleManager.moduleManager.GenerateModulePanel(this);
-        }
+        
     }
 
     private void OnMouseEnter()
     {
-        interactable = true;
+        ModuleManager.moduleManager.hoveredModule = this;
         GetComponent<SpriteRenderer>().color = ModuleManager.moduleManager.hoverColor;
     }
 
     private void OnMouseExit()
     {
-        interactable = false;
+        ModuleManager.moduleManager.hoveredModule = null;
         GetComponent<SpriteRenderer>().color = Color.white;
     }
 

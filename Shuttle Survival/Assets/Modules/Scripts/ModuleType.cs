@@ -5,5 +5,6 @@ using UnityEngine;
 public enum ModuleType
 {
    Empty,
-   Other
+   Other,
+   UnderConstruction
 }
