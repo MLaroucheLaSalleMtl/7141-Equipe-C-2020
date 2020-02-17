@@ -133,12 +133,12 @@ MonoBehaviour:
   moduleName: Fire Module
   ressourcesCost:
     resources:
-    - item: {fileID: 11400000, guid: 69d644a61c3c387479e8df05a82ad5a7, type: 2}
-      quantite: 4
-    - item: {fileID: 11400000, guid: b58dc59b1ce8f6e4683ec54e35514375, type: 2}
+    - item: {fileID: 11400000, guid: ef701c2a1edc51a43b53384049058ff8, type: 2}
+      quantite: 2
+    - item: {fileID: 11400000, guid: b7979b4401f57bb498bc85db23f2efde, type: 2}
       quantite: 3
-    - item: {fileID: 11400000, guid: 5c5a5043fb6357a4aa702c9c64345373, type: 2}
-      quantite: 4
+  onCreationPopupString: has created the Fire Module ! You can already sense the
+    heat. It's hot !
   moduleDescription: 'Module that generates
 
     heats for your spaceship.

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PanelManager : MonoBehaviour
 {
     public static PanelManager panelManager;
+    public bool interactablesEnabled;
 
     private void Awake()
     {
@@ -17,6 +18,7 @@ public class PanelManager : MonoBehaviour
         {
             Destroy(this);
         }
+        interactablesEnabled = true;
     }
    
     public EventHandler OnPanelOpened;
@@ -33,5 +35,25 @@ public class PanelManager : MonoBehaviour
     {
         OnPanelOpened += ModuleManager.moduleManager.OnPanelOpened;
         OnPanelOpened += DoorManager.doorManager.OnPanelOpened;
+    }
+
+    public void CloseAllPanels()
+    {
+        OnPanelOpened_Caller();
+    }
+
+    public void DisableInteractables()
+    {
+        interactablesEnabled = false;
+    }
+
+    public void EnableInteractables()
+    {
+        interactablesEnabled = true;
+    }
+
+    public bool IsInteractablesEnabled()
+    {
+        return interactablesEnabled;
     }
 }

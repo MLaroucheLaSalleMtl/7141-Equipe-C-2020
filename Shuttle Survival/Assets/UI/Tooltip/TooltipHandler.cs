@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public enum TooltipType { UImodule, SimpleText };
+public enum TooltipType { UImodule, SimpleText, Asteroids };
 
 public class TooltipHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -39,6 +39,9 @@ public class TooltipHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             case TooltipType.SimpleText:
                 tooltipText.text = simpleTextString;
                 break;
+            case TooltipType.Asteroids:
+                tooltipText.text = GetComponent<Asteroid>().GetTooltipDescription();
+                break;
         }
     }
 
@@ -49,7 +52,14 @@ public class TooltipHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private void OnMouseEnter()
     {
-        tooltip.transform.position = Camera.main.WorldToScreenPoint(transform.GetComponentInChildren<TooltipSpawn>().transform.position);
+        if (tooltipsType == TooltipType.Asteroids)
+        {
+            tooltip.transform.position = Camera.main.WorldToScreenPoint(GetComponent<Asteroid>().spawn.GetComponentInChildren<TooltipSpawn>().transform.position);
+        }
+        else
+        {
+            tooltip.transform.position = Camera.main.WorldToScreenPoint(transform.GetComponentInChildren<TooltipSpawn>().transform.position);
+        }
         switch (tooltipsType)
         {
             case TooltipType.UImodule:
@@ -57,6 +67,9 @@ public class TooltipHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                 break;
             case TooltipType.SimpleText:
                 tooltipText.text = simpleTextString;
+                break;
+            case TooltipType.Asteroids:
+                tooltipText.text = GetComponent<Asteroid>().GetTooltipDescription();
                 break;
         }
     }

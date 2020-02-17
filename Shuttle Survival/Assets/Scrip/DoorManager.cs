@@ -46,7 +46,7 @@ public class DoorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hoveredDoor != null && Input.GetMouseButtonDown(0))
+        if (hoveredDoor != null && PanelManager.panelManager.IsInteractablesEnabled() &&Input.GetMouseButtonDown(0))
         {
             GenerateDoorPanel(hoveredDoor);
         }
@@ -101,6 +101,9 @@ public class DoorManager : MonoBehaviour
 
     public void CancelDoorRepair()
     {
-
+        inventaire.AddManyResources(currentDoor.costToRepair);
+        currentDoor.CancelRepair();
+        doorPanel.SetActive(false);
+        repairButton.GetComponent<TooltipHandler>().OnPointerExit(null);
     }
 }

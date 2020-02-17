@@ -35,14 +35,19 @@ public class ModuleManager : MonoBehaviour
     [SerializeField] GameObject underConstructionModulePrefab;
     [SerializeField] Inventaire inventaire;
 
+    
+    //shipNPCmanager NPCmanagInstance;
 
     public void OnPanelOpened(object source, EventArgs args)
     {
         modulePanel.SetActive(false);
         moduleCreationPanel.SetActive(false);
         underConstructionPanel.SetActive(false);
+        if(currentModule)
+            currentModule.GetComponent<TooltipHandler>().OnPointerExit(null);
     }
 
+   
     private void Awake()
     {
         if(ModuleManager.moduleManager == null)
@@ -63,7 +68,7 @@ public class ModuleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(hoveredModule != null && Input.GetMouseButtonDown(0))
+        if(hoveredModule != null && PanelManager.panelManager.IsInteractablesEnabled() && Input.GetMouseButtonDown(0))
         {
             if (hoveredModule.moduleType != ModuleType.UnderConstruction)
             {
@@ -98,17 +103,34 @@ public class ModuleManager : MonoBehaviour
 
     public void CreateModule(int moduleIndex)
     {
+        
+
         if (inventaire.PayRessource(modulePrefabs[moduleIndex].GetComponent<Module>().ressourcesCost)) //if it can pay
         {
+            //vérifie si un personnage est en mode listen pour aller construire le module
+            /* if (NPCmanagInstance.IsNPCavailable() == true)
+             {
+                 Debug.Log("Sending bob");
+                 //NeedAHandOverHere(Transform targetTHATneedHELP) note pour moi mets ça appres que tu as régler e probl
+                 */
+
+
             GameObject underConstructionModule = Instantiate(underConstructionModulePrefab, currentModule.transform.position, Quaternion.identity);
-            underConstructionModule.GetComponent<UnderConstructionModule>().SetTurnsToBuild(modulePrefabs[moduleIndex].GetComponent<Module>().turnsToBuild);
-            underConstructionModule.GetComponent<UnderConstructionModule>().moduleToBuild = modulePrefabs[moduleIndex];
-            Destroy(currentModule.gameObject);
-            if (currentModule.unique)
+                underConstructionModule.GetComponent<UnderConstructionModule>().SetTurnsToBuild(modulePrefabs[moduleIndex].GetComponent<Module>().turnsToBuild);
+                underConstructionModule.GetComponent<UnderConstructionModule>().moduleToBuild = modulePrefabs[moduleIndex];
+                Destroy(currentModule.gameObject);
+                if (currentModule.unique)
+                {
+                    modulePrefabs.RemoveAt(moduleIndex);
+                }
+                moduleCreationPanel.SetActive(false);
+           /* }
+            else
             {
-                modulePrefabs.RemoveAt(moduleIndex);
-            }
-            moduleCreationPanel.SetActive(false);
+                Debug.Log("Select someone to go upgrade");
+                //plus tard on pourrait peut-être mettre ici le drop down list avec toutes les persos
+            }*/
+            
         }
         else
         {
@@ -119,7 +141,7 @@ public class ModuleManager : MonoBehaviour
     }
 
     private void GenerateUnderConstructionPanel(UnderConstructionModule currentModule)
-    {
+    {  
         PanelManager.panelManager.OnPanelOpened_Caller();
         this.currentModule = currentModule;
         underConstructionPanel.SetActive(true);
@@ -164,7 +186,12 @@ public class ModuleManager : MonoBehaviour
     {
         if (underConstruction)
         {
-            //refund all resources
+            inventaire.AddManyResources(((UnderConstructionModule)currentModule).moduleToBuild.GetComponent<Module>().ressourcesCost); //salvage et cancel construction refund 100% pour linstant
+            ((UnderConstructionModule)currentModule).CancelCreation();
+        }
+        else
+        {
+            inventaire.AddManyResources(currentModule.ressourcesCost); //salvage et cancel construction refund 100% pour linstant
         }
         currentModule.GetComponent<TooltipHandler>().OnPointerExit(null);
         Destroy(currentModule.gameObject);

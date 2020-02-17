@@ -14,11 +14,14 @@ public class Module : MonoBehaviour
     public string moduleName;
     public ResourcesCost ressourcesCost;
     [TextArea(2, 5)]
+    public string onCreationPopupString;
+    [TextArea(2, 5)]
     public string moduleDescription;
-    // Start is called before the first frame update
-    void Start()
-    {
 
+    // Start is called before the first frame update
+    protected virtual void Start()
+    {
+        OnCreation();
     }
 
     // Update is called once per frame
@@ -31,12 +34,15 @@ public class Module : MonoBehaviour
     {
         ModuleManager.moduleManager.hoveredModule = this;
         GetComponent<SpriteRenderer>().color = ModuleManager.moduleManager.hoverColor;
+        MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.hoverCursor);
     }
 
     private void OnMouseExit()
     {
         ModuleManager.moduleManager.hoveredModule = null;
         GetComponent<SpriteRenderer>().color = Color.white;
+        MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.defaultCursor);
+
     }
 
     public virtual void UseModule()

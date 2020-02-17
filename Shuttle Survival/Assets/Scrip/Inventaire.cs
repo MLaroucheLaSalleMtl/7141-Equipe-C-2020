@@ -5,20 +5,19 @@ using UnityEngine.EventSystems;
 
 public class Inventaire : MonoBehaviour 
 {
-   
 
     [SerializeField] ItemClass[] ressources;//note ID negatif = item de debug, ID = 0 : item Vide
     /*[HideInInspector]*/ public ItemStack[] inventory;
     [SerializeField] private ResourcesCost cost;
-    
+
     //ItemStack objet;
-    
+
+
 
     private void Start()
-    {
-        //inventory  = new ItemStack[taille];
-        PayRessource(cost);
+    {   
         RemoveNulls();
+        //PayRessource(cost);
     }
 
     public ItemStack AddItem(ItemStack stackWork)//cette fonction a besoin de retouner un ItemStack si on veut pouvoir transférer les objet d'un inventaire à un autre
@@ -31,7 +30,7 @@ public class Inventaire : MonoBehaviour
             {
                 posID.Add(i);
             }
-            if(inventory[i].Item.ItemID == 0)
+            if(inventory[i].Item.ItemID == -1)
             {
                 posVide.Add(i);
             }
@@ -90,11 +89,12 @@ public class Inventaire : MonoBehaviour
     public void RemoveNulls()
     {
         for (int i = 0; i < inventory.Length; i++) {
-            if(inventory[i] is null) {
+            if(inventory[i].Quantite == 0) {
                 inventory[i] = IdentifyStackItem(0, 0);
             }  
         } 
     }
+
     public void AddStackOnCase(int pos, ItemStack stack)
     {
         if (inventory[pos] == null)
@@ -141,26 +141,32 @@ public class Inventaire : MonoBehaviour
 
     public bool PayRessource(ResourcesCost resourcesCost)
     {
+
         ItemClass[] ID = new ItemClass[resourcesCost.resources.Length];
+
         int[] qte = new int[resourcesCost.resources.Length];
         for (int i = 0; i < resourcesCost.resources.Length; i++)
         {
             ID[i] = resourcesCost.resources[i].Item;
+  
             qte[i] = resourcesCost.resources[i].Quantite;
         }
 
         List<int> agglutine = new List<int>();
-        //List<int> pos= new List<int>();
+
         for (int i = 0; i < ID.Length; i++)
         {
             agglutine.Add(0);
             for (int a = 0; a < inventory.Length; a++)
-            {                
-                if(inventory[a] != null && inventory[a].Item.ItemID == ID[i].ItemID)
-                {                  
-                    agglutine[i] += inventory[a].Quantite;//donne la quantite total d un item dans l inventaire 
-                    inventory[a].Quantite = 0;
-                }
+            {
+                //Debug.Log(inventory[a].Item.ItemID);
+                //Debug.Log(ID[i]);
+                    if (inventory[a].Item.ItemID == ID[i].ItemID)
+                    {
+                        agglutine[i] += inventory[a].Quantite;//donne la quantite total d un item dans l inventaire 
+                        inventory[a].Quantite = 0;
+                    }
+                
             }
             if (agglutine[i] < qte[i]) 
             {
@@ -178,11 +184,7 @@ public class Inventaire : MonoBehaviour
             agglutine[pos] -= qte[pos];
             if(agglutine[pos] > 0)
             {
-                ItemStack hmm = AddItem(new ItemStack(agglutine[pos], ID[pos]));
-                if (hmm.Quantite > 0)
-                {
-                    Debug.Log("wat");
-                }
+                AddItem(new ItemStack(agglutine[pos], ID[pos]));
                 RemoveAllEmptyStacks();
             }
             
@@ -190,5 +192,42 @@ public class Inventaire : MonoBehaviour
         return true;
     }
 
+    //formule simplifié pour payer 1 seule ressource
+    public bool PayFromID(int id,int qte)
+    {
+        int agglutine = 0;
+        for(int i = 0; i< inventory.Length; i++)
+        {
+            ItemStack x = inventory[i];
+            if(id == x.Item.ItemID)
+            {
+                if (qte < x.Quantite) { 
+                    x.Quantite -= qte; 
+                    return true; 
+                } else 
+                {
+                    agglutine += x.Quantite;
+                    x.Quantite = 0;
+                }
+            }
+        }
+        if(agglutine > qte)
+        {
+            agglutine -= qte;
+            AddItem(IdentifyStackItem(id, agglutine));
+            RemoveAllEmptyStacks();
+            return true;
+        }
+        AddItem(IdentifyStackItem(id, agglutine));
+        return false;
+    }
 
+    public void AddManyResources(ResourcesCost resourcesToAdd)
+    {
+        for (int i = 0; i < resourcesToAdd.resources.Length; i++)
+        {
+            ItemStack itemStack = new ItemStack(resourcesToAdd.resources[i].Quantite, resourcesToAdd.resources[i].Item);
+            AddItem(itemStack);
+        }
+    }
 }

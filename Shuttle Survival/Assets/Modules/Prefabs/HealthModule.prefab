@@ -131,6 +131,9 @@ MonoBehaviour:
   unique: 0
   upgradable: 0
   moduleName: Health Module
+  ressourcesCost:
+    resources: []
+  onCreationPopupString: 
   moduleDescription: 'Module that will greatly
 
     increase your survability.

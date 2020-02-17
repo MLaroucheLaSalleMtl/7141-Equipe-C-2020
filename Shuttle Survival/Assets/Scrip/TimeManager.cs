@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class TimeManager : MonoBehaviour
     public int currentDays = 1;
     public int currentMins;
     [SerializeField] int turnInMinutes = 30;
-
+    [SerializeField] GameObject timeManagerUIHolder;
+    [SerializeField] Button skipTimeButton;
    // public delegate void TimeChangedEventHandler(int turnsAmount);
     //public event TimeChangedEventHandler TimeChanged;
 
@@ -78,5 +80,21 @@ public class TimeManager : MonoBehaviour
         {
             OnTimeChanged_Caller();
         }
+        ShipEventsManager.shipEventsManager.FreeShipEventsQueue();
+    }
+
+    public void ToggleUI()
+    {
+        timeManagerUIHolder.SetActive(!timeManagerUIHolder.activeSelf);
+    }
+
+    public void DisableSkipTimeButton()
+    {
+        skipTimeButton.interactable = false;
+    }
+
+    public void EnableSkipTimeButton()
+    {
+        skipTimeButton.interactable = true;
     }
 }
