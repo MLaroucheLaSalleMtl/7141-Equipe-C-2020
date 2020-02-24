@@ -8,9 +8,12 @@ public class ShipEvent
 {
     public ShipEventType shipEventType;
     public GameObject createdModuleOrDoor;
-    public Vector3 createdModuleOrUnlockedDoorPosition;
+    public Vector3 positionOfTheEvent;
     public Vector3 unlockedRoomPosition;
     public Action onEventPosition;
+    public Scraps scraps;
+    public CharacterSystem characterSystem;
+
     /// <summary>
     /// Constructor used for module completion event
     /// </summary>
@@ -19,7 +22,7 @@ public class ShipEvent
     private ShipEvent(GameObject createdModule, Vector3 createdModulePosition)
     {
         this.createdModuleOrDoor = createdModule;
-        this.createdModuleOrUnlockedDoorPosition = createdModulePosition;
+        this.positionOfTheEvent = createdModulePosition;
         shipEventType = ShipEventType.ModuleCompletion;
     }
 
@@ -32,7 +35,7 @@ public class ShipEvent
     private ShipEvent(GameObject unlockedDoor, Vector3 doorPosition, Vector3 unlockedRoomPosition, Action onEventPosition)
     {
         this.createdModuleOrDoor = unlockedDoor;
-        this.createdModuleOrUnlockedDoorPosition = doorPosition;
+        this.positionOfTheEvent = doorPosition;
         this.unlockedRoomPosition = unlockedRoomPosition;
         this.onEventPosition = onEventPosition;
         shipEventType = ShipEventType.UnlockedDoor;
@@ -44,6 +47,23 @@ public class ShipEvent
     private ShipEvent(ShipEventType shipEventType)
     {
         this.shipEventType = shipEventType;
+    }
+
+    /// <summary>
+    /// Constructor used for cleaned up scraps events
+    /// </summary>
+    private ShipEvent(Scraps scraps, Vector3 scrapsPosition)
+    {
+        this.scraps = scraps;
+        this.shipEventType = ShipEventType.ScrapsCleanedUp;
+        this.positionOfTheEvent = scrapsPosition;
+    }
+
+    private ShipEvent(CharacterSystem character, Vector3 characterPos)
+    {
+        positionOfTheEvent = characterPos;
+        characterSystem = character;
+        this.shipEventType = ShipEventType.CharacterAlert;
     }
 
     public static ShipEvent DoorEvent(GameObject unlockedDoor, Vector3 doorPosition, Vector3 unlockedRoomPosition, Action onEventPosition)
@@ -60,4 +80,15 @@ public class ShipEvent
     {
         return new ShipEvent(ShipEventType.Asteroids);
     }
+
+    public static ShipEvent CleanedUpScrapsEvent(Scraps scraps, Vector3 scrapsPosition)
+    {
+        return new ShipEvent(scraps, scrapsPosition);
+    }
+
+    public static ShipEvent CharacterAlertEvent(CharacterSystem sleepyCharacter, Vector3 characterPosition)
+    {
+        return new ShipEvent(sleepyCharacter, characterPosition);
+    }
+
 }

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb784c3abfd7a224c9cc36c9048a2a57, type: 3}
   m_Name: 21 - MultiPurpose Catalyst
   m_EditorClassIdentifier: 
-  icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: f47371d270698ce498fd8af31c03afa4, type: 3}
   description: Some BS sci-fi thingy, but its rare and you need it
   nom: Multipurpose Catalyst
   itemID: 21
   maxStack: 5
-  itemType: 6
+  itemTier: 6

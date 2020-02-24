@@ -12,7 +12,9 @@ public class Module : MonoBehaviour
     public bool unique = false;
     public bool upgradable = false;
     public string moduleName;
-    public ResourcesCost ressourcesCost;
+    [SerializeField] bool limitedChoice = false;
+    public List<GameObject> limitedModulePrefabsChoices;
+    public ResourcesPack ressourcesCost;
     [TextArea(2, 5)]
     public string onCreationPopupString;
     [TextArea(2, 5)]
@@ -32,9 +34,12 @@ public class Module : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        ModuleManager.moduleManager.hoveredModule = this;
-        GetComponent<SpriteRenderer>().color = ModuleManager.moduleManager.hoverColor;
-        MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.hoverCursor);
+        if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+        {
+            ModuleManager.moduleManager.hoveredModule = this;
+            GetComponent<SpriteRenderer>().color = ModuleManager.moduleManager.hoverColor;
+            MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.hoverCursor);
+        }
     }
 
     private void OnMouseExit()
@@ -42,7 +47,6 @@ public class Module : MonoBehaviour
         ModuleManager.moduleManager.hoveredModule = null;
         GetComponent<SpriteRenderer>().color = Color.white;
         MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.defaultCursor);
-
     }
 
     public virtual void UseModule()
@@ -55,4 +59,8 @@ public class Module : MonoBehaviour
 
     }
 
+    public bool IsModuleLimited()
+    {
+        return limitedChoice;
+    }
 }

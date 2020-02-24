@@ -11,7 +11,7 @@ public class ShipEventsManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI eventTitleText;
     [SerializeField] TextMeshProUGUI eventDescriptionText;
     [SerializeField] Button closeButton;
-
+    [SerializeField] Inventaire mainInventory;
     ShipEvent currentShipEvent;
     private void Awake()
     {
@@ -33,9 +33,9 @@ public class ShipEventsManager : MonoBehaviour
 
     public void FreeShipEventsQueue()
     {
+        RewardsDisplayer.rewardsDisplayer.CloseRewardsUI();
         shipEventPopup.SetActive(false);
         DisableUIDuringEvents();
-        //print(shipEventsQueue.Count);
         if (shipEventsQueue.Count > 0)
         {
             currentShipEvent = shipEventsQueue.Dequeue();
@@ -43,7 +43,7 @@ public class ShipEventsManager : MonoBehaviour
             switch (currentShipEvent.shipEventType)
             {
                 case ShipEventType.ModuleCompletion:
-                    CameraController.cameraController.GetToThisPosition(currentShipEvent.createdModuleOrUnlockedDoorPosition, () =>
+                    CameraController.cameraController.GetToThisPosition(currentShipEvent.positionOfTheEvent, () =>
                     {
                         eventTitleText.text = currentShipEvent.createdModuleOrDoor.GetComponent<Module>().moduleName + " completed !";
                         eventDescriptionText.text = "CharacterName " + currentShipEvent.createdModuleOrDoor.GetComponent<Module>().onCreationPopupString;
@@ -52,7 +52,7 @@ public class ShipEventsManager : MonoBehaviour
                     });
                     break;
                 case ShipEventType.UnlockedDoor:
-                    CameraController.cameraController.GetToThisPosition(currentShipEvent.createdModuleOrUnlockedDoorPosition, () =>
+                    CameraController.cameraController.GetToThisPosition(currentShipEvent.positionOfTheEvent, () =>
                     {
                         currentShipEvent.onEventPosition?.Invoke();
                         eventTitleText.text = "Door repair completed !";
@@ -72,6 +72,40 @@ public class ShipEventsManager : MonoBehaviour
                         closeButton.onClick.AddListener(FreeShipEventsQueue);
                         shipEventPopup.SetActive(true);
                     });
+                    break;
+                case ShipEventType.ScrapsCleanedUp:
+                    CameraController.cameraController.GetToThisPosition(currentShipEvent.positionOfTheEvent, () =>
+                    {
+                        eventTitleText.text = "Scraps have been cleaned up ! ";
+                        eventDescriptionText.text = "Clean up of the scraps is done. You found precious resources amongst the junks that could be useful.";
+                        ResourcesPack scrapsRewards = RandomisedLootDecrypter.GetInstance().DecryptRandomisedLoot(currentShipEvent.scraps.scrapsLoot);
+                        mainInventory.AddManyResources(scrapsRewards);
+                        RewardsDisplayer.rewardsDisplayer.ReceiveRewardsToDisplay(scrapsRewards.resources, false);
+                        Destroy(currentShipEvent.scraps.gameObject);
+                        closeButton.onClick.AddListener(FreeShipEventsQueue);
+                        shipEventPopup.SetActive(true);
+                    });
+                    break;
+                case ShipEventType.CharacterAlert:
+                    if (currentShipEvent.characterSystem.characterAlertTypes.Count > 0)
+                    {
+                        CameraController.cameraController.GetToThisPosition(currentShipEvent.positionOfTheEvent, () =>
+                        {
+                            CharacterSystem currentCharacterSystem = currentShipEvent.characterSystem;
+                            switch (currentCharacterSystem.characterAlertTypes[0])
+                            {
+                                case CharacterAlertType.Sleepy:
+                                    eventTitleText.text = "CHARACTER NAME is sleepy";
+                                    eventDescriptionText.text = "It is a great opportunity to gain some <b>easy resources</b>. Let's <i>hurry</i> before we lose them";
+                                    //EMILE
+                                    break;
+                                case CharacterAlertType.Hungry:
+                                    break;
+                                case CharacterAlertType.Hurty:
+                                    break;
+                            }
+                        });
+                    }
                     break;
             }
         }

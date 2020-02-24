@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    [SerializeField] AsteroidLoot asteroidLoot;
+    [SerializeField] RandomisedLoot asteroidLoot;
     [SerializeField] int turnsBeforeGone = 2;
     [SerializeField] float maxRotateSpeed = 30f;
     [SerializeField] float scaleVariation = 0.2f;
@@ -27,9 +27,16 @@ public class Asteroid : MonoBehaviour
     void Update()
     {
         transform.Rotate(new Vector3(0, 0, maxRotateSpeed * Time.deltaTime));
-        if(canBeHarvested && AsteroidsManager.asteroidsManager.shotsRemainingWithArm > 0 && Input.GetMouseButtonDown(0))
+        if (canBeHarvested && AsteroidsManager.asteroidsManager.shotsRemainingWithArm > 0 && Input.GetMouseButtonDown(0))
         {
-            RemoveThisAsteroid(true);
+            if (AsteroidsManager.asteroidsManager.armMaxRange >= spawn.spawnTier)
+            {
+                RemoveThisAsteroid(true);
+            }
+            else
+            {
+                MessagePopup.MessagePopupManager.SetStringAndShowPopup("Out of range");
+            }
         }
     }
 

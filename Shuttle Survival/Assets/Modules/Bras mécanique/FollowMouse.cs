@@ -7,7 +7,6 @@ public class FollowMouse : MonoBehaviour
 {
     private Vector3 posSouris;
     [SerializeField] private Transform targetIK;
-    [SerializeField] private Camera camera;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +17,7 @@ public class FollowMouse : MonoBehaviour
     void FixedUpdate()
     {
         posSouris = Input.mousePosition;       
-        Vector3 vect = camera.ScreenToWorldPoint(new Vector3(posSouris.x, posSouris.y, 0 ));
+        Vector3 vect = Camera.main.ScreenToWorldPoint(new Vector3(posSouris.x, posSouris.y, 0 ));
         targetIK.transform.position = vect;
     }
 

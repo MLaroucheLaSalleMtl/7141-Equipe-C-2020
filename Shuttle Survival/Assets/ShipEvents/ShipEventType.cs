@@ -7,5 +7,7 @@ public enum ShipEventType
     ModuleCompletion,
     Asteroids,
     GrandEvent,
-    UnlockedDoor
+    UnlockedDoor,
+    ScrapsCleanedUp,
+    CharacterAlert
 }

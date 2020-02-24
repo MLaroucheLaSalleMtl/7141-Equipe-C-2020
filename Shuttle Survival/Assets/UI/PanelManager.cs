@@ -31,11 +31,7 @@ public class PanelManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        OnPanelOpened += ModuleManager.moduleManager.OnPanelOpened;
-        OnPanelOpened += DoorManager.doorManager.OnPanelOpened;
-    }
+
 
     public void CloseAllPanels()
     {

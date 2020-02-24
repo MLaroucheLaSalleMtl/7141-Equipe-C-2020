@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ItemTier { Debug, Vide, Consum, Tier1, Tier2, Tier3, Tier4 };
+
 [CreateAssetMenu(menuName  ="Item")]
 public class ItemClass : ScriptableObject
 {
@@ -11,11 +13,10 @@ public class ItemClass : ScriptableObject
     [SerializeField] private string nom;
     [SerializeField] private int itemID;
     [SerializeField] private int maxStack;
-    [SerializeField] private ItemTier itemType;
-    public enum ItemTier { Debug,Vide,Consum, Tier1, Tier2, Tier3, Tier4 };
+    [SerializeField] private ItemTier itemTier;
     public string Description { get => description;}
     public string Nom { get => nom;}
     public int ItemID { get => itemID;}
     public int MaxStack { get => maxStack;}
-    public ItemTier ItemType { get => itemType;}
+    public ItemTier ItemTier { get => itemTier;}
 }

@@ -28,15 +28,16 @@ public class ModuleManager : MonoBehaviour
     [SerializeField] Image underConstructionProgressBar;
     [SerializeField] TextMeshProUGUI turnsRemainingText;
     [SerializeField] TextMeshProUGUI buildingModuleText;
-
+    List<GameObject> currentLimitedModulesChoices;
+    bool buildingFromLimitedChoices = false;
     [Header("All modules")]
-    public List<GameObject> modulePrefabs = new List<GameObject>();
+    public List<GameObject> standardModulePrefabs = new List<GameObject>();
     public GameObject emptyModule;
     [SerializeField] GameObject underConstructionModulePrefab;
     [SerializeField] Inventaire inventaire;
 
     
-    //shipNPCmanager NPCmanagInstance;
+    shipNPCmanager NPC;
 
     public void OnPanelOpened(object source, EventArgs args)
     {
@@ -62,7 +63,8 @@ public class ModuleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PanelManager.panelManager.OnPanelOpened += ModuleManager.moduleManager.OnPanelOpened;
+        NPC = shipNPCmanager.NPCmanagInstance;
     }
 
     // Update is called once per frame
@@ -85,51 +87,69 @@ public class ModuleManager : MonoBehaviour
 
     public void GenerateModuleCreationPanel()
     {
+        buildingFromLimitedChoices = false;
         PanelManager.panelManager.OnPanelOpened_Caller();
         moduleCreationPanel.SetActive(true);
         foreach (Transform transform in moduleCreationGrid)
         {
             Destroy(transform.gameObject);
         }
-        for (int i = 0; i < modulePrefabs.Count; i++)
+
+        if (currentModule.IsModuleLimited())
         {
-            Image uiModule = Instantiate(moduleCreationPrefab, moduleCreationGrid);
-            currentUImodule = uiModule.GetComponent<UIModule>();
-            uiModule.sprite = modulePrefabs[i].GetComponent<Module>().sprite;
-            uiModule.GetComponent<UIModule>().moduleIndex = i;
-            uiModule.GetComponent<UIModule>().moduleDescription = modulePrefabs[i].GetComponent<Module>().moduleDescription;
+            buildingFromLimitedChoices = true;
+            currentLimitedModulesChoices = currentModule.limitedModulePrefabsChoices;
+            for (int i = 0; i < currentLimitedModulesChoices.Count; i++)
+            {
+                Image uiModule = Instantiate(moduleCreationPrefab, moduleCreationGrid);
+                currentUImodule = uiModule.GetComponent<UIModule>();
+                uiModule.sprite = currentLimitedModulesChoices[i].GetComponent<Module>().sprite;
+                uiModule.GetComponent<UIModule>().moduleIndex = i;
+                uiModule.GetComponent<UIModule>().moduleDescription = currentLimitedModulesChoices[i].GetComponent<Module>().moduleDescription;
+            }
         }
+        else
+        {
+            for (int i = 0; i < standardModulePrefabs.Count; i++)
+            {
+                Image uiModule = Instantiate(moduleCreationPrefab, moduleCreationGrid);
+                currentUImodule = uiModule.GetComponent<UIModule>();
+                uiModule.sprite = standardModulePrefabs[i].GetComponent<Module>().sprite;
+                uiModule.GetComponent<UIModule>().moduleIndex = i;
+                uiModule.GetComponent<UIModule>().moduleDescription = standardModulePrefabs[i].GetComponent<Module>().moduleDescription;
+            }
+        }        
     }
 
     public void CreateModule(int moduleIndex)
     {
-        
+        List<GameObject> listOfPossibleModules = buildingFromLimitedChoices ? currentLimitedModulesChoices : standardModulePrefabs;
 
-        if (inventaire.PayRessource(modulePrefabs[moduleIndex].GetComponent<Module>().ressourcesCost)) //if it can pay
+        if (inventaire.PayRessource(listOfPossibleModules[moduleIndex].GetComponent<Module>().ressourcesCost)) //if it can pay
         {
             //vérifie si un personnage est en mode listen pour aller construire le module
-            /* if (NPCmanagInstance.IsNPCavailable() == true)
+             if (NPC.IsNPCavailable() == true)
              {
                  Debug.Log("Sending bob");
-                 //NeedAHandOverHere(Transform targetTHATneedHELP) note pour moi mets ça appres que tu as régler e probl
-                 */
-
-
-            GameObject underConstructionModule = Instantiate(underConstructionModulePrefab, currentModule.transform.position, Quaternion.identity);
-                underConstructionModule.GetComponent<UnderConstructionModule>().SetTurnsToBuild(modulePrefabs[moduleIndex].GetComponent<Module>().turnsToBuild);
-                underConstructionModule.GetComponent<UnderConstructionModule>().moduleToBuild = modulePrefabs[moduleIndex];
+                
+                GameObject underConstructionModule = Instantiate(underConstructionModulePrefab, currentModule.transform.position, Quaternion.identity);
+                underConstructionModule.GetComponent<UnderConstructionModule>().SetTurnsToBuild(listOfPossibleModules[moduleIndex].GetComponent<Module>().turnsToBuild);
+                underConstructionModule.GetComponent<UnderConstructionModule>().moduleToBuild = listOfPossibleModules[moduleIndex];
                 Destroy(currentModule.gameObject);
-                if (currentModule.unique)
-                {
-                    modulePrefabs.RemoveAt(moduleIndex);
-                }
+                    if (currentModule.unique && !buildingFromLimitedChoices)
+                    {
+                        standardModulePrefabs.RemoveAt(moduleIndex);
+                    }
                 moduleCreationPanel.SetActive(false);
-           /* }
+
+                //trouver le bon endroit pour envoyer bob      
+                NPC.NeedAHandOverHere(underConstructionModule.transform);
+            }
             else
             {
-                Debug.Log("Select someone to go upgrade");
+                MessagePopup.MessagePopupManager.SetStringAndShowPopup("Select someone to go upgrade");
                 //plus tard on pourrait peut-être mettre ici le drop down list avec toutes les persos
-            }*/
+            }
             
         }
         else

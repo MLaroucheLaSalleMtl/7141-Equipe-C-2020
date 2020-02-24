@@ -4,22 +4,25 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public enum TooltipType { UImodule, SimpleText, Asteroids };
+public enum TooltipType { UImodule, SimpleText, Asteroids, ItemUI };
 
 public class TooltipHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
-    GameObject tooltip;
+    GameObject regularTooltipObject;
+    GameObject itemTooltipObject;
     [TextArea(2,4)]
     [SerializeField] public string simpleTextString;
     [SerializeField] TooltipType tooltipsType;
+
     TextMeshProUGUI tooltipText;
 
     // Start is called before the first frame update
     void Start()
     {
-        tooltip = FindObjectOfType<Tooltip>().gameObject;
-        tooltipText = tooltip.GetComponentInChildren<TextMeshProUGUI>();
+        itemTooltipObject = FindObjectOfType<ItemTooltip>().gameObject;
+        regularTooltipObject = FindObjectOfType<Tooltip>().gameObject;
+        tooltipText = regularTooltipObject.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -30,7 +33,8 @@ public class TooltipHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        tooltip.transform.position = transform.position;
+
+        bool regularTooltip = true;
         switch (tooltipsType)
         {
             case TooltipType.UImodule:
@@ -42,40 +46,58 @@ public class TooltipHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             case TooltipType.Asteroids:
                 tooltipText.text = GetComponent<Asteroid>().GetTooltipDescription();
                 break;
+            case TooltipType.ItemUI:
+                regularTooltip = false;
+                ItemUI itemUI = GetComponent<ItemUI>();
+                ItemClass itemClass = itemUI.GetItemHolded();
+                itemTooltipObject.GetComponent<ItemTooltip>().SetUpItemTooltip(itemClass.icon, itemClass.Nom, itemClass.ItemTier, itemClass.Description, itemUI.GetCurrentQuantity(), itemClass.MaxStack);
+                break;
+        }
+        if (regularTooltip)
+        {
+            regularTooltipObject.transform.position = transform.position;
+        }
+        else
+        {
+            itemTooltipObject.transform.position = transform.position;
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        tooltip.transform.localPosition = new Vector3(1100, 0, 0);
+        regularTooltipObject.transform.localPosition = new Vector3(2200, 0, 0);
+        itemTooltipObject.transform.localPosition = new Vector3(2200, 0, 0);
     }
 
     private void OnMouseEnter()
     {
-        if (tooltipsType == TooltipType.Asteroids)
+        if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
-            tooltip.transform.position = Camera.main.WorldToScreenPoint(GetComponent<Asteroid>().spawn.GetComponentInChildren<TooltipSpawn>().transform.position);
-        }
-        else
-        {
-            tooltip.transform.position = Camera.main.WorldToScreenPoint(transform.GetComponentInChildren<TooltipSpawn>().transform.position);
-        }
-        switch (tooltipsType)
-        {
-            case TooltipType.UImodule:
-                tooltipText.text = GetComponent<UIModule>().moduleDescription;
-                break;
-            case TooltipType.SimpleText:
-                tooltipText.text = simpleTextString;
-                break;
-            case TooltipType.Asteroids:
-                tooltipText.text = GetComponent<Asteroid>().GetTooltipDescription();
-                break;
+            if (tooltipsType == TooltipType.Asteroids)
+            {
+                regularTooltipObject.transform.position = Camera.main.WorldToScreenPoint(GetComponent<Asteroid>().spawn.GetComponentInChildren<TooltipSpawn>().transform.position);
+            }
+            else
+            {
+                regularTooltipObject.transform.position = Camera.main.WorldToScreenPoint(transform.GetComponentInChildren<TooltipSpawn>().transform.position);
+            }
+            switch (tooltipsType)
+            {
+                case TooltipType.UImodule:
+                    tooltipText.text = GetComponent<UIModule>().moduleDescription;
+                    break;
+                case TooltipType.SimpleText:
+                    tooltipText.text = simpleTextString;
+                    break;
+                case TooltipType.Asteroids:
+                    tooltipText.text = GetComponent<Asteroid>().GetTooltipDescription();
+                    break;
+            }
         }
     }
 
     private void OnMouseExit()
     {
-        tooltip.transform.localPosition = new Vector3(1100, 0, 0);
+        regularTooltipObject.transform.localPosition = new Vector3(2200, 0, 0);
     }
 }

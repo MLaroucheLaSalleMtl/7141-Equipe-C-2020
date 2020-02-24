@@ -20,6 +20,7 @@ public class DoorManager : MonoBehaviour
     [HideInInspector]
     public LockedDoor hoveredDoor;
     LockedDoor currentDoor;
+    shipNPCmanager NPC;
     private void Awake()
     {
         if (DoorManager.doorManager == null)
@@ -40,7 +41,8 @@ public class DoorManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PanelManager.panelManager.OnPanelOpened += OnPanelOpened;
+        NPC = shipNPCmanager.NPCmanagInstance;
     }
 
     // Update is called once per frame
@@ -89,9 +91,23 @@ public class DoorManager : MonoBehaviour
     {
         if (inventaire.PayRessource(currentDoor.costToRepair))
         {
-            repairButton.GetComponent<TooltipHandler>().OnPointerExit(null);
-            currentDoor.BeginRepair();
-            doorPanel.SetActive(false);
+            if (NPC.IsNPCavailable() == true)
+            {
+                Debug.Log("Sending bob");
+
+                repairButton.GetComponent<TooltipHandler>().OnPointerExit(null);
+                currentDoor.BeginRepair();
+                doorPanel.SetActive(false);
+
+                //trouver le bon endroit pour envoyer bob      
+                NPC.NeedAHandOverHere(currentDoor.transform);
+            }
+            else
+            {
+                MessagePopup.MessagePopupManager.SetStringAndShowPopup("Select someone to go upgrade");
+                //plus tard on pourrait peut-être mettre ici le drop down list avec toutes les persos
+            }
+            
         }
         else
         {

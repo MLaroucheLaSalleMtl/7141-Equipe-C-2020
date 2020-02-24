@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class shipNPCmanager : MonoBehaviour
 {
+    //c'est quoi cette merde? regarde les scriptes qu'on a déjà
     //---------------------------------------------------------------------------
     //No touch zone cuz instance zone
     public static shipNPCmanager NPCmanagInstance;
@@ -20,24 +21,11 @@ public class shipNPCmanager : MonoBehaviour
     }
     //---------------------------------------------------------------------------
 
-    private List<PathFinding> ListNPCship = new List<PathFinding>();
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private List<PathFinding> ListNPCship = new List<PathFinding>();  
 
     public void AvailableNPC(PathFinding NPC)
     {
         ListNPCship.Add(NPC);
-        Debug.Log("NPC ADDED TO THE WILLING LIST");
     }
 
     public void RemoveNPC(PathFinding NPC)
@@ -46,6 +34,7 @@ public class shipNPCmanager : MonoBehaviour
             if (NPC == ListNPCship[z])
             {
                 ListNPCship.RemoveAt(z);
+
             }
         }        
     }
@@ -65,8 +54,20 @@ public class shipNPCmanager : MonoBehaviour
 
     public void NeedAHandOverHere(Transform targetTHATneedHELP)
     {
-        //choisit un npc envoie le à la bonne place
+        Debug.Log("INCOMING");
+        //choisit un npc envoie le à la bonne place        
         ListNPCship[0].BobDoSomething(targetTHATneedHELP);
         RemoveNPC(ListNPCship[0]);
+        
     }
+
+    /*if (NPC.IsNPCavailable() == true) {
+                Debug.Log("Sending bob");
+                CODE BLAHBLAH
+                //trouver le bon endroit pour envoyer bob      
+                NPC.NeedAHandOverHere(gameObject.transform);
+            }else{
+                MessagePopup.MessagePopupManager.SetStringAndShowPopup("Select someone to go upgrade");
+                //plus tard on pourrait peut-être mettre ici le drop down list avec toutes les persos
+            } */
 }

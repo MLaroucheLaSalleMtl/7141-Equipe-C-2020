@@ -35,10 +35,12 @@ public class AsteroidsManager : MonoBehaviour
     public int shotsRemainingWithArm;
     [SerializeField] TextMeshProUGUI shotsRemainingTextInHUD;
     [SerializeField] Inventaire mainInventory;
-    AsteroidLoot currentAsteroidLoot;
+    RandomisedLoot currentAsteroidLoot;
     [SerializeField] GameObject[] maxRangesImagesForHUD;
-    [SerializeField] int armMaxRange = 1;
+    public int armMaxRange = 1;
     [SerializeField] GameObject overheatingText;
+    [SerializeField] GameObject mechanicalArm;
+    [SerializeField] Transform[] mechanicalArmsTransformForRanges;
     private void Awake()
     {
         if(AsteroidsManager.asteroidsManager == null)
@@ -188,7 +190,7 @@ public class AsteroidsManager : MonoBehaviour
         }
     }
 
-    public void RemoveAsteroid(AsteroidSpawn spawn, bool harvested, AsteroidLoot asteroidLoot)
+    public void RemoveAsteroid(AsteroidSpawn spawn, bool harvested, RandomisedLoot asteroidLoot)
     {
         currentAsteroidLoot = asteroidLoot;
         switch (spawn.spawnTier)
@@ -219,36 +221,36 @@ public class AsteroidsManager : MonoBehaviour
     {
         shotsRemainingWithArm--;
         RefreshShotsRemainingHUDtext();
-
-        for (int i = 0; i < currentAsteroidLoot.resourcesPossible.Length; i++)
-        {
-            float rand = UnityEngine.Random.Range(0.00f, 1.00f);
-            if(currentAsteroidLoot.chancesToGive[i] >= rand)
-            {
-                int quantity = UnityEngine.Random.Range(Mathf.RoundToInt(currentAsteroidLoot.resourcesPossible[i].Quantite * (1 - currentAsteroidLoot.resourcesVariation[i])), 
-                                                        Mathf.RoundToInt(currentAsteroidLoot.resourcesPossible[i].Quantite * (1 + currentAsteroidLoot.resourcesVariation[i])));
-                ItemStack loot = new ItemStack(quantity, currentAsteroidLoot.resourcesPossible[i].Item);
-                mainInventory.AddItem(loot);
-                print(loot.Item + " " + loot.Quantite);
-            }
-        }
+        ResourcesPack asteroidRewards = RandomisedLootDecrypter.GetInstance().DecryptRandomisedLoot(currentAsteroidLoot);
+        mainInventory.AddManyResources(asteroidRewards);
+        RewardsDisplayer.rewardsDisplayer.ReceiveRewardsToDisplay(asteroidRewards.resources, true);
     }
 
     public void GoInAsteroidsViewForArm()
     {
+
         RefreshShotsRemainingHUDtext();
         IsArmOverheating();
         CameraController.cameraController.GetToThisPosition(asteroidsViewPosition.position);
+        mechanicalArm.SetActive(true);
         asteroidViewHUD.SetActive(true);
         TimeManager.timeManager.ToggleUI();
         MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.asteroidCursor);
-        mechanicalArmCanFire = true;
+        SetupMechanicalArm();
         ManageArmMaxRange();
+    }
+
+    private void SetupMechanicalArm()
+    {
+        mechanicalArmCanFire = true;
+        mechanicalArm.transform.position = mechanicalArmsTransformForRanges[armMaxRange - 1].position;
+        mechanicalArm.transform.localScale = mechanicalArmsTransformForRanges[armMaxRange - 1].localScale;
     }
 
     public void RefreshShotsRemainingHUDtext()
     {
         shotsRemainingTextInHUD.text = "Shots before <color=\"red\"> overheat </color> : <b>" + shotsRemainingWithArm + "</b>";
+        IsArmOverheating();
     }
 
     private void IsArmOverheating()
@@ -275,6 +277,7 @@ public class AsteroidsManager : MonoBehaviour
     public void ReturnFromAsteroidViewForArm()
     {
         mechanicalArmCanFire = false;
+        mechanicalArm.SetActive(false);
         CameraController.cameraController.GetToThisPosition(asteroidsReturnViewPosition.position, () => 
         {
             TimeManager.timeManager.ToggleUI();

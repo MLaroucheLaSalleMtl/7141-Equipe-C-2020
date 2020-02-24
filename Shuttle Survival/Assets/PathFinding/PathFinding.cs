@@ -34,6 +34,7 @@ public class PathFinding : MonoBehaviour
     void Start(){
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        NPC = shipNPCmanager.NPCmanagInstance;
 
         //Pas de target au début, donc pas nécessaire, mais je garde les lignes de codes au cas ou on change d'idée
 
@@ -122,7 +123,6 @@ public class PathFinding : MonoBehaviour
             NPC.RemoveNPC(this);
             listenMode = false;
         }
-        Debug.Log("ListenMode = "+ listenMode);
     }
 
     //vérifie l'état du bool

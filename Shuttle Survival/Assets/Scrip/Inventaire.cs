@@ -7,8 +7,8 @@ public class Inventaire : MonoBehaviour
 {
 
     [SerializeField] ItemClass[] ressources;//note ID negatif = item de debug, ID = 0 : item Vide
-    /*[HideInInspector]*/ public ItemStack[] inventory;
-    [SerializeField] private ResourcesCost cost;
+    /*[HideInInspector]*/ public ItemStack[] inventoryContent;
+    [SerializeField] private ResourcesPack cost;
 
     //ItemStack objet;
 
@@ -24,13 +24,13 @@ public class Inventaire : MonoBehaviour
     {
         List<int> posVide = new List<int>();
         List<int> posID = new List<int>();
-        for (int i = 0; i < inventory.Length; i++)
+        for (int i = 0; i < inventoryContent.Length; i++)
         {
-            if(inventory[i].Item.ItemID == stackWork.Item.ItemID)
+            if(inventoryContent[i].Item.ItemID == stackWork.Item.ItemID)
             {
                 posID.Add(i);
             }
-            if(inventory[i].Item.ItemID == -1)
+            if(inventoryContent[i].Item.ItemID == -1)
             {
                 posVide.Add(i);
             }
@@ -39,14 +39,14 @@ public class Inventaire : MonoBehaviour
         for(int pos = 0; pos<posID.Count; pos++) 
         {
             int x = posID[pos];
-            if (stackWork.Quantite+inventory[x].Quantite > stackWork.Item.MaxStack)
+            if (stackWork.Quantite+inventoryContent[x].Quantite > stackWork.Item.MaxStack)
             {
-                stackWork.Quantite -= stackWork.Item.MaxStack - inventory[x].Quantite;
-                inventory[x].Quantite = inventory[x].Item.MaxStack;
+                stackWork.Quantite -= stackWork.Item.MaxStack - inventoryContent[x].Quantite;
+                inventoryContent[x].Quantite = inventoryContent[x].Item.MaxStack;
             }
             else
             {
-                inventory[x].Quantite += stackWork.Quantite;
+                inventoryContent[x].Quantite += stackWork.Quantite;
                 
                 return new ItemStack(0,ressources[0]);
             }
@@ -57,12 +57,12 @@ public class Inventaire : MonoBehaviour
             int x = posVide[pos];
             if (stackWork.Quantite > stackWork.Item.MaxStack)
             {
-                inventory[x] = new ItemStack(stackWork.Item.MaxStack ,stackWork.Item);
+                inventoryContent[x] = new ItemStack(stackWork.Item.MaxStack ,stackWork.Item);
                 stackWork.Quantite -= stackWork.Item.MaxStack;
             }
             else
             {
-                inventory[x] = new ItemStack(stackWork.Quantite, stackWork.Item);
+                inventoryContent[x] = new ItemStack(stackWork.Quantite, stackWork.Item);
                 return new ItemStack(0, ressources[0]);
             }
         }
@@ -88,39 +88,39 @@ public class Inventaire : MonoBehaviour
 
     public void RemoveNulls()
     {
-        for (int i = 0; i < inventory.Length; i++) {
-            if(inventory[i].Quantite == 0) {
-                inventory[i] = IdentifyStackItem(0, 0);
+        for (int i = 0; i < inventoryContent.Length; i++) {
+            if(inventoryContent[i].Quantite == 0) {
+                inventoryContent[i] = IdentifyStackItem(0, 0);
             }  
         } 
     }
 
     public void AddStackOnCase(int pos, ItemStack stack)
     {
-        if (inventory[pos] == null)
+        if (inventoryContent[pos] == null)
         {
-            inventory[pos] = stack;
+            inventoryContent[pos] = stack;
         }
     }
  
     public void RemoveAllEmptyStacks()
     {
-        for(int i= 0; i < inventory.Length; i++)
+        for(int i= 0; i < inventoryContent.Length; i++)
         {
-            if(inventory[i].Quantite <= 0)
+            if(inventoryContent[i].Quantite <= 0)
             {
-                inventory[i] = IdentifyStackItem(0,0);
+                inventoryContent[i] = IdentifyStackItem(0,0);
             }
         }
     }
 
     public void RemoveEmptyStack(int id)
     {
-        for (int i = 0; i < inventory.Length; i++)
+        for (int i = 0; i < inventoryContent.Length; i++)
         {
-            if (inventory[i].Quantite <= 0)
+            if (inventoryContent[i].Quantite <= 0)
             {
-                inventory[i] = null;
+                inventoryContent[i] = null;
             }
         }
     }
@@ -129,17 +129,17 @@ public class Inventaire : MonoBehaviour
     public int GetAmount(int ID)
     {
         int qte = 0;
-        for(int i =0; i< inventory.Length; i++)
+        for(int i = 0; i< inventoryContent.Length; i++)
         {
-            if(ID == inventory[i].Item.ItemID)
+            if(ID == inventoryContent[i].Item.ItemID)
             {
-                qte += inventory[i].Quantite;
+                qte += inventoryContent[i].Quantite;
             }
         }
         return qte;
     }
 
-    public bool PayRessource(ResourcesCost resourcesCost)
+    public bool PayRessource(ResourcesPack resourcesCost)
     {
 
         ItemClass[] ID = new ItemClass[resourcesCost.resources.Length];
@@ -157,14 +157,14 @@ public class Inventaire : MonoBehaviour
         for (int i = 0; i < ID.Length; i++)
         {
             agglutine.Add(0);
-            for (int a = 0; a < inventory.Length; a++)
+            for (int a = 0; a < inventoryContent.Length; a++)
             {
                 //Debug.Log(inventory[a].Item.ItemID);
                 //Debug.Log(ID[i]);
-                    if (inventory[a].Item.ItemID == ID[i].ItemID)
+                    if (inventoryContent[a].Item.ItemID == ID[i].ItemID)
                     {
-                        agglutine[i] += inventory[a].Quantite;//donne la quantite total d un item dans l inventaire 
-                        inventory[a].Quantite = 0;
+                        agglutine[i] += inventoryContent[a].Quantite;//donne la quantite total d un item dans l inventaire 
+                        inventoryContent[a].Quantite = 0;
                     }
                 
             }
@@ -196,9 +196,9 @@ public class Inventaire : MonoBehaviour
     public bool PayFromID(int id,int qte)
     {
         int agglutine = 0;
-        for(int i = 0; i< inventory.Length; i++)
+        for(int i = 0; i< inventoryContent.Length; i++)
         {
-            ItemStack x = inventory[i];
+            ItemStack x = inventoryContent[i];
             if(id == x.Item.ItemID)
             {
                 if (qte < x.Quantite) { 
@@ -222,7 +222,7 @@ public class Inventaire : MonoBehaviour
         return false;
     }
 
-    public void AddManyResources(ResourcesCost resourcesToAdd)
+    public void AddManyResources(ResourcesPack resourcesToAdd)
     {
         for (int i = 0; i < resourcesToAdd.resources.Length; i++)
         {

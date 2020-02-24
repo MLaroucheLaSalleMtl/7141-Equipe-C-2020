@@ -16,10 +16,15 @@ public class ItemStack
         this.item = item;
         this.quantite = quantite;
     }
+
+    public ItemStack Clone()
+    {
+        return new ItemStack(this.Quantite, this.item);        
+    }
 }
 
 [System.Serializable]
-public class ResourcesCost
+public class ResourcesPack
 {
     [SerializeField] public ItemStack[] resources;
     

@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class LockedDoor : MonoBehaviour
 {
     [SerializeField] private GameObject fog;
-    [SerializeField] private GameObject hiddenModule;
+    [SerializeField] private GameObject[] hiddenModule;
     ShipManager ship;
     public string doorTitle = "Broken Door";
     [TextArea(2, 4)]
@@ -15,7 +15,7 @@ public class LockedDoor : MonoBehaviour
     public int turnToUnlock = 1;
     public int turnsRemaining;
     public bool underRepair = false;
-    public ResourcesCost costToRepair;
+    public ResourcesPack costToRepair;
     [TextArea(2, 4)]
     public string onDoorUnlockedPopupString;
     [TextArea(2, 4)]
@@ -25,20 +25,20 @@ public class LockedDoor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ship = ShipManager.instance;
+        ship = ShipManager.shipM;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 
     private void OnMouseEnter()
     {
-        DoorManager.doorManager.hoveredDoor = this;
-        GetComponent<SpriteRenderer>().color = ModuleManager.moduleManager.hoverColor;
-        MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.hoverCursor);
+        if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+        {
+            DoorManager.doorManager.hoveredDoor = this;
+            GetComponent<SpriteRenderer>().color = ModuleManager.moduleManager.hoverColor;
+            MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.hoverCursor);
+        }
+        
 
     }
     private void OnMouseExit()
@@ -77,7 +77,8 @@ public class LockedDoor : MonoBehaviour
                                                                         fog.GetComponent<DissolveEffect>().StartDissolve(() =>
                                                                         {
                                                                             fog.gameObject.SetActive(false);
-                                                                            hiddenModule.SetActive(true);
+                                                                            foreach(GameObject mod in hiddenModule) { mod.SetActive(true); }
+                                                                            
                                                                         });
                                                                         foreach (Transform transform in fog.transform)
                                                                         {
