@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SceneEspace.unity
     guid: 457fc998f67f61244b3c0bd991cfcc01
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BoardingShipScreen.unity
     guid: 00ae2bf9c391f03449e99d3a59399c0a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SceneDongeon.unity
     guid: c88b95f259e2f7f4d97196816a0d5530
   m_configObjects:

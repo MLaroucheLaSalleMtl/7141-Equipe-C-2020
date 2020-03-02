@@ -1,20 +1,22 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject fog;
-    [SerializeField] private GameObject[] modules;
+    #region UI
     [SerializeField] private List<CharacterSystem> personnages;
     [SerializeField] private Button persoHUD;//pour les sprite des perso sur le top
     [SerializeField] private Canvas canvas;
-
-    public GameObject actions;
-
+    [SerializeField] private Button boutonBlueprint;//boutons des menus dynamiques
+    [SerializeField] private GameObject menu;//paneau des menus dynamiques
+    #endregion UI
+    [SerializeField] private GameObject fog;
+    [SerializeField] private GameObject[] modules;
+    public static GameObject actions;
     public static CharacterSystem selection;
-
     public static GameManager GM;
 
     private void Awake()
@@ -27,25 +29,23 @@ public class GameManager : MonoBehaviour
     }
 
     public List<CharacterSystem> Personnages { get => personnages;}
+    public GameObject Menu;
 
-    bool bolinet;
+   
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Invoke("CloseActionPanel", 0.1f);
-            //
+            Invoke("CloseActionPanel", 0.1f);          
         }
     }
-
- 
-
-    public void NewActionPanel(GameObject menu)
+  
+    public void NewActionPanel()
     {
         if (actions) 
             Destroy(actions);
 
-        actions = Instantiate(menu);
+        actions = Instantiate(Menu);
         actions.transform.SetParent(canvas.transform, true);
         actions.transform.position = Input.mousePosition; 
     }
@@ -61,6 +61,11 @@ public class GameManager : MonoBehaviour
         personnages.Add(perso);
     }
 
+    public void RemovePerso(CharacterSystem that)
+    {
+        personnages.Remove(that);
+    }
+
     void Start()
     {
 
@@ -70,14 +75,15 @@ public class GameManager : MonoBehaviour
         foreach (CharacterSystem perso in temp) { personnages.Add(perso); }//(int i = 0; i<temp.Length; i++) { personnages.Add(temp[i]); }
         
     }
+ 
 
-    public void SelectPerso()
+    public void AddBouton(string txt, System.Action action)
     {
-
-    }
-
-    public GameObject ReturnSelection()
-    {
-        return selection.gameObject;
+        Button boutonTravail;
+        boutonTravail = Instantiate(boutonBlueprint, this.gameObject.transform);
+        boutonTravail.GetComponentInChildren<Text>().text = txt;//change le text du bouton
+        boutonTravail.transform.SetParent(actions.transform, true);//met le bouton enfant du paneau action
+        boutonTravail.onClick.AddListener(() =>action());
+        boutonTravail.onClick.AddListener(CloseActionPanel);
     }
 }

@@ -9,34 +9,42 @@ public class CharacterSystem : MonoBehaviour
 {
     //connecté à ShipManager
     ShipManager ship;
-    
+
     GameManager gameM;
 
     //doit etre sur tous les personnages
-    [SerializeField] private int HPMax = 6;   
+    [SerializeField] private int HPMax = 6;
     [SerializeField] private int FoodCap = 12;//12 = 2 jours
     [SerializeField] private int foodValue = 4;
-    [SerializeField]private int SleepCap = 36;//18 heures ->36
+    [SerializeField] private int SleepCap = 36;//18 heures ->36
     public List<CharacterAlertType> characterAlertTypes = new List<CharacterAlertType>();
-   
-    
-    readonly int hunger = 8; //4heure, 6 fois par jour
+    [SerializeField] private bool addOnStart = true;
+
+
+    public static readonly int hunger = 8; //4heure, 6 fois par jour
     // hunger * temps q'un tour represente = nombre d'heure avant de decrementer la satiete
     int incrementHunger = 0;
-    
+
 
     private int currHp;
     private int currSleep;
     private int currFood;
 
     private bool dispo = true;
+    public bool Dispo { get => dispo; set => dispo = value; }
+
     //UI stuff
     [SerializeField] private GameObject ActionDropDown;
     [SerializeField] private GameObject pannelQuestion;
-    
+
+    private void Awake()
+    {       
+
+    }
     // Start is called before the first frame update
     void Start()
     {
+
         ship = ShipManager.shipM;
         gameM = GameManager.GM;
         TimeManager.timeManager.OnTimeChanged += OnTimeChanged;
@@ -45,39 +53,51 @@ public class CharacterSystem : MonoBehaviour
         currHp = HPMax;
         currFood = FoodCap;
         Hurt(1);// test
-        gameM.AddPerso(this);
+        if (addOnStart)
+        {
+            gameM.AddPerso(this);
+            addOnStart = false;
+        }
 
     }
 
+    private void OnMouseEnter()
+    {
+        GameManager.selection = this;
+        Debug.Log(GameManager.selection);
+    }
 
     private void OnTimeChanged(object sender, EventArgs e)
     {
-        
+
         Sleeping();//si le perso dort
-        
+
         FinishEat();//si le perso mange, il va completer l'action
 
         FinishHealing();//si le perso se soigne
 
         #region sleep
-        if (!sleeping) 
-        { 
-            currSleep--; 
+        if (!sleeping)
+        {
+            currSleep--;
         }
-        if (currSleep == 0) { 
+        if (currSleep == 0)
+        {
             Debug.Log("Message de confirmation : le perso est fatigué");
             //GoToBed();
         }
         #endregion
 
         #region eating
-        if (!eating) { 
+        if (!eating)
+        {
             incrementHunger++;
-            if(incrementHunger%hunger == 0)
+            if (incrementHunger % hunger == 0)
             {
                 incrementHunger = 0;
-                if (currFood >= 1) { 
-                    currFood --;
+                if (currFood >= 1)
+                {
+                    currFood--;
                 }
                 else
                 {
@@ -85,39 +105,50 @@ public class CharacterSystem : MonoBehaviour
                     //message dans le ui
                 }
 
-                if (currFood==0) {
+                if (currFood == 0)
+                {
                     //message "perso x a besoin de manger" + bouton pour manger
                     Debug.Log("Message de confirmation : le perso a faim");
                 }
             }
         }
         #endregion
-        Debug.Log("food " +currFood +"|" + "sleep" + currSleep);
+        Debug.Log("food " + currFood + "|" + "sleep" + currSleep);
     }
 
     #region TurnActions
     #region eating
-    private bool eating=false;
-    public void GoEat()
+    private bool eating = false;
+    public void GoEat(bool fromShip)
     {
-        CancelAction(); 
-        if (ship.ShipInv().GetAmount(1)>0) {
-            //va mangez
-            Dispo = false;               
-            eating = true;
-        }
-        else
+        if (dispo)
         {
-            Debug.Log("pas de bouffe");    
-            //message dans le ui    
+            if (ship.ShipInv().GetAmount(1) > 0)
+            {
+                //va mangez
+                Dispo = false;
+                eating = true;
+            }
+            else
+            {
+                Debug.Log("pas de bouffe");
+                //message dans le ui    
+
+            }
+
         }
-        
+        if (!fromShip)
+        {
+            CancelAction();
+            GoEat(false);
+        }
 
     }
 
     private void FinishEat()
     {
-        if (eating) { 
+        if (eating)
+        {
             eating = false;
             Dispo = true;
             currFood += foodValue;
@@ -125,43 +156,54 @@ public class CharacterSystem : MonoBehaviour
         }
     }
 
-#endregion
+    #endregion
 
     #region sleeping
     private bool sleeping = false;
-    private void GoToBed()
+
+    public void GoToBed(bool overrideAction)
     {
-        CancelAction();       
-        sleeping = true;
-        Dispo = false;
-        Debug.Log("slep");
+        if (overrideAction)
+        {
+            CancelAction();
+        }
+        if (dispo)
+        {
+            sleeping = true;
+            Dispo = false;
+            Debug.Log("slep");
+        }        
+            
+        
+        
     }
 
-    private void Sleeping() {
+    private void Sleeping()
+    {
         if (sleeping)
         {
             Debug.Log("is comfy");
-            currSleep+= 3;
-            
+            currSleep += 3;
+
             if (currSleep >= SleepCap)
             {
                 currSleep = SleepCap;
                 sleeping = false;
                 Dispo = true;
             }
-        }      
+        }
     }
     #endregion
 
     #region healing
-    private bool healing=false;
-    private void StartHealing()
+    private bool healing = false;
+    public void StartHealing(bool fromShip)
     {
-        
-        CancelAction();//ligne temporaire
+
+        //CancelAction();//ligne temporaire
         Debug.Log("Start Healing");
-        //if (yes)
-        //{
+        if (dispo)
+        {
             if (ship.ShipInv().GetAmount(4) >= 1)
             {
 
@@ -174,7 +216,11 @@ public class CharacterSystem : MonoBehaviour
                 Debug.Log("pas de medkits");
                 //message dans le hud
             }
-        //}
+        }
+        else if (!fromShip)
+        {
+            CancelAction();
+        }
     }
 
     public void FinishHealing()
@@ -188,14 +234,16 @@ public class CharacterSystem : MonoBehaviour
         }
     }
     #endregion
-#endregion
+    #endregion
     public void Hurt(int dmg)
     {
         currHp -= dmg;
         if (currHp <= 0)
         {
             Debug.Log("big oof");
-            Destroy(this);
+            gameM.RemovePerso(this);
+            Destroy(this.gameObject);
+
         }
     }
 
@@ -203,7 +251,7 @@ public class CharacterSystem : MonoBehaviour
     {
         CancelAction();
         this.currSleep = SleepCap;
-
+        ship.ShipInv().PayFromID(3, 1);
     }
     public void CancelAction()
     {
@@ -223,80 +271,35 @@ public class CharacterSystem : MonoBehaviour
         }
     }
 
-    [SerializeField] private Button boutonBlueprint;
 
-    public bool Dispo { get => dispo; set => dispo = value; }
+
 
     public void CreateDynamicOptions()
     {
-        gameM.NewActionPanel(ActionDropDown);      
-        
+        gameM.NewActionPanel();
+
         if (currFood < FoodCap && !eating)
-        {           
-            AddBouton("Manger", 1);
-            Debug.Log("food");                                  
+        {
+            gameM.AddBouton("Manger", () => GoEat(true));
+            Debug.Log("food");
         }
         if (currHp < HPMax && !healing)
         {
-            Debug.Log("hel");
-            AddBouton("soigner", 2);
+            Debug.Log("nned hel");
+            gameM.AddBouton("soigner", () => StartHealing(true));
         }
         if (currSleep < SleepCap && !sleeping)
         {
             Debug.Log("Need Sleep");
-            AddBouton("Dormir", 3);
+            gameM.AddBouton("Dormir", () => GoToBed(true));
 
-            if (ship.ShipInv().GetAmount(3)>0)
+            if (ship.ShipInv().GetAmount(3) > 0)
             {
-                AddBouton("Prendre une Pillule", 4);
+                gameM.AddBouton("Prendre une Pillule", RestoreSleep);
 
-            }   
-        }
-    }
-
-    private void AddBouton(string txt, int cas)
-    {
-        Button boutonTravail;
-        boutonTravail = Instantiate(boutonBlueprint, this.gameObject.transform);
-        boutonTravail.GetComponentInChildren<Text>().text = txt;
-        boutonTravail.transform.SetParent(gameM.actions.transform, true);
-        switch (cas)
-        {
-            case 1: boutonTravail.onClick.AddListener(GoEat);                  
-                break;
-                
-            case 2: boutonTravail.onClick.AddListener(StartHealing);
-                break;
-
-            case 3: boutonTravail.onClick.AddListener(GoToBed);                
-                break;
-
-            case 4: boutonTravail.onClick.AddListener(RestoreSleep);              
-                break;
-
-                
-        }
-        boutonTravail.onClick.AddListener(gameM.CloseActionPanel);
-    }
-
-    public void Confirmation()
-    {
-        CancelAction();
-        pannelQuestion.SetActive(false);
-    }
-
-    public void Negation()
-    {
-        pannelQuestion.SetActive(false);
-    }
-
-    public void Question(string txt)
-    {
-        if (!Dispo)
-        {
-            pannelQuestion.SetActive(true);
-            pannelQuestion.GetComponent<Text>().text = txt;
+            }
         }
     }
     #endregion UI
+    
 }

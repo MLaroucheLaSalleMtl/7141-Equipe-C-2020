@@ -11,12 +11,14 @@ public class DoorManager : MonoBehaviour
     [SerializeField] GameObject doorPanel;
     [SerializeField] TextMeshProUGUI doorTitle;
     [SerializeField] TextMeshProUGUI doorInfoText;
-    [SerializeField] TextMeshProUGUI repairCostText;
+    [SerializeField] GameObject repairCostHolder;
+    [SerializeField] Transform repairCostGrid;
     [SerializeField] public Sprite openDoorSprite;
     [SerializeField] GameObject repairButton;
     [SerializeField] GameObject doorProgressBar;
     [SerializeField] Image doorProgressFill;
     [SerializeField] GameObject turnsRemainingText;
+    [SerializeField] TextMeshProUGUI repairTimeTextField;
     [HideInInspector]
     public LockedDoor hoveredDoor;
     LockedDoor currentDoor;
@@ -64,8 +66,9 @@ public class DoorManager : MonoBehaviour
         {
             doorProgressBar.SetActive(false);
             turnsRemainingText.SetActive(false);
-            repairCostText.gameObject.SetActive(true);
-            repairCostText.text = currentDoor.GetRepairCost();
+            repairCostHolder.gameObject.SetActive(true);
+            RewardsDisplayer.rewardsDisplayer.DisplayResourcesCost(currentDoor.costToRepair.resources, repairCostGrid);
+            repairTimeTextField.text = "Repair time : " + currentDoor.turnToRepair + " <sprite=0>";
             repairButton.GetComponentInChildren<TextMeshProUGUI>().text = "Repair";
             repairButton.GetComponent<Button>().onClick.RemoveAllListeners();
             repairButton.GetComponent<Button>().onClick.AddListener(() => UnlockDoor());
@@ -73,13 +76,13 @@ public class DoorManager : MonoBehaviour
         }
         else
         {
-            repairCostText.gameObject.SetActive(false);
+            repairCostHolder.gameObject.SetActive(false);
             turnsRemainingText.SetActive(true);
             repairButton.GetComponentInChildren<TextMeshProUGUI>().text = "Cancel";
             repairButton.GetComponent<Button>().onClick.RemoveAllListeners();
             repairButton.GetComponent<Button>().onClick.AddListener(() => CancelDoorRepair());
             doorProgressBar.SetActive(true);
-            doorProgressFill.fillAmount = Mathf.Abs(1 - ((float)currentDoor.turnsRemaining) / currentDoor.turnToUnlock);
+            doorProgressFill.fillAmount = Mathf.Abs(1 - ((float)currentDoor.turnsRemaining) / currentDoor.turnToRepair);
             turnsRemainingText.GetComponent<TextMeshProUGUI>().text = "<b>" + currentDoor.turnsRemaining + " <sprite=0>remaining";
             repairButton.GetComponent<TooltipHandler>().simpleTextString = "Cancel construction and\n get resources back.";
 
@@ -105,9 +108,10 @@ public class DoorManager : MonoBehaviour
             else
             {
                 MessagePopup.MessagePopupManager.SetStringAndShowPopup("Select someone to go upgrade");
+                inventaire.AddManyResources(currentDoor.costToRepair);
                 //plus tard on pourrait peut-être mettre ici le drop down list avec toutes les persos
             }
-            
+
         }
         else
         {

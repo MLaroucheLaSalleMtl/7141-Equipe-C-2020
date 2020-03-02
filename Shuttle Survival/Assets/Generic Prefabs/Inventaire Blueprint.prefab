@@ -62,6 +62,27 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 23898349c121e684e93c0d8d51cc227a, type: 2}
   - {fileID: 11400000, guid: c2685561b677e9843bd3bda17b70846f, type: 2}
   - {fileID: 11400000, guid: 0b3000ea1f6355c49aa2784ad8f9a296, type: 2}
-  inventory: []
+  - {fileID: 11400000, guid: e52cac043dea8b440a5e914881fce8b3, type: 2}
+  inventoryContent:
+  - item: {fileID: 11400000, guid: 69d644a61c3c387479e8df05a82ad5a7, type: 2}
+    quantite: 12
+  - item: {fileID: 11400000, guid: 5c5a5043fb6357a4aa702c9c64345373, type: 2}
+    quantite: 2
+  - item: {fileID: 11400000, guid: 69d644a61c3c387479e8df05a82ad5a7, type: 2}
+    quantite: 24
+  - item: {fileID: 11400000, guid: ef701c2a1edc51a43b53384049058ff8, type: 2}
+    quantite: 13
+  - item: {fileID: 11400000, guid: 69d644a61c3c387479e8df05a82ad5a7, type: 2}
+    quantite: 450
+  - item: {fileID: 11400000, guid: 06b119347138c4240b8d924db7d96580, type: 2}
+    quantite: 12
+  - item: {fileID: 11400000, guid: 144a50012896c664ba5927f0bd35c66d, type: 2}
+    quantite: 0
+  - item: {fileID: 11400000, guid: 144a50012896c664ba5927f0bd35c66d, type: 2}
+    quantite: 0
+  - item: {fileID: 11400000, guid: 144a50012896c664ba5927f0bd35c66d, type: 2}
+    quantite: 0
+  - item: {fileID: 11400000, guid: 144a50012896c664ba5927f0bd35c66d, type: 2}
+    quantite: 0
   cost:
     resources: []

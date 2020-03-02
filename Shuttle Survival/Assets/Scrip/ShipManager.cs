@@ -11,8 +11,9 @@ public class ShipManager : MonoBehaviour
     public static ShipManager shipM;
     private int persoQte;
     [SerializeField] private int o2Capacity = 96;
-    [SerializeField] private int powerCap = 10;
-    [SerializeField] private int batteriePwr = 5;
+    [SerializeField] private int powerCap = 20;
+    [SerializeField] private int batteriePwr = 10;
+    [SerializeField] private int bonbonneQte = 32;
     
     private int o2Qte;
     private int powerQte;
@@ -20,9 +21,17 @@ public class ShipManager : MonoBehaviour
     //balance
     [SerializeField] private int o2Usage = 1;
 
+    #region accesseurs
+    public int O2Qte { get => o2Qte;}
+    public int O2Capacity { get => o2Capacity;}
+    public int BatteriePwr { get => batteriePwr;}
+    public int PowerQte { get => powerQte;}
+    public int PowerCap { get => powerCap;}
+    #endregion
+
     //public Inventaire ShipInv { get => shipInv;}
 
-        public Inventaire ShipInv()
+    public Inventaire ShipInv()
     {
         return shipInv;
     }
@@ -31,7 +40,7 @@ public class ShipManager : MonoBehaviour
     {
         gameM = GameManager.GM;
         persoQte = gameM.Personnages.Count;
-        o2Qte = o2Capacity;
+        o2Qte = O2Capacity;
         powerQte = powerCap;
         TimeManager.timeManager.OnTimeChanged += OnTimeChanged;
     }
@@ -60,8 +69,14 @@ public class ShipManager : MonoBehaviour
 
     public void AddPower()
     {
-        powerQte += batteriePwr;
-        Mathf.Clamp(powerQte, 0, powerCap);
+        powerQte += BatteriePwr;
+        powerQte = Mathf.Clamp(powerQte, 0, powerCap);
+    }
+
+    public void AddO2()
+    {
+        o2Qte += bonbonneQte;
+        o2Qte = Mathf.Clamp(o2Qte, 0, o2Capacity);
     }
 
 

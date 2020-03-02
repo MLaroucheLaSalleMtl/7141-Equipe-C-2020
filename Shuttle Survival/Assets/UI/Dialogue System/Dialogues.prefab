@@ -1,0 +1,704 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &462320973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 462320974}
+  - component: {fileID: 462320975}
+  m_Layer: 0
+  m_Name: Dialogue 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &462320974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462320973}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.955268, y: -1.6944561, z: 8.637577}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 746548931081997088}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &462320975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462320973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueEntries:
+  - dialogueSpeaker: {fileID: 11400000, guid: 11b1c5ea534aac640ba5063c1ed558c9, type: 2}
+    dialogueMessage: Here we go PAIA, I think I've fixed it. Are we good?
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_MethodName: GetCameraToPosition
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: Well done, Captain. I'm feeding the ship with our newly acquired
+      power and oxygen.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogueSpeaker: {fileID: 11400000, guid: 11b1c5ea534aac640ba5063c1ed558c9, type: 2}
+    dialogueMessage: '"Captain"...?'
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: I'm also booting up your computers from which you'll be able
+      to monitor ship's activites.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: GetCameraToPosition
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: I suggest you try them now. It might help you recover some memory.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: GetCameraToPosition
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  onDialogueEndEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!1 &1500504373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1500504375}
+  - component: {fileID: 1500504374}
+  m_Layer: 0
+  m_Name: Dialogue 5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1500504375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500504373}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.955268, y: -1.6944561, z: 8.637577}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 746548931081997088}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1500504374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500504373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueEntries:
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: Now that you are more familiar with your tools, I suggest you
+      repair the door and explore the rest of the ship. There's a lot of work to
+      do before we can power up the engine and get out of here.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: GetCameraToPosition
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogueSpeaker: {fileID: 11400000, guid: 11b1c5ea534aac640ba5063c1ed558c9, type: 2}
+    dialogueMessage: But what happened to us ?
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: One thing at a time, <i>Captain</i>.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  onDialogueEndEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: ActivateCollider
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &1927939735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1927939736}
+  - component: {fileID: 1927939737}
+  m_Layer: 0
+  m_Name: Dialogue 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1927939736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927939735}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.955268, y: -1.6944561, z: 8.637577}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 746548931081997088}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1927939737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927939735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueEntries:
+  - dialogueSpeaker: {fileID: 11400000, guid: 9a6bc1e00c2a3194ea8a74ffac9a96af, type: 2}
+    dialogueMessage: Captain, you're safe ! I've been stuck in this room for so long,
+      everything needs to be fixed... I don't remember what happened.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogueSpeaker: {fileID: 11400000, guid: 11b1c5ea534aac640ba5063c1ed558c9, type: 2}
+    dialogueMessage: 'Charlie... I also can''t remember and PAIA doesn''t seem so
+      keen to brief us. '
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: 'There was an <i>incident</i>. I have other priorities. The
+      engine needs to be fixed as soon as possible. Briefing you would only delayed
+      this mission. '
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogueSpeaker: {fileID: 11400000, guid: 9a6bc1e00c2a3194ea8a74ffac9a96af, type: 2}
+    dialogueMessage: Alright then. Let's repair this junk. We need resources. A lot
+      of them. Behind that door is the mechanical arm. We could use it to harvest
+      materials from asteroids.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: GetCameraToPosition
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 4
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  onDialogueEndEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: ActivateCollider
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &746548931078370932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 746548931078370933}
+  - component: {fileID: 746548931078370934}
+  m_Layer: 0
+  m_Name: Dialogue 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &746548931078370933
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746548931078370932}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.955268, y: -1.6944561, z: 8.637577}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 746548931081997088}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &746548931078370934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746548931078370932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueEntries:
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: 'To repair or create a module, you need resources. You don''t
+      have the necessary resources to repair the core module. '
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: You must find the approriate resources. There's a pile of scraps
+      in the corner of this room. Maybe you could find something useful in there.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: GetCameraToPosition
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  onDialogueEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &746548931081997103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 746548931081997088}
+  m_Layer: 0
+  m_Name: Dialogues
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &746548931081997088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746548931081997103}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.3731556, y: 0.047212407, z: -24.407108}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 746548931966889252}
+  - {fileID: 746548931078370933}
+  - {fileID: 213058265246761349}
+  - {fileID: 7149080597395625518}
+  - {fileID: 462320974}
+  - {fileID: 1500504375}
+  - {fileID: 1927939736}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &746548931966889250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 746548931966889252}
+  - component: {fileID: 746548931966889251}
+  m_Layer: 0
+  m_Name: Dialogue 0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &746548931966889252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746548931966889250}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.955268, y: -1.6944561, z: 8.637577}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 746548931081997088}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &746548931966889251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746548931966889250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueEntries:
+  - dialogueSpeaker: {fileID: 11400000, guid: 11b1c5ea534aac640ba5063c1ed558c9, type: 2}
+    dialogueMessage: Ughh... My head...
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: 'Finally, you woke up. '
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: GetCameraToPosition
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 072,123
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogueSpeaker: {fileID: 11400000, guid: 11b1c5ea534aac640ba5063c1ed558c9, type: 2}
+    dialogueMessage: What happened ? Who's talking ?
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: I am PAIA, your <i>Personal Artificial Intelligence Assistant</i>,
+      I've transfered the ship's remaining oxygen to your room. You must be suffering
+      from memory loss. The ship is severely damaged.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: You must quickly repair the ship's core module so I can resume
+      oxygen production.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  onDialogueEndEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: ActivateCollider
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &4113987509454597736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7149080597395625518}
+  - component: {fileID: 142327780348105765}
+  m_Layer: 0
+  m_Name: Dialogue 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7149080597395625518
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4113987509454597736}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.955268, y: -1.6944561, z: 8.637577}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 746548931081997088}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &142327780348105765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4113987509454597736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueEntries:
+  - dialogueSpeaker: {fileID: 11400000, guid: 11b1c5ea534aac640ba5063c1ed558c9, type: 2}
+    dialogueMessage: I'm done. Pretty sure I've found some interesting stuff.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: Well done. You can always have access to your resources by pressing
+      the Inventory button or the " I " key.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  onDialogueEndEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: ActivateAndFlickerButtons
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: ActivateAndFlickerButtons
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &5312115259063572818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 213058265246761349}
+  - component: {fileID: 191756171012728886}
+  m_Layer: 0
+  m_Name: Dialogue 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &213058265246761349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312115259063572818}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.955268, y: -1.6944561, z: 8.637577}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 746548931081997088}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &191756171012728886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312115259063572818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueEntries:
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: Many tasks takes time to complete. You'll be done sorting these
+      scraps in 1 turn <sprite=0>Use the Skip Time Button to skip a turn.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  onDialogueEndEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: ActivateAndFlickerButtons
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

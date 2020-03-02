@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PAIA
   m_EditorClassIdentifier: 
   speakerName: PAIA
-  speakerSprite: {fileID: 21300000, guid: bab5146ed62d4bf468df8e15c807828c, type: 3}
+  speakerSprite: {fileID: 21300000, guid: 4d29ed0da2e6b7a46b7064553988ecb5, type: 3}

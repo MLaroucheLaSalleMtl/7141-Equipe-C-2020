@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 4681655091621385460}
   - component: {fileID: 1541700292}
   - component: {fileID: 1541700288}
+  - component: {fileID: -874144035696455502}
   m_Layer: 0
   m_Name: ScrapsPrefab
   m_TagString: Untagged
@@ -141,7 +142,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrapsLoot:
-    resources: []
+    resourcesPossible: []
+    chancesToGive: []
+    resourcesVariation: []
+  beingCleaned: 0
 --- !u!61 &1541700292
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182,3 +186,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   simpleTextString: Scraps
   tooltipsType: 1
+--- !u!114 &-874144035696455502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130578839765347981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858686b9f97c1d94d90ef5f7a675d00a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 5d883fb8164e141459bb7a897bb71661, type: 2}

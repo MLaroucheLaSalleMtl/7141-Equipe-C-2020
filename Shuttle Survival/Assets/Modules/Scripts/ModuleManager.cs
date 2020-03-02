@@ -13,14 +13,14 @@ public class ModuleManager : MonoBehaviour
     public Module currentModule;
     [HideInInspector]
     public Module hoveredModule;
-    public GameObject modulePanel;
+    public GameObject emptyModulePanel;
     public GameObject moduleCreationPanel;
     UIModule currentUImodule;
     [SerializeField] Image moduleCreationPrefab;
     [SerializeField] Transform moduleCreationGrid;
     [SerializeField] Text modulePanelTitle;
     [SerializeField] Transform moduleOptionsGrid;
-    [SerializeField] GameObject createModuleButton;
+    [SerializeField] GameObject createModuleMenuButton;
     [SerializeField] GameObject salvageModuleButton;
     [SerializeField] GameObject useModuleButton;
     [SerializeField] GameObject upgradeModuleButton;
@@ -35,15 +35,25 @@ public class ModuleManager : MonoBehaviour
     public GameObject emptyModule;
     [SerializeField] GameObject underConstructionModulePrefab;
     [SerializeField] Inventaire inventaire;
-
+    [Header("Detailed Informations Panel")]
+    [SerializeField] GameObject detailedInformationsPanel;
+    [SerializeField] TextMeshProUGUI moduleNameInDetailedPanel;
+    [SerializeField] TextMeshProUGUI detailedInformationsTextField;
+    [SerializeField] Button createModuleButton;
+    [SerializeField] Transform moduleResourcesCostGrid;
+    [SerializeField] TextMeshProUGUI buildingTimeTextField;
+    [SerializeField] Transform moduleOptionsGridForCreatedModule;
+    [SerializeField] GameObject resourcesCostPanel;
+    bool coreModuleDialogueDone = false;
     
     shipNPCmanager NPC;
 
     public void OnPanelOpened(object source, EventArgs args)
     {
-        modulePanel.SetActive(false);
+        emptyModulePanel.SetActive(false);
         moduleCreationPanel.SetActive(false);
         underConstructionPanel.SetActive(false);
+        detailedInformationsPanel.SetActive(false);
         if(currentModule)
             currentModule.GetComponent<TooltipHandler>().OnPointerExit(null);
     }
@@ -105,7 +115,7 @@ public class ModuleManager : MonoBehaviour
                 currentUImodule = uiModule.GetComponent<UIModule>();
                 uiModule.sprite = currentLimitedModulesChoices[i].GetComponent<Module>().sprite;
                 uiModule.GetComponent<UIModule>().moduleIndex = i;
-                uiModule.GetComponent<UIModule>().moduleDescription = currentLimitedModulesChoices[i].GetComponent<Module>().moduleDescription;
+                uiModule.GetComponent<UIModule>().moduleDescription = currentLimitedModulesChoices[i].GetComponent<Module>().createMenuModuleDescriptionTooltip;
             }
         }
         else
@@ -116,30 +126,48 @@ public class ModuleManager : MonoBehaviour
                 currentUImodule = uiModule.GetComponent<UIModule>();
                 uiModule.sprite = standardModulePrefabs[i].GetComponent<Module>().sprite;
                 uiModule.GetComponent<UIModule>().moduleIndex = i;
-                uiModule.GetComponent<UIModule>().moduleDescription = standardModulePrefabs[i].GetComponent<Module>().moduleDescription;
+                uiModule.GetComponent<UIModule>().moduleDescription = standardModulePrefabs[i].GetComponent<Module>().createMenuModuleDescriptionTooltip;
             }
         }        
+    }
+
+    public void ShowDetailedModuleInformations(int moduleIndex)
+    {
+        resourcesCostPanel.SetActive(true);
+        moduleOptionsGridForCreatedModule.gameObject.SetActive(false);
+        List<GameObject> listOfPossibleModules = buildingFromLimitedChoices ? currentLimitedModulesChoices : standardModulePrefabs;
+        Module moduleOfInterest = listOfPossibleModules[moduleIndex].GetComponent<Module>();
+        moduleCreationPanel.SetActive(false);
+        moduleNameInDetailedPanel.text = moduleOfInterest.moduleName;
+        detailedInformationsTextField.text = moduleOfInterest.longModuleDescriptionForPanels;
+        createModuleButton.onClick.RemoveAllListeners();
+        createModuleButton.onClick.AddListener(() => CreateModule(moduleIndex));
+        createModuleButton.onClick.AddListener(() => createModuleButton.GetComponentInChildren<TooltipHandler>().OnPointerExit(null));
+        RewardsDisplayer.rewardsDisplayer.DisplayResourcesCost(moduleOfInterest.ressourcesCost.resources, moduleResourcesCostGrid);
+        buildingTimeTextField.text = "Building time : " + moduleOfInterest.turnsToBuild + " <sprite=0>";
+        detailedInformationsPanel.SetActive(true);
     }
 
     public void CreateModule(int moduleIndex)
     {
         List<GameObject> listOfPossibleModules = buildingFromLimitedChoices ? currentLimitedModulesChoices : standardModulePrefabs;
 
-        if (inventaire.PayRessource(listOfPossibleModules[moduleIndex].GetComponent<Module>().ressourcesCost)) //if it can pay
+        if (inventaire.PayRessource(listOfPossibleModules[moduleIndex].GetComponent<Module>().ressourcesCost)) //if it can pay (fait payer en meme temps, pas l'ideal
         {
             //vérifie si un personnage est en mode listen pour aller construire le module
              if (NPC.IsNPCavailable() == true)
              {
-                 Debug.Log("Sending bob");
-                
+                Debug.Log("Sending bob");
+                detailedInformationsPanel.SetActive(false);
+
                 GameObject underConstructionModule = Instantiate(underConstructionModulePrefab, currentModule.transform.position, Quaternion.identity);
                 underConstructionModule.GetComponent<UnderConstructionModule>().SetTurnsToBuild(listOfPossibleModules[moduleIndex].GetComponent<Module>().turnsToBuild);
                 underConstructionModule.GetComponent<UnderConstructionModule>().moduleToBuild = listOfPossibleModules[moduleIndex];
                 Destroy(currentModule.gameObject);
-                    if (currentModule.unique && !buildingFromLimitedChoices)
-                    {
-                        standardModulePrefabs.RemoveAt(moduleIndex);
-                    }
+                if (currentModule.unique && !buildingFromLimitedChoices)
+                {
+                    standardModulePrefabs.RemoveAt(moduleIndex);
+                }
                 moduleCreationPanel.SetActive(false);
 
                 //trouver le bon endroit pour envoyer bob      
@@ -148,6 +176,8 @@ public class ModuleManager : MonoBehaviour
             else
             {
                 MessagePopup.MessagePopupManager.SetStringAndShowPopup("Select someone to go upgrade");
+                //must refund
+                inventaire.AddManyResources(listOfPossibleModules[moduleIndex].GetComponent<Module>().ressourcesCost);
                 //plus tard on pourrait peut-être mettre ici le drop down list avec toutes les persos
             }
             
@@ -155,9 +185,12 @@ public class ModuleManager : MonoBehaviour
         else
         {
             MessagePopup.MessagePopupManager.SetStringAndShowPopup("Not enough ressources");
+            if (!coreModuleDialogueDone)
+            {
+                coreModuleDialogueDone = true;
+                DialogueTriggers.dialogueTriggers.TriggerDialogue(1);
+            }
         }
-
-        currentUImodule.GetComponent<TooltipHandler>().OnPointerExit(null);
     }
 
     private void GenerateUnderConstructionPanel(UnderConstructionModule currentModule)
@@ -173,32 +206,59 @@ public class ModuleManager : MonoBehaviour
     public void GenerateModulePanel(Module currentModule)
     {
         PanelManager.panelManager.OnPanelOpened_Caller();
-        foreach (Transform transform in moduleOptionsGrid)
+        if (currentModule.moduleType == ModuleType.Empty)
         {
-            Destroy(transform.gameObject);
+            SetupEmptyModulePanel(currentModule);
+        }
+        else
+        {
+            SetupCreatedModulePanel(currentModule);
         }
         this.currentModule = currentModule;
-        modulePanel.SetActive(true);
+
+    }
+
+    private void SetupEmptyModulePanel(Module currentModule)
+    {
+        emptyModulePanel.SetActive(true);
+        Transform currentGrid = moduleOptionsGrid;
         modulePanelTitle.text = currentModule.moduleName;
-        if(currentModule.moduleType == ModuleType.Empty)
-        {
-            GameObject newGO = Instantiate(createModuleButton, moduleOptionsGrid);
-            newGO.GetComponent<Button>().onClick.AddListener(() => GenerateModuleCreationPanel());
-        }
+        ClearGridOfPastButtons(currentGrid);
+        GameObject newGO = Instantiate(createModuleMenuButton, currentGrid);
+        newGO.GetComponent<Button>().onClick.AddListener(() => GenerateModuleCreationPanel());
+    }
+
+    private void SetupCreatedModulePanel(Module currentModule)
+    {
+        detailedInformationsPanel.SetActive(true);
+        resourcesCostPanel.SetActive(false);
+        moduleOptionsGridForCreatedModule.gameObject.SetActive(true);
+        Transform currentGrid = moduleOptionsGridForCreatedModule;
+        moduleNameInDetailedPanel.text = currentModule.moduleName;
+        detailedInformationsTextField.text = currentModule.longModuleDescriptionForPanels;
+        ClearGridOfPastButtons(currentGrid);
         if (currentModule.useable)
         {
-            GameObject newGO = Instantiate(useModuleButton, moduleOptionsGrid);
+            GameObject newGO = Instantiate(useModuleButton, currentGrid);
             newGO.GetComponent<Button>().onClick.AddListener(() => UseModule());
         }
         if (currentModule.salvageable)
         {
-            GameObject newGO = Instantiate(salvageModuleButton, moduleOptionsGrid);
+            GameObject newGO = Instantiate(salvageModuleButton, currentGrid);
             newGO.GetComponent<Button>().onClick.AddListener(() => SalvageModule());
         }
         if (currentModule.upgradable)
         {
-            GameObject newGO = Instantiate(upgradeModuleButton, moduleOptionsGrid);
+            GameObject newGO = Instantiate(upgradeModuleButton, currentGrid);
             newGO.GetComponent<Button>().onClick.AddListener(() => UpgradeModuleButton());
+        }
+    }
+
+    private static void ClearGridOfPastButtons(Transform currentGrid)
+    {
+        foreach (Transform transform in currentGrid)
+        {
+            Destroy(transform.gameObject);
         }
     }
 
@@ -216,7 +276,7 @@ public class ModuleManager : MonoBehaviour
         currentModule.GetComponent<TooltipHandler>().OnPointerExit(null);
         Destroy(currentModule.gameObject);
         Instantiate(emptyModule, currentModule.transform.position, Quaternion.identity);
-        modulePanel.SetActive(false);
+        detailedInformationsPanel.SetActive(false);
         underConstructionPanel.SetActive(false);
     }
 

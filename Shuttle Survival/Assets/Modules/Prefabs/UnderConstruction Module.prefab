@@ -166,8 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bddf5fa9d63034647a0eacd5471700dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simpleTextString: Under Construction (module name...)
-  tooltipsType: 1
+  simpleTextString: 
+  tooltipsType: 4
 --- !u!114 &-7539557999926294519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +188,13 @@ MonoBehaviour:
   unique: 0
   upgradable: 0
   moduleName: 
-  moduleDescription: 
+  limitedChoice: 0
+  limitedModulePrefabsChoices: []
+  ressourcesCost:
+    resources: []
+  onCreationPopupString: 
+  createMenuModuleDescriptionTooltip: 
+  longModuleDescriptionForPanels: 
   totalTurnsToBuild: 0
   turnsRemainingToBuild: 0
   moduleToBuild: {fileID: 0}

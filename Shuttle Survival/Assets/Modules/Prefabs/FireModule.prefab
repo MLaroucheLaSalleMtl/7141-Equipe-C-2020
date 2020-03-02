@@ -135,20 +135,21 @@ MonoBehaviour:
   limitedModulePrefabsChoices: []
   ressourcesCost:
     resources:
-    - item: {fileID: 11400000, guid: ef701c2a1edc51a43b53384049058ff8, type: 2}
-      quantite: 2000
-    - item: {fileID: 11400000, guid: b7979b4401f57bb498bc85db23f2efde, type: 2}
-      quantite: 3
+    - item: {fileID: 11400000, guid: 69d644a61c3c387479e8df05a82ad5a7, type: 2}
+      quantite: 12
+    - item: {fileID: 11400000, guid: 06b119347138c4240b8d924db7d96580, type: 2}
+      quantite: 4
   onCreationPopupString: has created the Fire Module ! You can already sense the
     heat. It's hot !
-  moduleDescription: 'Module that generates
+  createMenuModuleDescriptionTooltip: 'Fire Module
 
-    heats for your spaceship.
+    Heats spaceship.'
+  longModuleDescriptionForPanels: 'The fire module is an important part of a spaceship.
+    It increases the temperature in the ship, but is also used to cleanse the air.
+    It is a must-have to survive in deep space.
 
-    <color="red">+4
-    heat per turn </color>
-
-    <b>Costs 7 <color=#808080>metal</color></b>'
+    <size=125%><b><color=#E563DA>+
+    2 power</color></b></size>'
 --- !u!114 &9163465250614311266
 MonoBehaviour:
   m_ObjectHideFlags: 0

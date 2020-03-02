@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Lucia
   m_EditorClassIdentifier: 
   speakerName: Lucia
-  speakerSprite: {fileID: 21300000, guid: b4e587218b4e58b48ba4f5a680d3c07b, type: 3}
+  speakerSprite: {fileID: 21300000, guid: e9abcd0751eb5684aa3d6a2d13048a0d, type: 3}

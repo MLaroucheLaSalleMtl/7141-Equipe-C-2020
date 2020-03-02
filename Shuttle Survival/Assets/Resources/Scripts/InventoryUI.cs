@@ -16,29 +16,24 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] Button[] filterTabsButtons;
     [SerializeField] GameObject selectedTabArrow;
     int currentFilter;
-
+    bool uiActivable = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I) && uiActivable)
         {
             currentFilter = 0;
             ToggleMainInventoryUIPanel();
         }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            currentFilter = 1;
-            ToggleMainInventoryUIPanel();
-        }
     }
 
-    private void ToggleMainInventoryUIPanel()
+    public void ToggleMainInventoryUIPanel()
     {
         if (!inventoryUIHolder.activeInHierarchy)
         {
@@ -161,5 +156,10 @@ public class InventoryUI : MonoBehaviour
             Destroy(itemUI.gameObject);
         }
         activeUIItems.Clear();
+    }
+
+    public void EnableInventoryUI()
+    {        
+        uiActivable = true;
     }
 }

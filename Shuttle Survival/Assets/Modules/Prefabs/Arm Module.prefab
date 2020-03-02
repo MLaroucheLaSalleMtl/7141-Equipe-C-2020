@@ -146,20 +146,22 @@ MonoBehaviour:
   unique: 1
   upgradable: 1
   moduleName: Mechanical Arm
+  limitedChoice: 0
+  limitedModulePrefabsChoices: []
   ressourcesCost:
     resources:
     - item: {fileID: 11400000, guid: 69d644a61c3c387479e8df05a82ad5a7, type: 2}
+      quantite: 5
+    - item: {fileID: 11400000, guid: a9f7c94674f9d974ebb065ddfce6ca10, type: 2}
+      quantite: 3
+    - item: {fileID: 11400000, guid: 5c5a5043fb6357a4aa702c9c64345373, type: 2}
+      quantite: 1
+    - item: {fileID: 11400000, guid: 0674dbe68479c9b448b870791aab0504, type: 2}
       quantite: 1
   onCreationPopupString: has created the Mechanical Arm Module ! You should use it
     to capture resources from passing asteroids.
-  moduleDescription: 'Module that let you
-
-    harvest  <color=#A9A29B>asteroids
-    </color> for
-
-    precious resources.
-
-    <color="purple">Unique</color>'
+  createMenuModuleDescriptionTooltip: Mechanical arm
+  longModuleDescriptionForPanels: 
 --- !u!1001 &7474204763681054369
 PrefabInstance:
   m_ObjectHideFlags: 0

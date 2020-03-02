@@ -18,7 +18,9 @@ public class Module : MonoBehaviour
     [TextArea(2, 5)]
     public string onCreationPopupString;
     [TextArea(2, 5)]
-    public string moduleDescription;
+    public string createMenuModuleDescriptionTooltip;
+    [TextArea(2, 5)]
+    public string longModuleDescriptionForPanels;
 
     // Start is called before the first frame update
     protected virtual void Start()

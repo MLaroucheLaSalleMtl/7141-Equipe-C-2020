@@ -25,6 +25,8 @@ public class ArmModule : Module
 
     public override void OnCreation()
     {
-        base.OnCreation();       
+        base.OnCreation();
+        DialogueTriggers.dialogueTriggers.TriggerDialogue(7);
+        
     }
 }

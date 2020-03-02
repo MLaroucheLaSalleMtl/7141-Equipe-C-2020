@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb784c3abfd7a224c9cc36c9048a2a57, type: 3}
   m_Name: 1-Food
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: f47371d270698ce498fd8af31c03afa4, type: 3}
+  icon: {fileID: 21300000, guid: 28a2cd80ee8b0c44e96a703b97ed20bf, type: 3}
   description: Knowing the food will make it down your throat and into your stomach
     fills you with determination
   nom: Food

@@ -41,6 +41,8 @@ public class AsteroidsManager : MonoBehaviour
     [SerializeField] GameObject overheatingText;
     [SerializeField] GameObject mechanicalArm;
     [SerializeField] Transform[] mechanicalArmsTransformForRanges;
+    bool asteroidEventsEnabled = false;
+    [SerializeField] GameObject[] otherUIToDisable;
     private void Awake()
     {
         if(AsteroidsManager.asteroidsManager == null)
@@ -69,6 +71,7 @@ public class AsteroidsManager : MonoBehaviour
 
     public void OnTimeChange(object sender, EventArgs e)
     {
+        if (!asteroidEventsEnabled) return;
         shotsRemainingWithArm = Mathf.Clamp(shotsRemainingWithArm + 1, 0, maxShotsWithArm);
 
         float rand = UnityEngine.Random.Range(0.00f, 1.00f);
@@ -234,11 +237,13 @@ public class AsteroidsManager : MonoBehaviour
         CameraController.cameraController.GetToThisPosition(asteroidsViewPosition.position);
         mechanicalArm.SetActive(true);
         asteroidViewHUD.SetActive(true);
-        TimeManager.timeManager.ToggleUI();
+        DisableOtherUI();
+        
         MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.asteroidCursor);
         SetupMechanicalArm();
         ManageArmMaxRange();
     }
+
 
     private void SetupMechanicalArm()
     {
@@ -280,7 +285,7 @@ public class AsteroidsManager : MonoBehaviour
         mechanicalArm.SetActive(false);
         CameraController.cameraController.GetToThisPosition(asteroidsReturnViewPosition.position, () => 
         {
-            TimeManager.timeManager.ToggleUI();
+            EnableOtherUI();
             MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.defaultCursor);
             CameraController.cameraController.playerControlEnabled = true;
 
@@ -294,4 +299,30 @@ public class AsteroidsManager : MonoBehaviour
     {
         armMaxRange = Mathf.Clamp(armMaxRange + 1, 1, maxRangesImagesForHUD.Length);
     }
+
+    public void EnableAsteroidsEvents()
+    {
+        asteroidEventsEnabled = true;
+        spawnChancePerTurn = 1f;
+        //guaranteed asteroids on first turn
+    }
+
+    private void DisableOtherUI()
+    {
+        TimeManager.timeManager.ToggleUI();
+        foreach (GameObject item in otherUIToDisable)
+        {
+            item.SetActive(false);
+        }
+    }
+
+    private void EnableOtherUI()
+    {
+        TimeManager.timeManager.ToggleUI();
+        foreach (GameObject item in otherUIToDisable)
+        {
+            item.SetActive(true);
+        }
+    }
+
 }

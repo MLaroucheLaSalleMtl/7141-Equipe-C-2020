@@ -7,12 +7,12 @@ using UnityEngine.EventSystems;
 public class LockedDoor : MonoBehaviour
 {
     [SerializeField] private GameObject fog;
-    [SerializeField] private GameObject[] hiddenModule;
+    [SerializeField] private GameObject[] hiddenGameObjects;
     ShipManager ship;
     public string doorTitle = "Broken Door";
     [TextArea(2, 4)]
     public string doorInfo;
-    public int turnToUnlock = 1;
+    public int turnToRepair = 1;
     public int turnsRemaining;
     public bool underRepair = false;
     public ResourcesPack costToRepair;
@@ -22,10 +22,19 @@ public class LockedDoor : MonoBehaviour
     public string onNewRoomAvailablePopupString;
     [SerializeField] private int capaciteOxygeneSalle;
     [SerializeField] Vector3 unlockedRoomPosition;
+    [SerializeField] BoxCollider2D[] collidersToActivateInNewRoom;
+
     // Start is called before the first frame update
     void Start()
     {
         ship = ShipManager.shipM;
+        if(hiddenGameObjects.Length > 0)
+        {
+            foreach (GameObject mod in hiddenGameObjects)
+            {
+                if(mod != null) mod.SetActive(false);
+            }
+        }        
     }
 
 
@@ -37,9 +46,7 @@ public class LockedDoor : MonoBehaviour
             DoorManager.doorManager.hoveredDoor = this;
             GetComponent<SpriteRenderer>().color = ModuleManager.moduleManager.hoverColor;
             MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.hoverCursor);
-        }
-        
-
+        }      
     }
     private void OnMouseExit()
     {
@@ -51,7 +58,7 @@ public class LockedDoor : MonoBehaviour
 
     public string GetRepairCost()
     {
-        return "Repair cost : " + turnToUnlock + " <sprite=\"Time\" index=0> + other resources. (need images)";
+        return "Repair cost : " + turnToRepair + " <sprite=\"Time\" index=0> + other resources. (need images)";
     }
 
 
@@ -59,7 +66,7 @@ public class LockedDoor : MonoBehaviour
     internal void BeginRepair()
     {
         TimeManager.timeManager.OnTimeChanged += OnTimeChanged;
-        turnsRemaining = turnToUnlock;
+        turnsRemaining = turnToRepair;
         underRepair = true;
     }
 
@@ -77,8 +84,8 @@ public class LockedDoor : MonoBehaviour
                                                                         fog.GetComponent<DissolveEffect>().StartDissolve(() =>
                                                                         {
                                                                             fog.gameObject.SetActive(false);
-                                                                            foreach(GameObject mod in hiddenModule) { mod.SetActive(true); }
-                                                                            
+                                                                            foreach(GameObject mod in hiddenGameObjects) { mod.SetActive(true); }
+                                                                            foreach(BoxCollider2D collider in collidersToActivateInNewRoom) { collider.enabled = true; }
                                                                         });
                                                                         foreach (Transform transform in fog.transform)
                                                                         {
@@ -87,6 +94,7 @@ public class LockedDoor : MonoBehaviour
                                                                         
                                                                     }));
             //ship.AddOxygenCapacite(capaciteOxygeneSalle);
+            GameManager.selection.Dispo = true;
         }
     }
 

@@ -1251,6 +1251,7 @@ public class AstarPath : VersionedMonoBehaviour {
 
 		navmeshUpdates.OnEnable();
 
+        
 		if (scanOnStartup && (!data.cacheStartup || data.file_cachedStartup == null)) {
 			Scan();
 		}
@@ -1542,7 +1543,7 @@ public class AstarPath : VersionedMonoBehaviour {
 	/// AstarPath.active.Scan();
 	///
 	/// // Recalculate only the first grid graph
-	/// var graphToScan = AstarPath.active.data.gridGraph;
+	///var graphToScan = AstarPath.active.data.gridGraph;
 	/// AstarPath.active.Scan(graphToScan);
 	///
 	/// // Recalculate only the first and third graphs

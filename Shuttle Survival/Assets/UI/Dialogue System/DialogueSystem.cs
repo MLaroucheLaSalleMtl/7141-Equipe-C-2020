@@ -15,7 +15,7 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] TextMeshProUGUI dialogueTextField;
     [SerializeField] Image speakerImageBox;
-    [SerializeField] TextMeshProUGUI speakerNameTextField;
+    [SerializeField] TextMeshProUGUI speakerNameTextField;   
 
     private void Awake()
     {

@@ -23,10 +23,7 @@ public class PathFinding : MonoBehaviour
     Rigidbody2D rb;
 
     //flip dat boi
-    [SerializeField] Transform PersonnageVisuel;
-
-    //actif or nay
-    private bool listenMode;
+    [SerializeField] Transform PersonnageVisuel;   
 
     shipNPCmanager NPC;
 
@@ -42,22 +39,26 @@ public class PathFinding : MonoBehaviour
         //InvokeRepeating("UpdatePath", 0f, 0.5f);
         //generate path (start point, end of path, funtion to call when done)
         //on laisse la ligne ici si on veut pas que ça update
-       //seeker.StartPath(rb.position, target.position, OnPathComplete);
+        //seeker.StartPath(rb.position, target.position, OnPathComplete);
 
     }
 
     void UpdatePath()
     {
+        if(target == null)
+        {
+            CancelInvoke();
+            return;
+        }
         if (seeker.IsDone()) 
             //generate path (start point, end of path, funtion to call when done)
             seeker.StartPath(rb.position, target.position, OnPathComplete);
-
     }
 
     private void OnPathComplete(Path p){
         if (!p.error){
             path = p;
-            currentWayPoint = 0;
+            currentWayPoint = 0;           
         }
     }
 
@@ -70,7 +71,9 @@ public class PathFinding : MonoBehaviour
 
         if (currentWayPoint >= path.vectorPath.Count)
         {
+            //Debug.Log("path end" + reachEndOfPath);
             reachEndOfPath = true;
+            path = null;
             return;
         }
         else {
@@ -108,26 +111,7 @@ public class PathFinding : MonoBehaviour
     {
         target = Target;
         InvokeRepeating("UpdatePath", 0f, 0.5f);
+        
     }
 
-    //Si perso se fait sélectionner il écoute pour voir sil va bouger
-    private void OnMouseDown()
-    {
-        if (listenMode != true)
-        {
-            NPC.AvailableNPC(this);
-            listenMode = true;          
-        }
-        else
-        {
-            NPC.RemoveNPC(this);
-            listenMode = false;
-        }
-    }
-
-    //vérifie l'état du bool
-    public bool AreYouListenning()
-    {
-        return listenMode;
-    }
 }

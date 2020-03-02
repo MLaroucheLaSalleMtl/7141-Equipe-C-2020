@@ -12,7 +12,8 @@ public class UIModule : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        ModuleManager.moduleManager.CreateModule(moduleIndex);
+        GetComponent<TooltipHandler>().OnPointerExit(null);
+        ModuleManager.moduleManager.ShowDetailedModuleInformations(moduleIndex);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
