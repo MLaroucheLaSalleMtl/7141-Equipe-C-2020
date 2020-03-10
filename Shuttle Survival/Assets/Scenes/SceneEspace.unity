@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -395,7 +395,8 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4000512256378422919, guid: ec25077bebda24c4f8c7d8f332739041, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ec25077bebda24c4f8c7d8f332739041, type: 3}
 --- !u!1001 &60852831
 PrefabInstance:
@@ -3268,6 +3269,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 5c591b37d62e6e64783ff411431274ce, type: 2}
+--- !u!223 &742362500 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 2605142253813947010, guid: ec25077bebda24c4f8c7d8f332739041,
+    type: 3}
+  m_PrefabInstance: {fileID: 44900917}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &751635037 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1003717799, guid: ec25077bebda24c4f8c7d8f332739041,
@@ -4891,7 +4898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   personnages: []
   persoHUD: {fileID: 0}
-  canvas: {fileID: 0}
+  canvas: {fileID: 742362500}
   boutonBlueprint: {fileID: 8722639405867989133, guid: 01971314e1e5922418862e3dabf4b0db,
     type: 3}
   menu: {fileID: 7351811497147017096, guid: d79ff16f794669a47867f5dad90958a4, type: 3}
@@ -4899,7 +4906,6 @@ MonoBehaviour:
   modules:
   - {fileID: 268942915}
   - {fileID: 691641047}
-  Menu: {fileID: 0}
 --- !u!1 &1224955001
 GameObject:
   m_ObjectHideFlags: 0

@@ -627,7 +627,6 @@ GameObject:
   - component: {fileID: 8945331503829786293}
   - component: {fileID: 8945331503829786295}
   - component: {fileID: 8945331503829786292}
-  - component: {fileID: 4000512257392545522}
   m_Layer: 5
   m_Name: PanelComp
   m_TagString: Untagged
@@ -692,24 +691,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4000512257392545522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8945331503829786298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f65937dbc3c641e4facae48cf8365ccf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerTot: {fileID: 8945331503610878923}
-  powerTurn: {fileID: 8945331504380804893}
-  oxyPct: {fileID: 8945331503787643222}
-  oxyTurn: {fileID: 8945331502876633618}
-  foodQte: {fileID: 8945331504551140068}
-  foodTurn: {fileID: 8945331504362542672}
 --- !u!1 &8945331504126747250
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,7 +1168,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4000512257392545522}
+      - m_Target: {fileID: 0}
         m_MethodName: ClosePanel
         m_Mode: 1
         m_Arguments:

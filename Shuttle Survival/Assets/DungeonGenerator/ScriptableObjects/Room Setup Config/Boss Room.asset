@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 877a0ae64fca07c449ecc44cbdac4621, type: 3}
+  m_Name: Boss Room
+  m_EditorClassIdentifier: 
+  name: 
+  pointsOfInterests:
+  - x: 3
+    y: 5
+    roomObjects: 010000000200000003000000
+    chancesToSpawn:
+    - 0.4
+    - 0.2
+    - 0.5
+  - x: 8
+    y: 5
+    roomObjects: 01000000
+    chancesToSpawn:
+    - 1
+  - x: 12
+    y: 6
+    roomObjects: 0200000001000000
+    chancesToSpawn:
+    - 0.5
+    - 0.5

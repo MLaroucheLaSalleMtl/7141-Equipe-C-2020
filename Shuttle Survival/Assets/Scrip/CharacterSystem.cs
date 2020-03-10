@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(PathFinding))]
 [RequireComponent(typeof(Collider2D))]
 public class CharacterSystem : MonoBehaviour
 {
+    
     //connecté à ShipManager
     ShipManager ship;
 
@@ -33,9 +35,6 @@ public class CharacterSystem : MonoBehaviour
     private bool dispo = true;
     public bool Dispo { get => dispo; set => dispo = value; }
 
-    //UI stuff
-    [SerializeField] private GameObject ActionDropDown;
-    [SerializeField] private GameObject pannelQuestion;
 
     private void Awake()
     {       

@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     }
 
     public List<CharacterSystem> Personnages { get => personnages;}
-    public GameObject Menu;
+    
 
    
     private void Update()
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         {
             Invoke("CloseActionPanel", 0.1f);          
         }
+        
     }
   
     public void NewActionPanel()
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
         if (actions) 
             Destroy(actions);
 
-        actions = Instantiate(Menu);
+        actions = Instantiate(menu);
         actions.transform.SetParent(canvas.transform, true);
         actions.transform.position = Input.mousePosition; 
     }

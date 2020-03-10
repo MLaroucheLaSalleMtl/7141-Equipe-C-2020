@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ba3069582951c4d885ed3cf6ed6bd5, type: 3}
+  m_Name: Standard Dungeon
+  m_EditorClassIdentifier: 
+  startingRoom: {fileID: 2077853965596704493, guid: 1d5c6bff796988c498c6b95fc2c99b85,
+    type: 3}
+  roomDoors: 030000000000000002000000
+  roomDoorsNum: 030000000300000001000000
+  guaranteedRoomsConfig:
+  - {fileID: 11400000, guid: b645041df0a788d478a7483cdc41d067, type: 2}
+  - {fileID: 11400000, guid: b645041df0a788d478a7483cdc41d067, type: 2}
+  guaranteedPositions:
+  - 0
+  - 1
+  randomRoomsConfig:
+  - {fileID: 11400000, guid: 1ebc347a21fe6c2469efd027374844bc, type: 2}
+  - {fileID: 11400000, guid: 57fe7fb017203b34e876a4886da3d031, type: 2}
+  - {fileID: 11400000, guid: 3a674bcb0338f3c4b948a0be9c9142ac, type: 2}
+  - {fileID: 11400000, guid: 1b5e5e8d3326ed645b8d8dc212b9687c, type: 2}
+  chancesToBeDrawn:
+  - 0.6
+  - 0.1
+  - 0.1
+  - 0.5
+  variationPerRoom:
+  - 0
+  - 0.02
+  - 0.05
+  - -0.01
+  maximumAmountOfRoomType: 63000000010000000100000001000000

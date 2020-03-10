@@ -287,7 +287,7 @@ public class AsteroidsManager : MonoBehaviour
         {
             EnableOtherUI();
             MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.defaultCursor);
-            CameraController.cameraController.playerControlEnabled = true;
+            CameraController.cameraController.playerControlEnabled = true;           
 
         });
         asteroidViewHUD.SetActive(false);

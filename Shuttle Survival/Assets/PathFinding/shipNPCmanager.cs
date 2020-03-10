@@ -13,7 +13,7 @@ public class shipNPCmanager : MonoBehaviour
     {     
         if (NPCmanagInstance == null)
         {
-            NPCmanagInstance = this;
+            NPCmanagInstance = this;           
         }
         else if(NPCmanagInstance != this)
         {
