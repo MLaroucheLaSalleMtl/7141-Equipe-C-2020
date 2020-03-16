@@ -67,12 +67,13 @@ public class InfoPanelScript : MonoBehaviour
         oxyTurn.text = preText + Mathf.FloorToInt(oxyP).ToString();
 
         //Food
+        
         int foodNb = ship.ShipInv().GetAmount(1);
         foodQte.text = foodNb.ToString();
 
         foodNb = foodNb*CharacterSystem.hunger/game.Personnages.Count;
         foodTurn.text =preText + foodNb.ToString();
-
+        
     }
 
 }

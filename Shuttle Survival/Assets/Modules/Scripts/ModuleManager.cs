@@ -155,7 +155,7 @@ public class ModuleManager : MonoBehaviour
         if (inventaire.PayRessource(listOfPossibleModules[moduleIndex].GetComponent<Module>().ressourcesCost)) //if it can pay (fait payer en meme temps, pas l'ideal
         {
             //vérifie si un personnage est en mode listen pour aller construire le module
-             if (NPC.IsNPCavailable() == true)
+             if (NPC.IsNPCavailable())
              {
                 Debug.Log("Sending bob");
                 detailedInformationsPanel.SetActive(false);
@@ -163,15 +163,16 @@ public class ModuleManager : MonoBehaviour
                 GameObject underConstructionModule = Instantiate(underConstructionModulePrefab, currentModule.transform.position, Quaternion.identity);
                 underConstructionModule.GetComponent<UnderConstructionModule>().SetTurnsToBuild(listOfPossibleModules[moduleIndex].GetComponent<Module>().turnsToBuild);
                 underConstructionModule.GetComponent<UnderConstructionModule>().moduleToBuild = listOfPossibleModules[moduleIndex];
+                
+                //trouver le bon endroit pour envoyer bob      
+                NPC.NeedAHandOverHere(underConstructionModule.transform);
+
                 Destroy(currentModule.gameObject);
                 if (currentModule.unique && !buildingFromLimitedChoices)
                 {
                     standardModulePrefabs.RemoveAt(moduleIndex);
                 }
                 moduleCreationPanel.SetActive(false);
-
-                //trouver le bon endroit pour envoyer bob      
-                NPC.NeedAHandOverHere(underConstructionModule.transform);
             }
             else
             {

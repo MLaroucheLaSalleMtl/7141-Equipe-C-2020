@@ -21,7 +21,8 @@ public class CharacterSystem : MonoBehaviour
     [SerializeField] private int SleepCap = 36;//18 heures ->36
     public List<CharacterAlertType> characterAlertTypes = new List<CharacterAlertType>();
     [SerializeField] private bool addOnStart = true;
-
+  
+    private PathFinding perso;
 
     public static readonly int hunger = 8; //4heure, 6 fois par jour
     // hunger * temps q'un tour represente = nombre d'heure avant de decrementer la satiete
@@ -34,7 +35,6 @@ public class CharacterSystem : MonoBehaviour
 
     private bool dispo = true;
     public bool Dispo { get => dispo; set => dispo = value; }
-
 
     private void Awake()
     {       
@@ -57,13 +57,20 @@ public class CharacterSystem : MonoBehaviour
             gameM.AddPerso(this);
             addOnStart = false;
         }
-
+        perso = GetComponent<PathFinding>();
     }
 
     private void OnMouseEnter()
     {
-        GameManager.selection = this;
-        Debug.Log(GameManager.selection);
+        if (Dispo)
+        {
+            GameManager.selection = this;
+            Debug.Log(GameManager.selection);
+        }else
+        {
+            MessagePopup.MessagePopupManager.SetStringAndShowPopup("This character isn't available.");
+        }
+       
     }
 
     private void OnTimeChanged(object sender, EventArgs e)
@@ -199,7 +206,7 @@ public class CharacterSystem : MonoBehaviour
     public void StartHealing(bool fromShip)
     {
 
-        //CancelAction();//ligne temporaire
+       
         Debug.Log("Start Healing");
         if (dispo)
         {
@@ -252,6 +259,7 @@ public class CharacterSystem : MonoBehaviour
         this.currSleep = SleepCap;
         ship.ShipInv().PayFromID(3, 1);
     }
+
     public void CancelAction()
     {
         Dispo = true;
@@ -269,9 +277,6 @@ public class CharacterSystem : MonoBehaviour
             CreateDynamicOptions();
         }
     }
-
-
-
 
     public void CreateDynamicOptions()
     {
@@ -300,5 +305,19 @@ public class CharacterSystem : MonoBehaviour
         }
     }
     #endregion UI
+
+    public void Unavailable()
+    {
+        MessagePopup.MessagePopupManager.SetStringAndShowPopup("This character is now busy.");
+        Dispo = false;
+        GameManager.selection = null;
+    }
     
+    public void cancelNowDispo()
+    {
+        Debug.Log("Destination is cancelled");
+        perso.targetNULL();
+        Dispo = true;
+        MessagePopup.MessagePopupManager.SetStringAndShowPopup("This character is now available.");
+    }
 }

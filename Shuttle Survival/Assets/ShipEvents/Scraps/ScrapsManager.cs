@@ -70,6 +70,8 @@ public class ScrapsManager : MonoBehaviour
                     currentScraps.BeginCleanUp();
                     //trouver le bon endroit pour envoyer bob      
                     NPC.NeedAHandOverHere(currentScraps.transform);
+                    currentScraps.bob = GameManager.selection.GetComponent<CharacterSystem>();
+                    currentScraps.bob.Unavailable();
                 }
                 else
                 {

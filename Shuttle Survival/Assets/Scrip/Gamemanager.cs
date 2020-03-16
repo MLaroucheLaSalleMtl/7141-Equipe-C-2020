@@ -12,9 +12,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Canvas canvas;
     [SerializeField] private Button boutonBlueprint;//boutons des menus dynamiques
     [SerializeField] private GameObject menu;//paneau des menus dynamiques
+    [SerializeField] private GameObject playerButtonBP;
+    [SerializeField] private GameObject playerButtonPanel;
     #endregion UI
     [SerializeField] private GameObject fog;
     [SerializeField] private GameObject[] modules;
+    
+    
     public static GameObject actions;
     public static CharacterSystem selection;
     public static GameManager GM;
@@ -29,9 +33,9 @@ public class GameManager : MonoBehaviour
     }
 
     public List<CharacterSystem> Personnages { get => personnages;}
-    
+    public GameObject PlayerButtonBP { get => playerButtonBP;}
+    public GameObject PlayerButtonPanel { get => playerButtonPanel;}
 
-   
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))

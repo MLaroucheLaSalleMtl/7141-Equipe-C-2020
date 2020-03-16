@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 667909499e7fc6546b6dacea5102acb4, type: 3}
+  m_Name: Clean Up
+  m_EditorClassIdentifier: 
+  optionName: Clean Up
+  optionText: Let's clean everything up and see what we find.
+  requirementsToBeActive: []
+  relatedDungeonRoll:
+    baseChanceOfSucess: 0.5
+    rollChanceModifiers: []
+    successEvent: {fileID: 11400000, guid: a877f44d34bcaa9479d642ed54cd6708, type: 2}
+    failureEvent: {fileID: 11400000, guid: ee8a23b127d6fe94fbf6c62a0a616b3e, type: 2}
+    critFailPossible: 0
+    criticalFailureEvent: {fileID: 0}
+    critSucessPossible: 0
+    criticalSuccessEvent: {fileID: 0}

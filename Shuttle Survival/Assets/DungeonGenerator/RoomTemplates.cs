@@ -6,6 +6,8 @@ public class RoomTemplates : MonoBehaviour
 {
     public static RoomTemplates roomTemplates;
 
+    
+
     public GameObject[] bottomRooms;
     public GameObject[] botRoomsNoClosure;
     public GameObject[] botRoomClosure;
@@ -31,9 +33,8 @@ public class RoomTemplates : MonoBehaviour
 
     public DungeonSheet currentDungeonSheet;
     public GameObject[] numberSprites;
-    public GameObject boss;
     bool guaranteedPosition = false;
-
+    bool dungeonLaunched = false;
     public int numOfRooms = 0;
     
 
@@ -42,6 +43,7 @@ public class RoomTemplates : MonoBehaviour
         if (RoomTemplates.roomTemplates == null)
         {
             RoomTemplates.roomTemplates = this;
+            
         }
         else
         {
@@ -49,19 +51,26 @@ public class RoomTemplates : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void FORTESTING_MANUALLY_START_DUNGEON()
     {
+        StartDungeonSetup(currentDungeonSheet);
+    }
+    public void StartDungeonSetup(DungeonSheet dungeonSheet) //cest un effet cascade qui commence quand la premiere est instantiated
+    {
+        DungeonCamera.dungeonCameraHolder.ActivateDungeonCamera();
+        currentDungeonSheet = dungeonSheet;
         Instantiate(currentDungeonSheet.startingRoom, transform.position, transform.rotation);
+        dungeonLaunched = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(waitTime <= 0 && assignedRooms == false)
+        if(dungeonLaunched && waitTime <= 0 && assignedRooms == false) //onc e everything is spawned, on assign les roles aux rooms
         {
             AssignConfigToRooms();
         }
-        else if(assignedRooms == false)
+        else if(dungeonLaunched && assignedRooms == false)
         {
             waitTime -= Time.deltaTime;
         }

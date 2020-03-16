@@ -10,12 +10,15 @@ public class UnderConstructionModule : Module
     public GameObject moduleToBuild;
     //price paid
 
+    public CharacterSystem bob;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         Debug.Log("construction initiated");
         TimeManager.timeManager.OnTimeChanged += OnTimeChanged;
+        bob = GameManager.selection.GetComponent<CharacterSystem>();
+        bob.Unavailable();
     }
 
     public void OnTimeChanged(object sender, EventArgs e)
@@ -30,7 +33,7 @@ public class UnderConstructionModule : Module
                 ShipEventsManager.shipEventsManager.AddShipEventToQueue(ShipEvent.ModuleCreationEvent(moduleToBuild, transform.position));
             }
             Debug.Log("End of construction");
-            GameManager.selection.Dispo = true;
+            bob.cancelNowDispo();
             Destroy(this.gameObject);
         }
     }
@@ -49,6 +52,8 @@ public class UnderConstructionModule : Module
 
     public void CancelCreation()
     {
-        TimeManager.timeManager.OnTimeChanged -= OnTimeChanged;
+        bob.cancelNowDispo();
+        TimeManager.timeManager.OnTimeChanged -= OnTimeChanged;    
     }
 }
+

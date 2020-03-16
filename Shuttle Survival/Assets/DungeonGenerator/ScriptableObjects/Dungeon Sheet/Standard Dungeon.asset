@@ -17,7 +17,7 @@ MonoBehaviour:
   roomDoors: 030000000000000002000000
   roomDoorsNum: 030000000300000001000000
   guaranteedRoomsConfig:
-  - {fileID: 11400000, guid: b645041df0a788d478a7483cdc41d067, type: 2}
+  - {fileID: 11400000, guid: 1ebc347a21fe6c2469efd027374844bc, type: 2}
   - {fileID: 11400000, guid: b645041df0a788d478a7483cdc41d067, type: 2}
   guaranteedPositions:
   - 0

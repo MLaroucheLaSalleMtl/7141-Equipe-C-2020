@@ -6,7 +6,7 @@ public enum PointOfInterest { empty, chair, tv, table};
 public enum RoomDoors { FullyOpen, All, Close, NoClosure};
 
 [System.Serializable]
-public class Point
+public class RoomPoint
 {
     [SerializeField]
     [Range(0, 12)]
@@ -15,11 +15,11 @@ public class Point
     [Range(0, 6)]
     public int y;
     [SerializeField]
-    public PointOfInterest[] pointsOfInterest;
+    public PointOfInterestObject[] pointsOfInterest;
     [SerializeField]
     [Range(0,1f)]
     public float[] chancesToSpawn;
-    public Point(int x, int y, PointOfInterest[] pointsOfInterest, float[] chancesToSpawn)
+    public RoomPoint(int x, int y, PointOfInterestObject[] pointsOfInterest, float[] chancesToSpawn)
     {
         this.x = x;
         this.y = y;
@@ -92,23 +92,8 @@ public class AddRoom : MonoBehaviour
         }
     }
 
-    public void SpawnPointOfInterest(PointOfInterest roomObject, Vector2 pointOfInterestPosition)
+    public void SpawnPointOfInterest(PointOfInterestObject roomObject, Vector2 pointOfInterestPosition)
     {
-        GameObject POI;
-        switch (roomObject)
-        {
-            case PointOfInterest.chair:
-                POI = Instantiate(chair, zeroCoord.transform);
-                POI.transform.localPosition = pointOfInterestPosition;
-                break;
-            case PointOfInterest.tv:
-                POI = Instantiate(tv, zeroCoord.transform);
-                POI.transform.localPosition = pointOfInterestPosition;
-                break;
-            case PointOfInterest.table:
-                POI = Instantiate(table, zeroCoord.transform);
-                POI.transform.localPosition = pointOfInterestPosition;
-                break;
-        }
+        PointOfInterestManager.pointOfInterestManager.SpawnPOI(pointOfInterestPosition, zeroCoord.transform, roomObject);        
     }
 }

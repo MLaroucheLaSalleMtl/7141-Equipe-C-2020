@@ -23,6 +23,7 @@ public class LockedDoor : MonoBehaviour
     [SerializeField] private int capaciteOxygeneSalle;
     [SerializeField] Vector3 unlockedRoomPosition;
     [SerializeField] BoxCollider2D[] collidersToActivateInNewRoom;
+    public CharacterSystem bob;
 
     // Start is called before the first frame update
     void Start()
@@ -94,13 +95,14 @@ public class LockedDoor : MonoBehaviour
                                                                         
                                                                     }));
             //ship.AddOxygenCapacite(capaciteOxygeneSalle);
-            GameManager.selection.Dispo = true;
-        }
+            bob.cancelNowDispo();
+}
     }
 
     public void CancelRepair()
     {
         TimeManager.timeManager.OnTimeChanged -= OnTimeChanged;
         underRepair = false;
+        bob.cancelNowDispo();
     }
 }

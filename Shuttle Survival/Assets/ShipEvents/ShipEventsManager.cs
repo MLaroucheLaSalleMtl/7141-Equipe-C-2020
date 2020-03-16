@@ -103,7 +103,7 @@ public class ShipEventsManager : MonoBehaviour
                                     shipEventPopup.SetActive(true);
                                     eventTitleText.text = currentCharacterSystem.name+ " is sleepy";
                                     eventDescriptionText.text = "";
-                                    //EMILE
+                                    
                                     altButton.onClick.RemoveAllListeners();                                    
 
                                     if (!currentCharacterSystem.Dispo)
@@ -115,9 +115,7 @@ public class ShipEventsManager : MonoBehaviour
                                     {
                                         altButton.onClick.AddListener(()=>currentCharacterSystem.GoToBed(false));
                                     }                                                                                                          
-                                    //oui -> check pour Dispo
-                                    //dispo false -> fenetre Question
-                                    //cancel button on ajoute listener : si on le click, on cancel laction du currentshipevent.charactersystem // fait dans la fonction de l'action
+                                    
                                     break;
                                 case CharacterAlertType.Hungry:
                                     shipEventPopup.SetActive(true);
@@ -140,7 +138,7 @@ public class ShipEventsManager : MonoBehaviour
                                     shipEventPopup.SetActive(true);
                                     eventTitleText.text = currentCharacterSystem.name + " is low health";
                                     eventDescriptionText.text = "";
-                                    //EMILE
+                                    
                                     altButton.onClick.RemoveAllListeners();
 
                                     if (!currentCharacterSystem.Dispo)
@@ -225,7 +223,7 @@ public class ShipEventsManager : MonoBehaviour
         altButton.GetComponentInChildren<Text>().text = "Proceed";
         altButton.onClick.RemoveAllListeners();
         altButton.onClick.AddListener(()=>  action() );
-        //altButton.onClick.AddListener(); //close panel
+        altButton.onClick.AddListener(FreeShipEventsQueue); //close panel
     }
 
     public void FirstTimeScrapsCleanedUpEvent()

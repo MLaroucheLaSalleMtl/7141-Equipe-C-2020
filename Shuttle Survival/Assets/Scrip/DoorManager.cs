@@ -101,9 +101,10 @@ public class DoorManager : MonoBehaviour
                 repairButton.GetComponent<TooltipHandler>().OnPointerExit(null);
                 currentDoor.BeginRepair();
                 doorPanel.SetActive(false);
-
                 //trouver le bon endroit pour envoyer bob      
                 NPC.NeedAHandOverHere(currentDoor.transform);
+                currentDoor.bob = GameManager.selection.GetComponent<CharacterSystem>();
+                currentDoor.bob.Unavailable();
             }
             else
             {

@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class ShipScanner : Module
 {
-    [SerializeField] GameObject shipScannerDungeonsPanel;
     [SerializeField] int turnsBeforeScanningForNewShips = 3;
+
     int turnCounter = 0;
     // Start is called before the first frame update
     protected override void Start()
@@ -23,15 +23,10 @@ public class ShipScanner : Module
     public override void UseModule()
     {
         base.UseModule();
-        SetUpShipScannerDungeonPanel();
-        
+        ShipScanManager.shipScanManager.SetUpShipScannerDungeonPanel();
     }
 
-    private void SetUpShipScannerDungeonPanel()
-    {
-
-        shipScannerDungeonsPanel.SetActive(true);
-    }
+    
 
     public override void OnCreation()
     {

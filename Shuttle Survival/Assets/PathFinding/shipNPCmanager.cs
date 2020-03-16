@@ -32,10 +32,7 @@ public class shipNPCmanager : MonoBehaviour
             return false;
         }             
     }
-    public void Start()
-    {
-
-    }
+   
     public void NeedAHandOverHere(Transform targetTHATneedHELP)
     {
         Debug.Log("INCOMING");

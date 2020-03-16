@@ -10,6 +10,7 @@ public class Scraps : MonoBehaviour, ISelectable
     public bool beingCleaned = false;
     SpriteRenderer spriteRenderer;
     shipNPCmanager NPC;
+    public CharacterSystem bob ;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,7 @@ public class Scraps : MonoBehaviour, ISelectable
         {
             spriteRenderer.color = ModuleManager.moduleManager.hoverColor;
             hovered = true;
-            MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.hoverCursor);
+            MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.hoverCursor);     
         }
 
     }
@@ -57,7 +58,7 @@ public class Scraps : MonoBehaviour, ISelectable
         if(!ScrapsManager.scrapsManager.firstScrapsCleanedUp)
         {
             ScrapsManager.scrapsManager.firstScrapsCleanedUp = true;
-            DialogueTriggers.dialogueTriggers.TriggerDialogue(2);
+            //DialogueTriggers.dialogueTriggers.TriggerDialogue(2);
         }
         beingCleaned = true;
         TimeManager.timeManager.OnTimeChanged += OnTimeChanged;
@@ -65,15 +66,20 @@ public class Scraps : MonoBehaviour, ISelectable
 
     public void CancelCleanUp()
     {
+        //ramène bob dispo
+        bob.cancelNowDispo();
+        
         beingCleaned = false;
         TimeManager.timeManager.OnTimeChanged -= OnTimeChanged;
     }
+
     public void OnTimeChanged(object source, EventArgs e)
     {
         TimeManager.timeManager.OnTimeChanged -= OnTimeChanged;
         ShipEventsManager.shipEventsManager.AddShipEventToQueue(ShipEvent.CleanedUpScrapsEvent(this, transform.position));
+
         Debug.Log("End of cleanup");
-        GameManager.selection.Dispo = true;
+        bob.cancelNowDispo();
     }
 
     public void OnSelection()

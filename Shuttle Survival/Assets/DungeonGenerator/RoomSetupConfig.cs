@@ -6,5 +6,5 @@ using UnityEngine;
 public class RoomSetupConfig : ScriptableObject
 {
     [SerializeField] string roomSetupName;
-    [SerializeField] public Point[] possiblePointsOfInterests;
+    [SerializeField] public RoomPoint[] possiblePointsOfInterests;
 }

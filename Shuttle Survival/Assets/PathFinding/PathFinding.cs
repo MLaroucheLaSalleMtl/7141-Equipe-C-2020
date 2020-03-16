@@ -55,6 +55,11 @@ public class PathFinding : MonoBehaviour
             seeker.StartPath(rb.position, target.position, OnPathComplete);
     }
 
+    public void targetNULL()
+    {
+        target = null;
+    }
+
     private void OnPathComplete(Path p){
         if (!p.error){
             path = p;
