@@ -26,15 +26,17 @@ public class DungeonEventMakerWindow : EditorWindow
     bool[] unlockedColumns = new bool[20];
     string[] columnEventNames = new string[20];
     int[] columnEventIndex = new int[20];
-
     public DungeonEvent[] dungeonEvents = new DungeonEvent[20];
     public DungeonOption[,] dungeonEventsOptions = new DungeonOption[20,5]; //related to dungeonevents, array of 5 options for this event.
     List<bool> rollAffectedByModifiers = new List<bool>();
 
+
+    static DungeonEventMakerWindow window;
+
     [MenuItem("Dungeon Tools/Dungeon Event Maker")]
     static void OpenWindow()
     {       
-        DungeonEventMakerWindow window = (DungeonEventMakerWindow)GetWindow(typeof(DungeonEventMakerWindow));
+        window = (DungeonEventMakerWindow)GetWindow(typeof(DungeonEventMakerWindow));
         window.minSize = new Vector2(1500, 900);
         window.Show();
     }
@@ -274,6 +276,15 @@ public class DungeonEventMakerWindow : EditorWindow
             GUILayout.Label("Percentage change per unit", skin.GetStyle("Event1"));
             currentRollModifier.percentIncreasePerRelatedStatsPoint = EditorGUILayout.FloatField(currentRollModifier.percentIncreasePerRelatedStatsPoint * 100f) / 100f;
             EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Label("Decreaser", skin.GetStyle("Event1"));
+            currentRollModifier.decreaser = EditorGUILayout.Toggle(currentRollModifier.decreaser);
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Label("Party wide", skin.GetStyle("Event1"));
+            currentRollModifier.partyWide = EditorGUILayout.Toggle(currentRollModifier.partyWide);
+            EditorGUILayout.EndHorizontal();
+
         }
         GUILayout.BeginHorizontal();
         GUILayout.Label("% modifiers", skin.GetStyle("Event1"));
@@ -417,5 +428,7 @@ public class DungeonEventMakerWindow : EditorWindow
         }
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
+
+        window.Close();
     }
 }

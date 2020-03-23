@@ -8,5 +8,7 @@ public enum DungeonStatsToCheck
     HealthAmount,
     HealthPercentage,
     Gold,
-    HasHammer
+    HasHammer,
+    HasEngineerToolbox,
+    HasDigitalKey
 }

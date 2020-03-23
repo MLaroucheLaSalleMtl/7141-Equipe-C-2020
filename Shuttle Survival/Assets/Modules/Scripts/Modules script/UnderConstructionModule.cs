@@ -33,7 +33,7 @@ public class UnderConstructionModule : Module
                 ShipEventsManager.shipEventsManager.AddShipEventToQueue(ShipEvent.ModuleCreationEvent(moduleToBuild, transform.position));
             }
             Debug.Log("End of construction");
-            bob.cancelNowDispo();
+            bob.CancelNowDispo();
             Destroy(this.gameObject);
         }
     }
@@ -52,7 +52,7 @@ public class UnderConstructionModule : Module
 
     public void CancelCreation()
     {
-        bob.cancelNowDispo();
+        bob.CancelNowDispo();
         TimeManager.timeManager.OnTimeChanged -= OnTimeChanged;    
     }
 }

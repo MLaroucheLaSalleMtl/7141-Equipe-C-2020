@@ -27,11 +27,13 @@ public class PointOfInterestObject : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        CharacterSystem.surPerso = true;
         hovered = true;
     }
 
     private void OnMouseExit()
     {
+        CharacterSystem.surPerso = false;
         hovered = false;
     }
 }

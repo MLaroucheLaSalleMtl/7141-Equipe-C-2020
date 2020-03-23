@@ -32,9 +32,23 @@ public class DungeonEffectsHandler : MonoBehaviour
 
     public void HandleDungeonEffects(List<DungeonEffect> dungeonEffects)
     {
+        CharacterSystem choosenCharacter = DungeonEventPanelHandler.dungeonEventPanelHandler.GetChoosenCharacter();
+
         for (int i = 0; i < dungeonEffects.Count; i++)
         {
-            Debug.Log(dungeonEffects[i].dungeonEffectIntensity + " " + dungeonEffects[i].dungeonEffectType);
+            switch (dungeonEffects[i].dungeonEffectType)
+            {
+                case DungeonEffectType.AffectHealthSingle:
+                    choosenCharacter.Hurt(Mathf.RoundToInt(dungeonEffects[i].dungeonEffectIntensity));
+                    break;
+                case DungeonEffectType.AffectHealthParty:
+                    
+                    break;
+                case DungeonEffectType.UnlockDoor:
+                    DungeonDoorUnlocker.UnlockCurrentDungeonDoor();
+                    break;
+                
+            }
         }
     }
 }

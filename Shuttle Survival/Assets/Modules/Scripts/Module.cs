@@ -36,6 +36,7 @@ public class Module : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        CharacterSystem.surPerso = true;
         if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
             ModuleManager.moduleManager.hoveredModule = this;
@@ -46,6 +47,7 @@ public class Module : MonoBehaviour
 
     private void OnMouseExit()
     {
+        CharacterSystem.surPerso = false;
         ModuleManager.moduleManager.hoveredModule = null;
         GetComponent<SpriteRenderer>().color = Color.white;
         MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.defaultCursor);

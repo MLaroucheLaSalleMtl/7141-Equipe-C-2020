@@ -16,4 +16,6 @@ MonoBehaviour:
   eventMessage: You were right to take your time to clean up a little bit. You found
     many valuables in the junk.
   dungeonOptions: []
-  eventEffects: []
+  eventEffects:
+  - dungeonEffectType: 0
+    dungeonEffectIntensity: 10

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -69,10 +70,19 @@ public class RoomTemplates : MonoBehaviour
         if(dungeonLaunched && waitTime <= 0 && assignedRooms == false) //onc e everything is spawned, on assign les roles aux rooms
         {
             AssignConfigToRooms();
+            PaintRooms();
         }
         else if(dungeonLaunched && assignedRooms == false)
         {
             waitTime -= Time.deltaTime;
+        }
+    }
+
+    private void PaintRooms()
+    {
+        foreach (GameObject room in rooms)
+        {
+            room.GetComponent<RoomPainter>().PaintRoom();
         }
     }
 
@@ -99,7 +109,7 @@ public class RoomTemplates : MonoBehaviour
             //si on est rendu ici dans l'iteration, c'est qu'on doit tirer une room au hasard selon la configuration.
             float randUpperBound = CalculateTotalRoomChances(currentRoomTypeAmount, i);
 
-            float rand = Random.Range(0.00f, randUpperBound);
+            float rand = UnityEngine.Random.Range(0.00f, randUpperBound);
             for (int j = 0; j < currentDungeonSheet.randomRoomsConfig.Length; j++) //cette loop va assigner au hasard, selon les chances calculees, le role de la room
             {
                 if (currentRoomTypeAmount[j] >= currentDungeonSheet.maximumAmountOfRoomType[j]) continue; //si cette room type est deja a max capacity, on passe a la suivante, n'ont pas ete calcule dans les chances anyway

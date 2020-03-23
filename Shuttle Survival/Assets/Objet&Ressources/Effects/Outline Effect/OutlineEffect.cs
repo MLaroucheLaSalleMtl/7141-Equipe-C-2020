@@ -16,7 +16,6 @@ public class OutlineEffect : MonoBehaviour, ISelectable
     {
         if(spriteRenderer)
             spriteRenderer.material.SetFloat("_OutlineThickness", 0f);
-
     }
 
     public void OnSelection()

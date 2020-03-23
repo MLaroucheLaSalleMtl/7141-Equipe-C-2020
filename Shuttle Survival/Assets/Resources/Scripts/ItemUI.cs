@@ -12,7 +12,7 @@ public class ItemUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        stackText.text = "";
     }
 
     // Update is called once per frame

@@ -35,6 +35,11 @@ public class AddRoom : MonoBehaviour
     [SerializeField] RoomSetupConfig roomConfig;
     PointOfInterest[,] coord = new PointOfInterest[12, 6];
 
+    public DungeonDoor topDoor;
+    public DungeonDoor leftDoor;
+    public DungeonDoor bottomDoor;
+    public DungeonDoor rightDoor;
+
     [Header("Points of interests Pool")]
     [SerializeField] GameObject chair;
     [SerializeField] GameObject tv;
@@ -95,5 +100,29 @@ public class AddRoom : MonoBehaviour
     public void SpawnPointOfInterest(PointOfInterestObject roomObject, Vector2 pointOfInterestPosition)
     {
         PointOfInterestManager.pointOfInterestManager.SpawnPOI(pointOfInterestPosition, zeroCoord.transform, roomObject);        
+    }
+
+    public Transform GetZeroCoord()
+    {
+        return zeroCoord.transform;
+    }
+
+    public void ReceiveDungeonDoor(DoorOpening doorOpening, DungeonDoor door)
+    {
+        switch (doorOpening)
+        {
+            case DoorOpening.Top:
+                topDoor = door;
+                break;
+            case DoorOpening.Left:
+                leftDoor = door;
+                break;
+            case DoorOpening.Bottom:
+                bottomDoor = door;
+                break;
+            case DoorOpening.Right:
+                rightDoor = door;
+                break;
+        }
     }
 }

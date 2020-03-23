@@ -827,6 +827,14 @@ MonoBehaviour:
   leftDoor: 0
   bottomDoor: 0
   rightDoor: 1
+  topDoorPrefab: {fileID: 8211350221844492430, guid: ea8acea577d2a2a4f8954eb29e678951,
+    type: 3}
+  leftDoorPrefab: {fileID: 8211350221844492430, guid: a24d6209bd8254c448a8e5e1b97fa97f,
+    type: 3}
+  bottomDoorPrefab: {fileID: 8211350221844492430, guid: f9167013acbf877409ddd572b27bbc51,
+    type: 3}
+  rightDoorPrefab: {fileID: 8211350221844492430, guid: 406f9d393edec7c47998cd51f709e391,
+    type: 3}
 --- !u!1 &7803725489284048012
 GameObject:
   m_ObjectHideFlags: 0

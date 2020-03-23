@@ -6,6 +6,8 @@ using UnityEngine;
 public class DungeonSheet : ScriptableObject
 {
     [Header("General Dungeon Settings")]
+    public DungeonKeywords[] dungeonKeywords;
+    public Sprite dungeonSprite;
     public GameObject startingRoom;
     public RoomDoors[] roomDoors;
     public int[] roomDoorsNum;

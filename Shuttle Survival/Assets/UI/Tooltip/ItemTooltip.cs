@@ -50,6 +50,11 @@ public class ItemTooltip : MonoBehaviour
                 itemNameText.text = "<color=#e1b000>" + itemName;
                 itemTierText.text = "<color=#e1b000>Tier 4";
                 break;
+            case ItemTier.Vide:
+                itemNameText.text = "<color=#b5a7b6>" + itemName;
+                itemTierText.text = "";
+                itemStackText.text = "";
+                break;
         }
     }
 }

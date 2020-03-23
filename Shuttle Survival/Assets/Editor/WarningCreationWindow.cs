@@ -20,6 +20,7 @@ public class WarningCreationWindow : EditorWindow
         if(GUILayout.Button("CREATE EVERYTHING."))
         {
             GetWindow<DungeonEventMakerWindow>().CreateEverything();
+            window.Close();
         }
     }
 }

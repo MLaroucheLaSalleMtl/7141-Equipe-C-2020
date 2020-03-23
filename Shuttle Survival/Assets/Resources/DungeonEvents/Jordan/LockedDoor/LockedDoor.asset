@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44e6af68f2051648af6c3a8d65b2963, type: 3}
+  m_Name: LockedDoor
+  m_EditorClassIdentifier: 
+  eventName: LockedDoor
+  eventMessage: The door is locked. You need to get it open in order to explore the
+    next room.
+  dungeonOptions:
+  - {fileID: 11400000, guid: ace90b5328313d143925033a7544175b, type: 2}
+  - {fileID: 11400000, guid: 9bc0aa1dc41885d4ca85473b9d9c18b5, type: 2}
+  - {fileID: 11400000, guid: 5048565f9327e344fa48176aa813f0bd, type: 2}
+  eventEffects: []

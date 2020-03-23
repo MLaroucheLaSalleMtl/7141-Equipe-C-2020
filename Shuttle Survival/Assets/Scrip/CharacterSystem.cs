@@ -15,16 +15,25 @@ public class CharacterSystem : MonoBehaviour
     GameManager gameM;
 
     //doit etre sur tous les personnages
-    [SerializeField] private int HPMax = 6;
-    [SerializeField] private int FoodCap = 12;//12 = 2 jours
-    [SerializeField] private int foodValue = 4;
-    [SerializeField] private int SleepCap = 36;//18 heures ->36
+
+    [SerializeField] private string characterName;
+    [SerializeField] private Sprite characterSprite;
+    [SerializeField] private int hPMax = 6;
+    [SerializeField] private int foodCap = 8;//12 = 2 jours
+    [SerializeField] private int foodValue = 1;
+    [SerializeField] private int sleepCap = 36;//18 heures ->36
+ 
+    //pour dongeon
+    [SerializeField] int backpackCapacity = 5;
+    [SerializeField] CharacterPerk perk1, perk2;
+    [SerializeField] CharacterTool equipedTool;
+
     public List<CharacterAlertType> characterAlertTypes = new List<CharacterAlertType>();
     [SerializeField] private bool addOnStart = true;
-  
+    private GameObject boutonLink;
     private PathFinding perso;
-
-    public static readonly int hunger = 8; //4heure, 6 fois par jour
+    public static bool surPerso;
+    public static readonly int hunger = 12; //6heure, 4 fois par jour
     // hunger * temps q'un tour represente = nombre d'heure avant de decrementer la satiete
     int incrementHunger = 0;
 
@@ -35,11 +44,15 @@ public class CharacterSystem : MonoBehaviour
 
     private bool dispo = true;
     public bool Dispo { get => dispo; set => dispo = value; }
+    public Sprite CharacterSprite { get => characterSprite;}
+    public int CurrFood { get => currFood;}
+    public int CurrSleep { get => currSleep;}
+    public int CurrHp { get => currHp;}
+    public int SleepCap { get => sleepCap;}
+    public int FoodCap { get => foodCap;}
+    public int HPMax { get => hPMax;}
 
-    private void Awake()
-    {       
 
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -47,24 +60,30 @@ public class CharacterSystem : MonoBehaviour
         ship = ShipManager.shipM;
         gameM = GameManager.GM;
         TimeManager.timeManager.OnTimeChanged += OnTimeChanged;
+
         currFood = FoodCap;
         currSleep = SleepCap;
         currHp = HPMax;
         currFood = FoodCap;
         Hurt(1);// test
+
         if (addOnStart)
         {
             gameM.AddPerso(this);
             addOnStart = false;
         }
         perso = GetComponent<PathFinding>();
+        characterSprite = this.GetComponent<SpriteRenderer>().sprite;
     }
 
-    private void OnMouseEnter()
+    #region OnMouse
+    private void OnMouseDown()
     {
+        
         if (Dispo)
         {
-            GameManager.selection = this;
+            //GameManager.selection = this;
+            gameM.Select(this);
             Debug.Log(GameManager.selection);
         }else
         {
@@ -73,6 +92,17 @@ public class CharacterSystem : MonoBehaviour
        
     }
 
+    private void OnMouseExit()
+    {
+        surPerso = false;//pour qu'on puisse deselctionner en cliquant à cote du perso
+    }
+
+    private void OnMouseEnter()
+    {
+        surPerso = true;
+    }
+
+    #endregion
     private void OnTimeChanged(object sender, EventArgs e)
     {
 
@@ -246,11 +276,15 @@ public class CharacterSystem : MonoBehaviour
         currHp -= dmg;
         if (currHp <= 0)
         {
-            Debug.Log("big oof");
-            gameM.RemovePerso(this);
+            Debug.Log("big oof");           
             Destroy(this.gameObject);
-
         }
+    }
+
+    public void OnDestroy()
+    {
+        Destroy(boutonLink);
+        gameM.RemovePerso(this);
     }
 
     public void RestoreSleep()
@@ -304,6 +338,17 @@ public class CharacterSystem : MonoBehaviour
             }
         }
     }
+    
+    
+
+    public void CreateTop()
+    {
+        boutonLink = Instantiate(gameM.PlayerButtonBP);
+        Debug.Log(boutonLink);
+        boutonLink.transform.parent = gameM.PanelTop.transform;
+        boutonLink.GetComponent<BoutonPerso>().MisAJour(this);       
+    }
+
     #endregion UI
 
     public void Unavailable()
@@ -313,11 +358,16 @@ public class CharacterSystem : MonoBehaviour
         GameManager.selection = null;
     }
     
-    public void cancelNowDispo()
+    public void CancelNowDispo()
     {
         Debug.Log("Destination is cancelled");
         perso.targetNULL();
-        Dispo = true;
+        this.CancelAction();
         MessagePopup.MessagePopupManager.SetStringAndShowPopup("This character is now available.");
+    }
+
+    public CharacterInfo GetInfoForCharacterDungeonUI()
+    {
+        return new CharacterInfo(characterName, CharacterSprite, HPMax, currHp, backpackCapacity, perk1, perk2, equipedTool);
     }
 }

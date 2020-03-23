@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class ShipScanner : Module
 {
-    [SerializeField] int turnsBeforeScanningForNewShips = 3;
-
-    int turnCounter = 0;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -31,20 +28,6 @@ public class ShipScanner : Module
     public override void OnCreation()
     {
         base.OnCreation();
-        TimeManager.timeManager.OnTimeChanged += OnTimeChanged;
-    }
-
-    public void OnTimeChanged(object source, EventArgs e)
-    {
-        turnCounter++;
-        if(turnCounter % 3 == 0)
-        {
-            ScanForNewShips();
-        }
-    }
-
-    private void ScanForNewShips()
-    {
-        //roll new ships
+        ShipScanManager.shipScanManager.ActivateScannerCountdown();
     }
 }

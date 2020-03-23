@@ -30,6 +30,9 @@ public class Scraps : MonoBehaviour, ISelectable
 
     private void OnMouseEnter()
     {
+        
+        CharacterSystem.surPerso = true;
+        Debug.Log(CharacterSystem.surPerso);
         if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
             spriteRenderer.color = ModuleManager.moduleManager.hoverColor;
@@ -41,6 +44,7 @@ public class Scraps : MonoBehaviour, ISelectable
 
     private void OnMouseExit()
     {
+        CharacterSystem.surPerso = false;
         spriteRenderer.color = Color.white;
 
         hovered = false;
@@ -67,7 +71,7 @@ public class Scraps : MonoBehaviour, ISelectable
     public void CancelCleanUp()
     {
         //ramène bob dispo
-        bob.cancelNowDispo();
+        bob.CancelNowDispo();
         
         beingCleaned = false;
         TimeManager.timeManager.OnTimeChanged -= OnTimeChanged;
@@ -79,7 +83,7 @@ public class Scraps : MonoBehaviour, ISelectable
         ShipEventsManager.shipEventsManager.AddShipEventToQueue(ShipEvent.CleanedUpScrapsEvent(this, transform.position));
 
         Debug.Log("End of cleanup");
-        bob.cancelNowDispo();
+        bob.CancelNowDispo();
     }
 
     public void OnSelection()
@@ -91,4 +95,5 @@ public class Scraps : MonoBehaviour, ISelectable
     {
         spriteRenderer.material.SetFloat("_OutlineThickness", 0f);
     }
+
 }

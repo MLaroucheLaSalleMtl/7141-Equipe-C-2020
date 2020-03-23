@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class ScannedShipSlot : MonoBehaviour
     [SerializeField] Button chooseShipButton;
     [SerializeField] TextMeshProUGUI chooseShipButtonText;
     [SerializeField] int dungeonIndex;
+    DungeonSheet currentDungeonSheet;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,15 @@ public class ScannedShipSlot : MonoBehaviour
     public void ReceiveDungeonSheetAndSetupUI(DungeonSheet dungeonSheet)
     {
         //read data from assigned dungeon sheet
-        shipName.text = "Romano Fafard";
-        chooseShipButton.onClick.AddListener(() => ShipScanManager.shipScanManager.LaunchDungeon(dungeonIndex));
+        currentDungeonSheet = dungeonSheet;
+        shipName.text = "Romano Fafard";        
+        shipSprite.sprite = dungeonSheet.dungeonSprite;
+        shipDescription.text = DungeonKeywordsTranslater.dungeonKeywordsTranslater.TranslateDungeonKeywordsIntoDescription(dungeonSheet.dungeonKeywords);
+        chooseShipButton.onClick.AddListener(() => ShipScanManager.shipScanManager.PrepareBoardingCrewSelection(dungeonIndex));
+    }
+
+    public DungeonSheet GetDungeonSheet()
+    {
+        return currentDungeonSheet;
     }
 }

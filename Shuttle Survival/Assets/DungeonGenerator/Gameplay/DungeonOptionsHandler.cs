@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -39,10 +40,36 @@ public class DungeonOptionsHandler : MonoBehaviour
         {           
             GameObject newOption = Instantiate(dungeonEventOptionPrefab, dungeonEventOptionsGrid);
             newOption.GetComponentInChildren<TextMeshProUGUI>().text = dungeonOption.optionText;
-            newOption.GetComponent<Button>().onClick.AddListener(() =>
+            if (dungeonOption.chooseCharacterForOption)
             {
-                dungeonOption.relatedDungeonRoll.Roll();
-            });
+                newOption.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    DungeonCharacterManager.dungeonCharacterManager.SetupChooseCharacterForOption(dungeonOption);
+                    foreach (Transform transform in dungeonEventOptionsGrid)
+                    {
+                        if(transform.gameObject != newOption)
+                        {
+                            transform.GetComponent<Button>().interactable = false;
+                        }
+                        else
+                        {
+                            transform.GetComponent<Button>().onClick.RemoveAllListeners();
+                            transform.GetComponent<Button>().onClick.AddListener(() => 
+                            {
+                                SetupDungeonOptions(dungeonOptions);
+                                DungeonCharacterManager.dungeonCharacterManager.DisableChooseCharacterButtons();
+                            });
+                        }
+                    }
+                });
+            }
+            else
+            {
+                newOption.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    dungeonOption.relatedDungeonRoll.Roll();
+                });
+            }            
         }
     }
 

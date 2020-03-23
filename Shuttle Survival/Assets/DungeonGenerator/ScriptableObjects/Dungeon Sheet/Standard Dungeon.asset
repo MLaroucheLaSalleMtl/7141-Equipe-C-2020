@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14ba3069582951c4d885ed3cf6ed6bd5, type: 3}
   m_Name: Standard Dungeon
   m_EditorClassIdentifier: 
+  dungeonKeywords: 010000000600000003000000
+  dungeonSprite: {fileID: 21300000, guid: da4741d1d2e5ac44696a1ee2ac9a7a43, type: 3}
   startingRoom: {fileID: 2077853965596704493, guid: 1d5c6bff796988c498c6b95fc2c99b85,
     type: 3}
   roomDoors: 030000000000000002000000

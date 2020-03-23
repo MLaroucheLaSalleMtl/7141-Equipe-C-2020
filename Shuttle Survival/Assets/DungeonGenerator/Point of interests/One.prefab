@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickable: 1
-  onClickDungeonEvent: {fileID: 11400000, guid: e7462dca2560e044f8032521bb8f56f7,
+  onClickDungeonEvent: {fileID: 11400000, guid: fa4af3d65610f6547a30d659fdd0a7f4,
     type: 2}
   doneAfterClick: 1
 --- !u!61 &-6587014459640065988

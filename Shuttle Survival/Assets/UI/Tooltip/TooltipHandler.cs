@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.SceneManagement;
 
-public enum TooltipType { UImodule, SimpleText, Asteroids, ItemUI, UnderconstructionModule };
+public enum TooltipType { UImodule, SimpleText, Asteroids, ItemUI, UnderconstructionModule, DungeonDoor };
 
 public class TooltipHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -20,9 +21,28 @@ public class TooltipHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     // Start is called before the first frame update
     void Start()
     {
-        itemTooltipObject = FindObjectOfType<ItemTooltip>().gameObject;
-        regularTooltipObject = FindObjectOfType<Tooltip>().gameObject;
-        tooltipText = regularTooltipObject.GetComponentInChildren<TextMeshProUGUI>();
+        if(tooltipsType == TooltipType.ItemUI)
+        {
+            if (gameObject.scene.name == "SceneEspace")
+                itemTooltipObject = FindObjectOfType<ShipSceneItemTooltip>().gameObject;
+            else if (gameObject.scene.name == "DungeonGeneratorScene")
+                itemTooltipObject = FindObjectOfType<DungeonSceneItemTooltip>().gameObject;
+
+        }
+        else
+        {
+            if(gameObject.scene.name == "SceneEspace")
+            {
+                regularTooltipObject = FindObjectOfType<Tooltip>().gameObject;
+                tooltipText = regularTooltipObject.GetComponentInChildren<TextMeshProUGUI>();
+            }
+            else if(gameObject.scene.name == "DungeonGeneratorScene")
+            {
+                regularTooltipObject = FindObjectOfType<DungeonSceneTooltip>().gameObject;
+                tooltipText = regularTooltipObject.GetComponentInChildren<TextMeshProUGUI>();
+            }
+
+        }
     }
 
     // Update is called once per frame
@@ -65,8 +85,10 @@ public class TooltipHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        regularTooltipObject.transform.localPosition = new Vector3(2200, 0, 0);
-        itemTooltipObject.transform.localPosition = new Vector3(2200, 0, 0);
+        if (tooltipsType == TooltipType.ItemUI)
+            itemTooltipObject.transform.localPosition = new Vector3(2200, 0, 0);
+        else
+            regularTooltipObject.transform.localPosition = new Vector3(2200, 0, 0);
     }
 
     private void OnMouseEnter()
@@ -94,6 +116,9 @@ public class TooltipHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                     break;
                 case TooltipType.UnderconstructionModule:
                     tooltipText.text = GetComponent<UnderConstructionModule>().moduleToBuild.GetComponent<Module>().moduleName + "\n" + "<align=\"center\">" + GetComponent<UnderConstructionModule>().turnsRemainingToBuild + " <sprite=0></align>";
+                    break;
+                case TooltipType.DungeonDoor:
+                    tooltipText.text = GetComponent<DungeonDoor>().IsUnlocked() ? "Enter room." : "Unlocked for " + GetComponent<DungeonDoor>().numberOfTurnsToUnlock + "<sprite=0>";
                     break;
             }
         }

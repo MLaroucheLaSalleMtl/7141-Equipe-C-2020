@@ -53,7 +53,8 @@ public class DungeonRoll
 
     private float AdjustChanceOfSuccessWithModifiers()
     {
-        throw new NotImplementedException();
+        Debug.Log("Chance modifiers not calculated yet");
+        return 0;
     }
 
     private DungeonRollResult CalculateRollResult(float rand, float chanceOfSuccess)

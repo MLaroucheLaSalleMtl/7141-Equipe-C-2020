@@ -42,6 +42,7 @@ public class LockedDoor : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        CharacterSystem.surPerso = true;
         if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
             DoorManager.doorManager.hoveredDoor = this;
@@ -51,6 +52,7 @@ public class LockedDoor : MonoBehaviour
     }
     private void OnMouseExit()
     {
+        CharacterSystem.surPerso = false;
         DoorManager.doorManager.hoveredDoor = null;
         GetComponent<SpriteRenderer>().color = Color.white;
         MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.defaultCursor);
@@ -95,7 +97,7 @@ public class LockedDoor : MonoBehaviour
                                                                         
                                                                     }));
             //ship.AddOxygenCapacite(capaciteOxygeneSalle);
-            bob.cancelNowDispo();
+            bob.CancelNowDispo();
 }
     }
 
@@ -103,6 +105,6 @@ public class LockedDoor : MonoBehaviour
     {
         TimeManager.timeManager.OnTimeChanged -= OnTimeChanged;
         underRepair = false;
-        bob.cancelNowDispo();
+        bob.CancelNowDispo();
     }
 }
