@@ -42,13 +42,16 @@ public class DungeonEffectsHandler : MonoBehaviour
                     choosenCharacter.Hurt(Mathf.RoundToInt(dungeonEffects[i].dungeonEffectIntensity));
                     break;
                 case DungeonEffectType.AffectHealthParty:
-                    
+
                     break;
                 case DungeonEffectType.UnlockDoor:
                     DungeonDoorUnlocker.UnlockCurrentDungeonDoor();
                     break;
-                
+                case DungeonEffectType.SpecificItemsLoot:
+                    DungeonLootPanelManager.dungeonLootPanelManager.ReceiveLootAndFeedThePanel(dungeonEffects[i].specificItemsToReceive);
+                    break;
             }
         }
+        DungeonEffectPanelHandler.dungeonEffectPanelHandler.SetupDungeonEventEffectPanel(dungeonEffects);
     }
 }

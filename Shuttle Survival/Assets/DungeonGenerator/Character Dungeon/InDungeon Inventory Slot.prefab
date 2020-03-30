@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 8174692586286476542}
   - component: {fileID: 3332087485700616909}
   - component: {fileID: 3033334117270374286}
-  - component: {fileID: 3807777603287021484}
+  - component: {fileID: 5859639004715015602}
   m_Layer: 5
   m_Name: InDungeon Inventory Slot
   m_TagString: Untagged
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   simpleTextString: 
   tooltipsType: 3
---- !u!114 &3807777603287021484
+--- !u!114 &5859639004715015602
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7556456067547915066}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faa61713009ddf24bb7b28a84ba6396a, type: 3}
+  m_Script: {fileID: 11500000, guid: 832d4046820a0a343aa88df9738b597b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolded: {fileID: 11400000, guid: 144a50012896c664ba5927f0bd35c66d, type: 2}

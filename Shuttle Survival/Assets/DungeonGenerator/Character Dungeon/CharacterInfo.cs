@@ -12,8 +12,11 @@ public class CharacterInfo
     [SerializeField] public int backPackCapacity;
     [SerializeField] public CharacterPerk perk1, perk2;
     [SerializeField] public CharacterTool equipedTool;
+    [SerializeField] public int strength;
+    [SerializeField] public int tinkering;
+    [SerializeField] public int charisma;
 
-    public CharacterInfo(string characterName, Sprite characterSprite, int maxHp, int currentHp, int backPackCapacity, CharacterPerk perk1, CharacterPerk perk2, CharacterTool equipedTool)
+    public CharacterInfo(string characterName, Sprite characterSprite, int maxHp, int currentHp, int backPackCapacity, CharacterPerk perk1, CharacterPerk perk2, CharacterTool equipedTool, int strength, int tinkering, int charisma)
     {
         this.characterName = characterName;
         this.characterSprite = characterSprite;
@@ -23,5 +26,8 @@ public class CharacterInfo
         this.perk1 = perk1;
         this.perk2 = perk2;
         this.equipedTool = equipedTool;
+        this.strength = strength;
+        this.tinkering = tinkering;
+        this.charisma = charisma;
     }
 }

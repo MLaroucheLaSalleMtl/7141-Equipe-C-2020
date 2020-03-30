@@ -7,4 +7,5 @@ public class DungeonEffect
 {
     [SerializeField] public DungeonEffectType dungeonEffectType;
     [SerializeField] public float dungeonEffectIntensity;
+    [SerializeField] public ItemStack[] specificItemsToReceive;
 }

@@ -15,10 +15,16 @@ public class DungeonCharacterUI : MonoBehaviour
     [SerializeField] Transform characterInventoryGridTransform;
     [SerializeField] GameObject inGameItemPrefab;
     [SerializeField] GameObject chooseCharacterButtonForOption;
+    [SerializeField] TextMeshProUGUI backPackCapacityText;
+    [SerializeField] TextMeshProUGUI statsPointsText;
 
     List<GameObject> characterItemSlots = new List<GameObject>();
     CharacterInfo ci;
     CharacterSystem linkedCharacter;
+
+    int backPackCapacity;
+    int carriedItemCount = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,11 +45,7 @@ public class DungeonCharacterUI : MonoBehaviour
         {
             Destroy(transform.gameObject);
         }
-        for (int i = 0; i < ci.backPackCapacity; i++)
-        {
-            GameObject newItemSlot = Instantiate(inGameItemPrefab, characterInventoryGridTransform);
-            characterItemSlots.Add(newItemSlot);
-        }
+        backPackCapacity = ci.backPackCapacity;        
         //take list of item from characterinfo and load it in the inventory.
         RefreshUI();
     }
@@ -65,6 +67,10 @@ public class DungeonCharacterUI : MonoBehaviour
             toolImage.GetComponent<TooltipHandler>().simpleTextString = ci.equipedTool.toolDescription;
             perk1Image.GetComponent<TooltipHandler>().simpleTextString = ci.perk1.perkDescription;
             perk2Image.GetComponent<TooltipHandler>().simpleTextString = ci.perk2.perkDescription;
+            backPackCapacityText.text = "Backpack : " + carriedItemCount + " / " + backPackCapacity;
+            statsPointsText.text = "<color=\"red\">" + ci.strength + " str \n" +
+                                   "<color=\"yellow\">" + ci.tinkering + " tink \n" +
+                                   "<color=\"purple\">" + ci.charisma + " char ";               
         }
     }
 
@@ -76,6 +82,21 @@ public class DungeonCharacterUI : MonoBehaviour
     public CharacterSystem GetLinkedCharacter()
     {
         return linkedCharacter;
+    }
+
+    public bool CheckIfThereIsPlaceInBackpack()
+    {
+        return carriedItemCount < backPackCapacity;
+    }
+
+    public void AddItemToBackpack()
+    {
+        carriedItemCount++;
+    }
+
+    public void RemoveItemFromBackpack()
+    {
+        carriedItemCount--;
     }
 }
     

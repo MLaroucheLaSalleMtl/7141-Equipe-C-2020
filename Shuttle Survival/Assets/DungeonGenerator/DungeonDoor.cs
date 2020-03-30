@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PourTousLesSelectable))]
 public class DungeonDoor : MonoBehaviour
 {
     [SerializeField] DungeonEvent dungeonDoorEvent;
@@ -43,7 +44,7 @@ public class DungeonDoor : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        CharacterSystem.surPerso = true;
+        
         hovered = true;
         GetComponentInChildren<SpriteRenderer>().color = ModuleManager.moduleManager.hoverColor;
         MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.hoverCursor);
@@ -51,7 +52,7 @@ public class DungeonDoor : MonoBehaviour
 
     private void OnMouseExit()
     {
-        CharacterSystem.surPerso = false;
+        
         hovered = false;
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
         MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.defaultCursor);

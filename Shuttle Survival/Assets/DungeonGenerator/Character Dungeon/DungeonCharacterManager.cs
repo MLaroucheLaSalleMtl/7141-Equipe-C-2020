@@ -68,11 +68,39 @@ public class DungeonCharacterManager : MonoBehaviour
         }
     }
 
-    public void ResfreshEveryCharacterUI()
+    public void RefreshEveryCharacterUI()
     {
         foreach (DungeonCharacterUI characterUI in charactersUI)
         {
             characterUI.RefreshUI();
         }
+    }
+
+    public bool CheckIfThereIsPlaceInCharacterBackpack(int characterIndex)
+    {
+        return charactersUI[characterIndex].CheckIfThereIsPlaceInBackpack();
+    }
+
+    public void AddItemToBackpack(int characterIndex)
+    {
+        charactersUI[characterIndex].AddItemToBackpack();
+    }
+
+    public void RemoveItemFromBackpack(int characterIndex)
+    {
+        charactersUI[characterIndex].RemoveItemFromBackpack();
+    }
+
+    public List<DungeonCharacterUI> GetActivePartyCharacters()
+    {
+        List<DungeonCharacterUI> partyCharacters = new List<DungeonCharacterUI>();
+        foreach (DungeonCharacterUI character in charactersUI)
+        {
+            if (character.isActiveAndEnabled)
+            {
+                partyCharacters.Add(character);
+            }
+        }
+        return partyCharacters;
     }
 }

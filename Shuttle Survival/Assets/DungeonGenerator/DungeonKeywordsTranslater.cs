@@ -56,7 +56,7 @@ public class DungeonKeywordsTranslater : MonoBehaviour
                     description += "<color=\"green\">- Forms of life detected</color>\n";
                     break;
                 case DungeonKeywords.HeavyDamagedShip:
-                    description += "<color=#FF8282>- Heavy damaged ship</color>\n";
+                    description += "<color=#FF8282>- Heavily damaged ship</color>\n";
                     break;
                 case DungeonKeywords.AdvancedTechnology:
                     description += "<color=#FF00FF>- Advanced Technology on board</color>\n";

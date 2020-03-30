@@ -16,7 +16,6 @@ public class BoardingCrewSelectionManager : MonoBehaviour
     [SerializeField] Image stayAtHomeCrewFrameImage;
 
     [SerializeField] GameObject draggableMenuCharacterPrefab;
-    Vector3 worldPos;
     [SerializeField] Color atRestFrameColor;
 
     private void Awake()
@@ -88,9 +87,9 @@ public class BoardingCrewSelectionManager : MonoBehaviour
     public bool IsItDroppedInAnotherTeam(bool stayAtHomeCrew)
     {
         if(stayAtHomeCrew)
-            return RectTransformUtility.ScreenPointToWorldPointInRectangle(boardingCrewRectTransform, Input.mousePosition, Camera.main, out worldPos);
+            return RectTransformUtility.RectangleContainsScreenPoint(boardingCrewRectTransform, Input.mousePosition);
         else
-            return RectTransformUtility.ScreenPointToWorldPointInRectangle(stayAtHomeCrewRectTransform, Input.mousePosition, Camera.main, out worldPos);
+            return RectTransformUtility.RectangleContainsScreenPoint(stayAtHomeCrewRectTransform, Input.mousePosition);
     }
 
     public void CheckIfHoveringFrame(bool stayAtHome)

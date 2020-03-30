@@ -68,10 +68,19 @@ public class TooltipHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                 break;
             case TooltipType.ItemUI:
                 regularTooltip = false;
-                ItemUI itemUI = GetComponent<ItemUI>();
-                ItemClass itemClass = itemUI.GetItemHolded();
-                itemTooltipObject.GetComponent<ItemTooltip>().SetUpItemTooltip(itemClass.icon, itemClass.Nom, itemClass.ItemTier, itemClass.Description, itemUI.GetCurrentQuantity(), itemClass.MaxStack);
-                break;
+                if (GetComponent<ItemUI>())
+                {
+                    ItemUI itemUI = GetComponent<ItemUI>();           
+                    ItemClass itemClass = itemUI.GetItemHolded();
+                    itemTooltipObject.GetComponent<ItemTooltip>().SetUpItemTooltip(itemClass.icon, itemClass.Nom, itemClass.ItemTier, itemClass.Description, itemUI.GetCurrentQuantity(), itemClass.MaxStack);
+                }
+                else
+                {
+                    DungeonLootItem itemUI = GetComponent<DungeonLootItem>();
+                    ItemClass itemClass = itemUI.GetItemHolded();
+                    itemTooltipObject.GetComponent<ItemTooltip>().SetUpItemTooltip(itemClass.icon, itemClass.Nom, itemClass.ItemTier, itemClass.Description, itemUI.GetCurrentQuantity(), itemClass.MaxStack);
+                }
+                break;           
         }
         if (regularTooltip)
         {

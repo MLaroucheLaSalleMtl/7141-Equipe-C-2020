@@ -4,9 +4,9 @@ using UnityEngine;
 
 public enum DungeonStatsToCheck
 {
-    Strength,
-    HealthAmount,
-    HealthPercentage,
+    StrengthSingle,
+    HealthAmountSingle,
+    HealthPercentageSingle,
     Gold,
     HasHammer,
     HasEngineerToolbox,

@@ -6,6 +6,7 @@ public enum DungeonEffectType
 {
     AffectHealthSingle,
     AffectHealthParty,
-    UnlockDoor
+    UnlockDoor,
+    SpecificItemsLoot
     
 }

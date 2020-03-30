@@ -36,8 +36,9 @@ public class DungeonOptionsHandler : MonoBehaviour
                 DungeonEventPanelHandler.dungeonEventPanelHandler.EndDungeonEvent();
             });
         }
-        foreach (DungeonOption dungeonOption in dungeonOptions) //see if we respect requirement later 
+        foreach (DungeonOption dungeonOption in dungeonOptions) 
         {           
+            DungeonOptionRequirementsHandler.IsRequirementMet(dungeonOption.requirementsToBeActive);
             GameObject newOption = Instantiate(dungeonEventOptionPrefab, dungeonEventOptionsGrid);
             newOption.GetComponentInChildren<TextMeshProUGUI>().text = dungeonOption.optionText;
             if (dungeonOption.chooseCharacterForOption)
@@ -61,6 +62,13 @@ public class DungeonOptionsHandler : MonoBehaviour
                             });
                         }
                     }
+                });
+            }
+            else if(dungeonOption.relatedDungeonRoll.successEvent == null && dungeonOption.relatedDungeonRoll.failureEvent == null)
+            {
+                newOption.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    DungeonEventPanelHandler.dungeonEventPanelHandler.EndDungeonEvent();
                 });
             }
             else

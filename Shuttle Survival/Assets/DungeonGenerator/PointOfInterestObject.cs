@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PourTousLesSelectable))]
 public class PointOfInterestObject : MonoBehaviour
 {
     [SerializeField] bool clickable = true;
@@ -20,20 +21,20 @@ public class PointOfInterestObject : MonoBehaviour
     {
         if (!doneWithPOI && hovered && !DungeonEventPanelHandler.dungeonEventPanelHandler.IsBusyWithDungeonEvent() && Input.GetMouseButtonDown(0))
         {
-            if (doneAfterClick) doneWithPOI = true;
+            if (doneAfterClick) doneWithPOI = true;            
             DungeonEventPanelHandler.dungeonEventPanelHandler.SetupDungeonEventPanel(onClickDungeonEvent);
         }
     }
 
     private void OnMouseEnter()
     {
-        CharacterSystem.surPerso = true;
+        
         hovered = true;
     }
 
     private void OnMouseExit()
     {
-        CharacterSystem.surPerso = false;
+        
         hovered = false;
     }
 }

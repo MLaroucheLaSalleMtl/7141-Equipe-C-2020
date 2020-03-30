@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(PourTousLesSelectable))]
 public class LockedDoor : MonoBehaviour
 {
     [SerializeField] private GameObject fog;
@@ -42,7 +43,7 @@ public class LockedDoor : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        CharacterSystem.surPerso = true;
+        
         if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
             DoorManager.doorManager.hoveredDoor = this;
@@ -52,7 +53,7 @@ public class LockedDoor : MonoBehaviour
     }
     private void OnMouseExit()
     {
-        CharacterSystem.surPerso = false;
+        
         DoorManager.doorManager.hoveredDoor = null;
         GetComponent<SpriteRenderer>().color = Color.white;
         MouseCursorManager.mouseCursorManager.SetCursor(MouseCursor.defaultCursor);

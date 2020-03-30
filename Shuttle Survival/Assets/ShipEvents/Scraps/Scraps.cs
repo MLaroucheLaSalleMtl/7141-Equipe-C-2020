@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PourTousLesSelectable))]
 public class Scraps : MonoBehaviour, ISelectable
 {
     public RandomisedLoot scrapsLoot;
@@ -31,8 +32,8 @@ public class Scraps : MonoBehaviour, ISelectable
     private void OnMouseEnter()
     {
         
-        CharacterSystem.surPerso = true;
-        Debug.Log(CharacterSystem.surPerso);
+        
+        
         if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
             spriteRenderer.color = ModuleManager.moduleManager.hoverColor;
@@ -44,7 +45,7 @@ public class Scraps : MonoBehaviour, ISelectable
 
     private void OnMouseExit()
     {
-        CharacterSystem.surPerso = false;
+        
         spriteRenderer.color = Color.white;
 
         hovered = false;

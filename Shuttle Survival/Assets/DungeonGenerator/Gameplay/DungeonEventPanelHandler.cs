@@ -30,12 +30,13 @@ public class DungeonEventPanelHandler : MonoBehaviour
     }
 
     public void SetupDungeonEventPanel(DungeonEvent dungeonEventToSetup)
-    {
+    {        
+        busyWithDungeonEvent = true;
         currentDungeonEvent = dungeonEventToSetup;
         dungeonEventText.text = currentDungeonEvent.eventMessage;
-
+        
         DungeonEffectsHandler.dungeonEffectsHandler.HandleDungeonEffects(currentDungeonEvent.eventEffects);
-        DungeonCharacterManager.dungeonCharacterManager.ResfreshEveryCharacterUI();
+        DungeonCharacterManager.dungeonCharacterManager.RefreshEveryCharacterUI();
         //IF NOT GAME OVER, on spawn les options, sinon on spawneras les options de give up etc.
         //Le handle options va check si on respect requirements, fak si un perso meurt et quon a besoin de lui pour une option, a saffichera pas       
         DungeonOptionsHandler.dungeonOptionsHandler.SetupDungeonOptions(currentDungeonEvent.dungeonOptions);
@@ -50,6 +51,7 @@ public class DungeonEventPanelHandler : MonoBehaviour
 
     public void EndDungeonEvent()
     {
+        busyWithDungeonEvent = false;
         dungeonEventPanel.SetActive(false);
     }
 

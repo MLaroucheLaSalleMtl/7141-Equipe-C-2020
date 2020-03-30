@@ -215,10 +215,22 @@ public class DungeonEventMakerWindow : EditorWindow
         DungeonEffect currentEffect = dungeonEvent.eventEffects[effectIndex];       
         GUILayout.Label("Effect " + (effectIndex + 1), skin.GetStyle("Event1"));
         currentEffect.dungeonEffectType = (DungeonEffectType)EditorGUILayout.EnumPopup(currentEffect.dungeonEffectType);
-        EditorGUILayout.BeginHorizontal();
-        GUILayout.Label("Effect intensity in unit", skin.GetStyle("Event1"));
-        currentEffect.dungeonEffectIntensity = EditorGUILayout.FloatField(currentEffect.dungeonEffectIntensity);
-        EditorGUILayout.EndHorizontal();
+        if(currentEffect.dungeonEffectType != DungeonEffectType.SpecificItemsLoot)
+        {
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Label("Effect intensity in unit", skin.GetStyle("Event1"));
+            currentEffect.dungeonEffectIntensity = EditorGUILayout.FloatField(currentEffect.dungeonEffectIntensity);
+            EditorGUILayout.EndHorizontal();
+        }        
+        else
+        {
+            GUILayout.Label("What item to loot", skin.GetStyle("Event1"));
+            var serializedObject = new SerializedObject(dungeonEvent);
+            var serializedProperty = serializedObject.FindProperty("eventEffects");
+            EditorGUILayout.PropertyField(serializedProperty.GetArrayElementAtIndex(effectIndex).FindPropertyRelative("specificItemsToReceive"));
+            serializedObject.ApplyModifiedProperties();
+        }
+
 
     }
 

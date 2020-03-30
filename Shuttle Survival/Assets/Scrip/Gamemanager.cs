@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public static GameObject actions;
     public static CharacterSystem selection;
     public static GameManager GM;
-
+    public static bool surSelectable;
     private void Awake()
     {
         if(GM == null)
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Invoke("CloseActionPanel", 0.1f);
-           if (!CharacterSystem.surPerso)
+           if (!surSelectable)
                Invoke("Deselect", 0.1f);
         }
         
