@@ -15,6 +15,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField] int turnInMinutes = 30;
     [SerializeField] GameObject timeManagerUIHolder;
     [SerializeField] Button skipTimeButton;
+    int elapsedTimeInDungeon = 0;
    // public delegate void TimeChangedEventHandler(int turnsAmount);
     //public event TimeChangedEventHandler TimeChanged;
 
@@ -96,5 +97,15 @@ public class TimeManager : MonoBehaviour
     public void EnableSkipTimeButton()
     {
         skipTimeButton.interactable = true;
+    }
+
+    public void ReceiveElapsedTimeInDungeon(int elapsedTimeInDungeon)
+    {
+        this.elapsedTimeInDungeon = elapsedTimeInDungeon;
+    }
+
+    public void AddTimeAfterDungeon()
+    {
+        AddTurns(elapsedTimeInDungeon);
     }
 }

@@ -56,8 +56,11 @@ public class BoardingCrewSelectionManager : MonoBehaviour
 
     private void CleanUpPastCharatersList()
     {
-        stayAtHomeCrewList.Clear();
-        boardingCrewList.Clear();
+        foreach (CharacterSystem character in boardingCrewList)
+        {
+            stayAtHomeCrewList.Add(character);
+        }
+        boardingCrewList = new List<CharacterSystem>();
         foreach (Transform transform in boardingCrewRectTransform)
         {
             Destroy(transform.gameObject);

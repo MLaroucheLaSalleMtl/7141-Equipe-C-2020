@@ -125,4 +125,20 @@ public class DungeonLootPanelManager : MonoBehaviour
     {
         dungeonLootPanel.SetActive(false);
     }
+
+    public List<ItemStack> GetLootsFromAllCharacters()
+    {
+        List<ItemStack> loots = new List<ItemStack>();
+        foreach (RectTransform characterInventory in charactersInventoryGrids)
+        {
+            if (characterInventory.gameObject.activeInHierarchy)
+            {
+                foreach (RectTransform rectTransform in characterInventory)
+                {
+                    loots.Add(rectTransform.GetComponent<DungeonLootItem>().GetItemStack());
+                }
+            }
+        }
+        return loots;
+    }
 }

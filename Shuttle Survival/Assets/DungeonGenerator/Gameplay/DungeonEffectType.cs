@@ -7,6 +7,7 @@ public enum DungeonEffectType
     AffectHealthSingle,
     AffectHealthParty,
     UnlockDoor,
-    SpecificItemsLoot
-    
+    SpecificItemsLoot,
+    IncreaseTimeCounter,
+    RandomisedItemsLoot    
 }

@@ -42,13 +42,24 @@ public class DungeonEffectsHandler : MonoBehaviour
                     choosenCharacter.Hurt(Mathf.RoundToInt(dungeonEffects[i].dungeonEffectIntensity));
                     break;
                 case DungeonEffectType.AffectHealthParty:
-
+                    List<DungeonCharacterUI> listCharacters = DungeonCharacterManager.dungeonCharacterManager.GetActivePartyCharacters();
+                    foreach (DungeonCharacterUI character in listCharacters)
+                    {
+                        character.GetLinkedCharacter().Hurt(Mathf.RoundToInt(dungeonEffects[i].dungeonEffectIntensity));
+                    }
                     break;
                 case DungeonEffectType.UnlockDoor:
                     DungeonDoorUnlocker.UnlockCurrentDungeonDoor();
                     break;
                 case DungeonEffectType.SpecificItemsLoot:
                     DungeonLootPanelManager.dungeonLootPanelManager.ReceiveLootAndFeedThePanel(dungeonEffects[i].specificItemsToReceive);
+                    break;
+                case DungeonEffectType.IncreaseTimeCounter:
+                    DungeonTimeCounter.dungeonTimeCounter.IncreaseTurnsElapsed(Mathf.FloorToInt(dungeonEffects[i].dungeonEffectIntensity));
+                    break;
+                case DungeonEffectType.RandomisedItemsLoot:
+                    ResourcesPack lootedItems = RandomisedLootDecrypter.GetInstance().DecryptRandomisedLoot(dungeonEffects[i].randomisedLoot);
+                    DungeonLootPanelManager.dungeonLootPanelManager.ReceiveLootAndFeedThePanel(lootedItems.resources);
                     break;
             }
         }

@@ -14,6 +14,7 @@ public class ScannedShipSlot : MonoBehaviour
     [SerializeField] TextMeshProUGUI chooseShipButtonText;
     [SerializeField] int dungeonIndex;
     DungeonSheet currentDungeonSheet;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,7 @@ public class ScannedShipSlot : MonoBehaviour
 
     public void ReceiveDungeonSheetAndSetupUI(DungeonSheet dungeonSheet)
     {
-        //read data from assigned dungeon sheet
+        chooseShipButton.gameObject.SetActive(true);
         currentDungeonSheet = dungeonSheet;
         shipName.text = "Romano Fafard";        
         shipSprite.sprite = dungeonSheet.dungeonSprite;
@@ -40,5 +41,10 @@ public class ScannedShipSlot : MonoBehaviour
     public DungeonSheet GetDungeonSheet()
     {
         return currentDungeonSheet;
+    }
+
+    public void DisableLaunchButton()
+    {
+        chooseShipButton.gameObject.SetActive(false);
     }
 }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44e6af68f2051648af6c3a8d65b2963, type: 3}
+  m_Name: Broken Computer
+  m_EditorClassIdentifier: 
+  eventName: Broken Computer
+  eventMessage: It's a broken computer. Must have been destroyed when the ship suffered
+    damage. There is important materials that could be found in it's hardware. But
+    careful, you might get shocked.
+  dungeonOptions:
+  - {fileID: 11400000, guid: 1df618d76277883438a35ba7d621d6c9, type: 2}
+  eventEffects: []

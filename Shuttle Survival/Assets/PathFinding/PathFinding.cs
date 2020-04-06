@@ -10,7 +10,6 @@ public class PathFinding : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private float speed = 200f;
     //distance pour se coller à l'objectif avant de passer au suivant
-          //probl utiliser ca si on veut enventuellement assigner une liste de tâche et non faire 1 à 1
     [SerializeField] private float nextWaypointDistance = 3f;
     
     //current path

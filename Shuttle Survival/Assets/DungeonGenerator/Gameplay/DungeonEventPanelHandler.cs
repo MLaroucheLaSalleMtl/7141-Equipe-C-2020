@@ -10,6 +10,8 @@ public class DungeonEventPanelHandler : MonoBehaviour
     [SerializeField] GameObject dungeonEventPanel;
     [SerializeField] TextMeshProUGUI dungeonEventText;
     [SerializeField] DungeonEvent currentDungeonEvent;
+    [SerializeField] TextMeshProUGUI toggleUIButtonText;
+    [SerializeField] GameObject toggleUIButton;
     CharacterSystem choosenCharacterForOption;
     bool busyWithDungeonEvent = false;
     private void Awake()
@@ -42,6 +44,7 @@ public class DungeonEventPanelHandler : MonoBehaviour
         DungeonOptionsHandler.dungeonOptionsHandler.SetupDungeonOptions(currentDungeonEvent.dungeonOptions);
 
         dungeonEventPanel.SetActive(true);
+        toggleUIButton.SetActive(true);
     }
 
     public bool IsBusyWithDungeonEvent()
@@ -53,6 +56,7 @@ public class DungeonEventPanelHandler : MonoBehaviour
     {
         busyWithDungeonEvent = false;
         dungeonEventPanel.SetActive(false);
+        toggleUIButton.SetActive(false);
     }
 
     public void SetCharacterForOption(CharacterSystem choosenCharacter)
@@ -63,5 +67,11 @@ public class DungeonEventPanelHandler : MonoBehaviour
     public CharacterSystem GetChoosenCharacter()
     {
         return choosenCharacterForOption;
+    }
+
+    public void ToggleEventPanelUI()
+    {
+        dungeonEventPanel.SetActive(!dungeonEventPanel.activeSelf);
+        toggleUIButtonText.text = dungeonEventPanel.activeSelf ? "Hide" : "Show";
     }
 }

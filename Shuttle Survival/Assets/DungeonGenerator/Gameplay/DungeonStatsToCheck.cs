@@ -10,5 +10,10 @@ public enum DungeonStatsToCheck
     Gold,
     HasHammer,
     HasEngineerToolbox,
-    HasDigitalKey
+    HasDigitalKey,
+    StrengthParty,
+    TinkeringSingle,
+    TinkeringParty,
+    CharismaSingle,
+    CharismaParty
 }

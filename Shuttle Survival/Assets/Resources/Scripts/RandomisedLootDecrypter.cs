@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RandomisedLootDecrypter
 {
-    public static RandomisedLootDecrypter instance;
+    private static RandomisedLootDecrypter instance;
 
     private RandomisedLootDecrypter()
     {
@@ -32,6 +32,7 @@ public class RandomisedLootDecrypter
             {
                 int quantity = UnityEngine.Random.Range(Mathf.RoundToInt(randomisedLoot.resourcesPossible[i].Quantite * (1 - randomisedLoot.resourcesVariation[i])),
                                                         Mathf.RoundToInt(randomisedLoot.resourcesPossible[i].Quantite * (1 + randomisedLoot.resourcesVariation[i])));
+                if (quantity == 0) quantity = 1;
                 ItemStack loot = new ItemStack(quantity, randomisedLoot.resourcesPossible[i].Item);
                 itemStacks[i] = loot;
             }

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionName: UnlockDoor
   optionText: Use some basic tools to force the door. [1 <sprite=0>]
+  chooseCharacterForOption: 0
   requirementsToBeActive: []
   relatedDungeonRoll:
     baseChanceOfSucess: 1

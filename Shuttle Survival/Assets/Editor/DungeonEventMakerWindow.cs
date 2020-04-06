@@ -215,19 +215,27 @@ public class DungeonEventMakerWindow : EditorWindow
         DungeonEffect currentEffect = dungeonEvent.eventEffects[effectIndex];       
         GUILayout.Label("Effect " + (effectIndex + 1), skin.GetStyle("Event1"));
         currentEffect.dungeonEffectType = (DungeonEffectType)EditorGUILayout.EnumPopup(currentEffect.dungeonEffectType);
-        if(currentEffect.dungeonEffectType != DungeonEffectType.SpecificItemsLoot)
+        if(currentEffect.dungeonEffectType != DungeonEffectType.SpecificItemsLoot && currentEffect.dungeonEffectType != DungeonEffectType.RandomisedItemsLoot)
         {
             EditorGUILayout.BeginHorizontal();
             GUILayout.Label("Effect intensity in unit", skin.GetStyle("Event1"));
             currentEffect.dungeonEffectIntensity = EditorGUILayout.FloatField(currentEffect.dungeonEffectIntensity);
             EditorGUILayout.EndHorizontal();
         }        
-        else
+        else if(currentEffect.dungeonEffectType == DungeonEffectType.SpecificItemsLoot)
         {
             GUILayout.Label("What item to loot", skin.GetStyle("Event1"));
             var serializedObject = new SerializedObject(dungeonEvent);
             var serializedProperty = serializedObject.FindProperty("eventEffects");
             EditorGUILayout.PropertyField(serializedProperty.GetArrayElementAtIndex(effectIndex).FindPropertyRelative("specificItemsToReceive"));
+            serializedObject.ApplyModifiedProperties();
+        }
+        else if(currentEffect.dungeonEffectType == DungeonEffectType.RandomisedItemsLoot)
+        {
+            GUILayout.Label("Randomised item to loot", skin.GetStyle("Event1"));
+            var serializedObject = new SerializedObject(dungeonEvent);
+            var serializedProperty = serializedObject.FindProperty("eventEffects");
+            EditorGUILayout.PropertyField(serializedProperty.GetArrayElementAtIndex(effectIndex).FindPropertyRelative("randomisedLoot"));
             serializedObject.ApplyModifiedProperties();
         }
 
@@ -249,6 +257,10 @@ public class DungeonEventMakerWindow : EditorWindow
         GUILayout.EndHorizontal();
         GUILayout.Label("Option Text", skin.GetStyle("Event1"));
         currentOption.optionText = EditorGUILayout.TextArea(currentOption.optionText, EditorStyles.textArea, GUILayout.Height(30), GUILayout.Width(Screen.width / 6f - 20));
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("Choose character to perform action", skin.GetStyle("Event1"));
+        currentOption.chooseCharacterForOption = EditorGUILayout.Toggle(currentOption.chooseCharacterForOption);
+        EditorGUILayout.EndHorizontal();
         GUILayout.Label("Requirements for the option \nto be active", skin.GetStyle("Event1"));
         for (int i = 0; i < currentOption.requirementsToBeActive.Count; i++)
         {

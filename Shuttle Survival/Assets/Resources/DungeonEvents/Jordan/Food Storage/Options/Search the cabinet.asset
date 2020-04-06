@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 667909499e7fc6546b6dacea5102acb4, type: 3}
+  m_Name: Search the cabinet
+  m_EditorClassIdentifier: 
+  optionName: Search the cabinet
+  optionText: Search the cabinet for food.
+  chooseCharacterForOption: 1
+  requirementsToBeActive: []
+  relatedDungeonRoll:
+    baseChanceOfSucess: 0.8
+    rollChanceModifiers: []
+    successEvent: {fileID: 11400000, guid: 422d81a180c23fb4088acca1138e788f, type: 2}
+    failureEvent: {fileID: 11400000, guid: 0b02dff2a63495347b5a27a57f41db63, type: 2}
+    critFailPossible: 0
+    criticalFailureEvent: {fileID: 0}
+    critSucessPossible: 0
+    criticalSuccessEvent: {fileID: 0}

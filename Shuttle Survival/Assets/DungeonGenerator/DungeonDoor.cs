@@ -61,7 +61,6 @@ public class DungeonDoor : MonoBehaviour
     public void Unlock()
     {
         //change sprite
-        DungeonTimeCounter.dungeonTimeCounter.IncreaseTurnsElapsed(numberOfTurnsToUnlock);
         unlocked = true;
         switch (doorOpening)
         {

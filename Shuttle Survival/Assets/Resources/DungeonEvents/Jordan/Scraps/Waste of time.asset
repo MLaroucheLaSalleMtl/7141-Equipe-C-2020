@@ -16,4 +16,11 @@ MonoBehaviour:
   eventMessage: Well, sadly, this was a waste of time. There was nothing of use in
     there. As if someone already picked up everything worthy.
   dungeonOptions: []
-  eventEffects: []
+  eventEffects:
+  - dungeonEffectType: 4
+    dungeonEffectIntensity: 1
+    specificItemsToReceive: []
+    randomisedLoot:
+      resourcesPossible: []
+      chancesToGive: []
+      resourcesVariation: []

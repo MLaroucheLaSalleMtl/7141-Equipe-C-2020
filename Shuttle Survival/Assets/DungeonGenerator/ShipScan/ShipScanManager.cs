@@ -76,16 +76,29 @@ public class ShipScanManager : MonoBehaviour
         shipScannerDungeonsPanel.SetActive(false);
         boardingCrewSelectionPanel.SetActive(true);
         choosedScannedShipSlot.ReceiveDungeonSheetAndSetupUI(scannedShipSlots[selectedShipSlotIndex].GetDungeonSheet());
+        choosedScannedShipSlot.DisableLaunchButton();
         BoardingCrewSelectionManager.boardingCrewSelectionManager.ManageBoardingSelection(GameManager.GM.Personnages);       
     }
 
     public void LaunchDungeon()
     {
-        //SCREEN TRANSITION, WHEN FADED TO BLACK, ERASE CURRENT SCENE AND LOAD DUNGEON 
-        SHIP_SCENE_HOLDER.SetActive(false);        
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("DungeonGeneratorScene")); //ON switch le active scene pour que nos instantie se fasse dans l'autre, on la wipera plus tard apres le dungeon.
-        RoomTemplates.roomTemplates.StartDungeonSetup(scannedShipSlots[selectedShipSlotIndex].GetDungeonSheet());
-        DungeonCharacterManager.dungeonCharacterManager.SetupDungeonCharactersUI(BoardingCrewSelectionManager.boardingCrewSelectionManager.GetBoardingCrew());
+        boardingCrewSelectionPanel.SetActive(false);
+        Action onFadeOutEndAction = () =>
+        {
+            SHIP_SCENE_HOLDER.SetActive(false);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("DungeonGeneratorScene")); //ON switch le active scene pour que nos instantie se fasse dans l'autre, on la wipera plus tard apres le dungeon.
+            RoomTemplates.roomTemplates.StartDungeonSetup(scannedShipSlots[selectedShipSlotIndex].GetDungeonSheet());
+            DungeonCharacterManager.dungeonCharacterManager.SetupDungeonCharactersUI(BoardingCrewSelectionManager.boardingCrewSelectionManager.GetBoardingCrew());
+            DungeonUISwitch.dungeonUISwitch.OpenDungeonUI();
+
+        };
+
+        Action onFadeInEndAction = () =>
+        {
+
+        };
+
+        ScreenTransitionManager.screenTransitionManager.ScreenTransition(onFadeOutEndAction, onFadeInEndAction);              
     }
 
     public void OnTimeChanged(object source, EventArgs e)
@@ -118,5 +131,21 @@ public class ShipScanManager : MonoBehaviour
     public void TESTING_MANUALLY_SETUP_CHARACTER_UI()
     {
         DungeonCharacterManager.dungeonCharacterManager.SetupDungeonCharactersUI(TESTCHARACTERS);
+    }
+
+    public void ReenableShipSceneHolderAndReloadEmptyDungeonScene()
+    {
+        SHIP_SCENE_HOLDER.SetActive(true);
+        AsyncOperation asyncUnloader = SceneManager.UnloadSceneAsync("DungeonGeneratorScene");
+        StartCoroutine(WaitForUnload(asyncUnloader));
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("SceneEspace"));
+
+
+    }
+
+    private IEnumerator WaitForUnload(AsyncOperation unloader)
+    {
+        while (!unloader.isDone) yield return new WaitForEndOfFrame();              
+        SceneManager.LoadSceneAsync("DungeonGeneratorScene", LoadSceneMode.Additive);
     }
 }

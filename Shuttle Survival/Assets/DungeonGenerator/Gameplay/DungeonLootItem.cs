@@ -13,11 +13,12 @@ public class DungeonLootItem : MonoBehaviour, IDragHandler, IDropHandler, IBegin
     RectTransform parentGrid;
     Vector3 savedPos;
     RectTransform savedParent;
+    Vector2 savedPivot;
 
     // Start is called before the first frame update
     void Start()
     {
-        stackText.text = "";
+        
     }
 
     // Update is called once per frame
@@ -47,6 +48,7 @@ public class DungeonLootItem : MonoBehaviour, IDragHandler, IDropHandler, IBegin
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        savedPivot = GetComponent<RectTransform>().pivot;
         SetPivot(new Vector2(0.5f, 0.5f));
         GetComponent<TooltipHandler>().OnPointerExit(null);
         GetComponent<TooltipHandler>().enabled = false;
@@ -80,6 +82,7 @@ public class DungeonLootItem : MonoBehaviour, IDragHandler, IDropHandler, IBegin
     public void GetParentBack()
     {
         transform.SetParent(savedParent);
+        SetPivot(savedPivot);
     }
 
     public RectTransform GetSavedParent()
@@ -90,5 +93,10 @@ public class DungeonLootItem : MonoBehaviour, IDragHandler, IDropHandler, IBegin
     public void SetPivot(Vector2 pivot)
     {
         GetComponent<RectTransform>().pivot = pivot;
+    }
+
+    public ItemStack GetItemStack()
+    {
+        return new ItemStack(quantity, itemHolded);
     }
 }

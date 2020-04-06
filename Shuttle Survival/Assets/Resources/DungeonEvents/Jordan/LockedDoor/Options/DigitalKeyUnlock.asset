@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: DigitalKeyUnlock
   m_EditorClassIdentifier: 
   optionName: DigitalKeyUnlock
-  optionText: '[Digital Key] Make use of the digital key to hack the door open.'
+  optionText: Make use of the digital key to hack the door open.
+  chooseCharacterForOption: 0
   requirementsToBeActive:
   - statsToCheck: 6
     quantityRequired: 1

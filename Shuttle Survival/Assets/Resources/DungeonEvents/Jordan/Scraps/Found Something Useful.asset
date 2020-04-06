@@ -17,5 +17,26 @@ MonoBehaviour:
     many valuables in the junk.
   dungeonOptions: []
   eventEffects:
-  - dungeonEffectType: 0
-    dungeonEffectIntensity: 10
+  - dungeonEffectType: 5
+    dungeonEffectIntensity: 0
+    specificItemsToReceive: []
+    randomisedLoot:
+      resourcesPossible:
+      - item: {fileID: 11400000, guid: 69d644a61c3c387479e8df05a82ad5a7, type: 2}
+        quantite: 10
+      - item: {fileID: 11400000, guid: b7979b4401f57bb498bc85db23f2efde, type: 2}
+        quantite: 8
+      - item: {fileID: 11400000, guid: 0674dbe68479c9b448b870791aab0504, type: 2}
+        quantite: 6
+      - item: {fileID: 11400000, guid: 38e0b97fd9cb8ff4d93b92499cebcf00, type: 2}
+        quantite: 3
+      chancesToGive:
+      - 1
+      - 0.7
+      - 0.5
+      - 0.8
+      resourcesVariation:
+      - 0.3
+      - 0.4
+      - 0
+      - 0

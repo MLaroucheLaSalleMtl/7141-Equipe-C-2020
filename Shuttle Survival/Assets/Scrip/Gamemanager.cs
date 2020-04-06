@@ -105,8 +105,8 @@ public class GameManager : MonoBehaviour
     {
         fog.SetActive(true);
         foreach (GameObject mod in modules) { mod.SetActive(false); }
-        CharacterSystem[] temp = GameObject.FindObjectsOfType<CharacterSystem>();
-        foreach (CharacterSystem perso in temp) { personnages.Add(perso); }//(int i = 0; i<temp.Length; i++) { personnages.Add(temp[i]); }        
+        //CharacterSystem[] temp = GameObject.FindObjectsOfType<CharacterSystem>();
+        //foreach (CharacterSystem perso in temp) { personnages.Add(perso); }//(int i = 0; i<temp.Length; i++) { personnages.Add(temp[i]); }        
     }
  
 

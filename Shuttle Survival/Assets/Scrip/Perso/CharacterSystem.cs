@@ -28,6 +28,7 @@ public class CharacterSystem : MonoBehaviour
     [SerializeField] int backpackCapacity = 5;
     [SerializeField] CharacterPerk perk1, perk2;
     [SerializeField] CharacterTool equipedTool;
+    [SerializeField] int defence = 1;
     [SerializeField] int strenght = 1;
     [SerializeField] int tinkering = 2;
     [SerializeField] int charisma = 2;
@@ -62,6 +63,7 @@ public class CharacterSystem : MonoBehaviour
     public CharacterPerk Perk1 { get => perk1; set => perk1 = value; }
     public CharacterPerk Perk2 { get => perk2; set => perk2 = value; }
     public CharacterTool EquipedTool { get => equipedTool; set => equipedTool = value; }
+    public int Defence { get => defence; set => defence = value; }
 
 
     // Start is called before the first frame update
@@ -362,6 +364,6 @@ public class CharacterSystem : MonoBehaviour
 
     public CharacterInfo GetInfoForCharacterDungeonUI()
     {
-        return new CharacterInfo(CharacterName, CharacterSprite, HPMax, currHp, backpackCapacity, Perk1, Perk2, EquipedTool, Strenght, Tinkering, Charisma);
+        return new CharacterInfo(CharacterName, CharacterSprite, HPMax, currHp, backpackCapacity, Perk1, Perk2, EquipedTool, Strenght, defence, Tinkering, Charisma);
     }
 }

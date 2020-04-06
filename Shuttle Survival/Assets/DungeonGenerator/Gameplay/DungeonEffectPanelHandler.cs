@@ -69,9 +69,16 @@ public class DungeonEffectPanelHandler : MonoBehaviour
                     addNewLineStatement = false;
                     thereIsLoot = true;
                     break;
+                case DungeonEffectType.IncreaseTimeCounter:
+                    dungeonEffectsText.text += dungeonEffect.dungeonEffectIntensity + "  <sprite=0> has passed.";
+                    break;
+                case DungeonEffectType.RandomisedItemsLoot:
+                    addNewLineStatement = false;
+                    thereIsLoot = true;
+                    break;
             }
-            if(addNewLineStatement)
-                dungeonEffectsText.text += "\n";            
+            if (addNewLineStatement)
+                dungeonEffectsText.text += "\n";
         }
         if (thereIsLoot)
         {

@@ -47,15 +47,16 @@ public class DungeonCharacterManager : MonoBehaviour
         }
     }
 
-    public void SetupChooseCharacterForOption(DungeonOption dungeonOption)
+    public void SetupChooseCharacterForOption(DungeonOption dungeonOption, List<DungeonCharacterUI> passingCharacters)
     {
-        foreach (DungeonCharacterUI characterUI in charactersUI)
+        foreach (DungeonCharacterUI characterUI in passingCharacters)
         {
             characterUI.GetChooseCharacterButton().SetActive(true);
             characterUI.GetChooseCharacterButton().GetComponent<Button>().onClick.AddListener(() =>
             {               
                 DungeonEventPanelHandler.dungeonEventPanelHandler.SetCharacterForOption(characterUI.GetLinkedCharacter());
                 dungeonOption.relatedDungeonRoll.Roll();
+                DisableChooseCharacterButtons();
             });
         }
     }
@@ -97,7 +98,7 @@ public class DungeonCharacterManager : MonoBehaviour
         foreach (DungeonCharacterUI character in charactersUI)
         {
             if (character.isActiveAndEnabled)
-            {
+            {   
                 partyCharacters.Add(character);
             }
         }

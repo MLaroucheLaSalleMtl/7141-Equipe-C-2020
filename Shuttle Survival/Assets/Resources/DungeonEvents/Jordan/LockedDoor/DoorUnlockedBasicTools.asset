@@ -19,3 +19,15 @@ MonoBehaviour:
   eventEffects:
   - dungeonEffectType: 2
     dungeonEffectIntensity: 0
+    specificItemsToReceive: []
+    randomisedLoot:
+      resourcesPossible: []
+      chancesToGive: []
+      resourcesVariation: []
+  - dungeonEffectType: 4
+    dungeonEffectIntensity: 1
+    specificItemsToReceive: []
+    randomisedLoot:
+      resourcesPossible: []
+      chancesToGive: []
+      resourcesVariation: []

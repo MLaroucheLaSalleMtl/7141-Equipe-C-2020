@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 667909499e7fc6546b6dacea5102acb4, type: 3}
+  m_Name: Search for materials
+  m_EditorClassIdentifier: 
+  optionName: Search for materials
+  optionText: Search the computer for materials
+  chooseCharacterForOption: 1
+  requirementsToBeActive: []
+  relatedDungeonRoll:
+    baseChanceOfSucess: 0.5
+    rollChanceModifiers:
+    - statsToCheck: 8
+      percentIncreasePerRelatedStatsPoint: 0.06
+      decreaser: 0
+      partyWide: 0
+    successEvent: {fileID: 11400000, guid: a5ca516085ec1f54b9127cd8a2c38b8f, type: 2}
+    failureEvent: {fileID: 11400000, guid: 55777c2c19121de458ac733fba6c8daa, type: 2}
+    critFailPossible: 0
+    criticalFailureEvent: {fileID: 0}
+    critSucessPossible: 0
+    criticalSuccessEvent: {fileID: 0}

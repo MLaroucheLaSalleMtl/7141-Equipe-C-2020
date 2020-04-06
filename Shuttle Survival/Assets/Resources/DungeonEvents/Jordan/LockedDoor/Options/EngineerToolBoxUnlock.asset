@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EngineerToolBoxUnlock
   m_EditorClassIdentifier: 
   optionName: EngineerToolBoxUnlock
-  optionText: '[Engineer''s Toolbox] Use the engineer''s toolbox to quickly open
-    the door.'
+  optionText: Use the engineer's toolbox to quickly open the door.
+  chooseCharacterForOption: 0
   requirementsToBeActive:
   - statsToCheck: 5
     quantityRequired: 1

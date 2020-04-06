@@ -10,6 +10,7 @@ public class DungeonOptionsHandler : MonoBehaviour
     public static DungeonOptionsHandler dungeonOptionsHandler;
     [SerializeField] Transform dungeonEventOptionsGrid;
     [SerializeField] GameObject dungeonEventOptionPrefab;
+    List<DungeonCharacterUI> currentListOfPassingCharacters = new List<DungeonCharacterUI>();
 
     private void Awake()
     {
@@ -37,47 +38,57 @@ public class DungeonOptionsHandler : MonoBehaviour
             });
         }
         foreach (DungeonOption dungeonOption in dungeonOptions) 
-        {           
-            DungeonOptionRequirementsHandler.IsRequirementMet(dungeonOption.requirementsToBeActive);
-            GameObject newOption = Instantiate(dungeonEventOptionPrefab, dungeonEventOptionsGrid);
-            newOption.GetComponentInChildren<TextMeshProUGUI>().text = dungeonOption.optionText;
-            if (dungeonOption.chooseCharacterForOption)
+        {
+            ResetListOfPassingCharacters();
+            if (DungeonOptionRequirementsHandler.IsRequirementMet(dungeonOption.requirementsToBeActive))
             {
-                newOption.GetComponent<Button>().onClick.AddListener(() =>
+                GameObject newOption = Instantiate(dungeonEventOptionPrefab, dungeonEventOptionsGrid);
+                newOption.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                if (dungeonOption.requirementsToBeActive.Count > 0)
                 {
-                    DungeonCharacterManager.dungeonCharacterManager.SetupChooseCharacterForOption(dungeonOption);
-                    foreach (Transform transform in dungeonEventOptionsGrid)
+                    newOption.GetComponentInChildren<TextMeshProUGUI>().text +=
+                        DungeonOptionsTextSpriteAdder.AddTextAndSpritesAccordingToOptionsRequirements(dungeonOption.requirementsToBeActive);
+                }
+                newOption.GetComponentInChildren<TextMeshProUGUI>().text += dungeonOption.optionText;
+                if (dungeonOption.chooseCharacterForOption)
+                {
+                    List<DungeonCharacterUI> tempList = new List<DungeonCharacterUI>(currentListOfPassingCharacters);
+                    newOption.GetComponent<Button>().onClick.AddListener(() =>
                     {
-                        if(transform.gameObject != newOption)
+                        DungeonCharacterManager.dungeonCharacterManager.SetupChooseCharacterForOption(dungeonOption, new List<DungeonCharacterUI>(tempList));
+                        foreach (Transform transform in dungeonEventOptionsGrid)
                         {
-                            transform.GetComponent<Button>().interactable = false;
-                        }
-                        else
-                        {
-                            transform.GetComponent<Button>().onClick.RemoveAllListeners();
-                            transform.GetComponent<Button>().onClick.AddListener(() => 
+                            if (transform.gameObject != newOption)
                             {
-                                SetupDungeonOptions(dungeonOptions);
-                                DungeonCharacterManager.dungeonCharacterManager.DisableChooseCharacterButtons();
-                            });
+                                transform.GetComponent<Button>().interactable = false;
+                            }
+                            else
+                            {
+                                transform.GetComponent<Button>().onClick.RemoveAllListeners();
+                                transform.GetComponent<Button>().onClick.AddListener(() =>
+                                {
+                                    SetupDungeonOptions(dungeonOptions);
+                                    DungeonCharacterManager.dungeonCharacterManager.DisableChooseCharacterButtons();
+                                });
+                            }
                         }
-                    }
-                });
-            }
-            else if(dungeonOption.relatedDungeonRoll.successEvent == null && dungeonOption.relatedDungeonRoll.failureEvent == null)
-            {
-                newOption.GetComponent<Button>().onClick.AddListener(() =>
+                    });
+                }
+                else if (dungeonOption.relatedDungeonRoll.successEvent == null && dungeonOption.relatedDungeonRoll.failureEvent == null)
                 {
-                    DungeonEventPanelHandler.dungeonEventPanelHandler.EndDungeonEvent();
-                });
-            }
-            else
-            {
-                newOption.GetComponent<Button>().onClick.AddListener(() =>
+                    newOption.GetComponent<Button>().onClick.AddListener(() =>
+                    {
+                        DungeonEventPanelHandler.dungeonEventPanelHandler.EndDungeonEvent();
+                    });
+                }
+                else
                 {
-                    dungeonOption.relatedDungeonRoll.Roll();
-                });
-            }            
+                    newOption.GetComponent<Button>().onClick.AddListener(() =>
+                    {
+                        dungeonOption.relatedDungeonRoll.Roll();
+                    });
+                }
+            }                  
         }
     }
 
@@ -87,5 +98,15 @@ public class DungeonOptionsHandler : MonoBehaviour
         {
             Destroy(transform.gameObject);
         }
+    }
+
+    public void SetCurrentListOfPassingCharacters(List<DungeonCharacterUI> listOfPassingCharacters)
+    {
+        currentListOfPassingCharacters = listOfPassingCharacters;
+    }
+
+    public void ResetListOfPassingCharacters()
+    {
+        currentListOfPassingCharacters = new List<DungeonCharacterUI>();
     }
 }

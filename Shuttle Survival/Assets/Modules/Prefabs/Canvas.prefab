@@ -526,6 +526,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boardingCrewRectTransform: {fileID: 1663157214}
   stayAtHomeCrewRectTransform: {fileID: 607483597}
+  boardingCrewFrameImage: {fileID: 0}
+  stayAtHomeCrewFrameImage: {fileID: 0}
   draggableMenuCharacterPrefab: {fileID: 3083544677161705002, guid: 9977f27c055821e4bb2f27d783660fac,
     type: 3}
   atRestFrameColor: {r: 0.7372549, g: 0.7372549, b: 0.7372549, a: 1}
@@ -18894,12 +18896,12 @@ PrefabInstance:
     - target: {fileID: 1630569185141461530, guid: b220658893aa8704ab379e211f98a387,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1634
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1630569185141461530, guid: b220658893aa8704ab379e211f98a387,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1630569185141461530, guid: b220658893aa8704ab379e211f98a387,
         type: 3}

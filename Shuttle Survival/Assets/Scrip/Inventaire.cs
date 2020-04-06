@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class Inventaire : MonoBehaviour 
 {
+    public static Inventaire inventaire;
 
     [SerializeField] ItemClass[] ressources;//note ID negatif = item de debug, ID = 0 : item Vide
     /*[HideInInspector]*/ public ItemStack[] inventoryContent;
@@ -12,7 +13,17 @@ public class Inventaire : MonoBehaviour
 
     //ItemStack objet;
 
-
+    private void Awake()
+    {
+        if(inventaire == null)
+        {
+            inventaire = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
     private void Start()
     {   
