@@ -52,6 +52,7 @@ public class DoorManager : MonoBehaviour
     {
         if (hoveredDoor != null && PanelManager.panelManager.IsInteractablesEnabled() &&Input.GetMouseButtonDown(0))
         {
+            AudioManager.audioManager.PlaySoundEffect(SoundEffectsType.ButtonClick);
             GenerateDoorPanel(hoveredDoor);
         }
     }

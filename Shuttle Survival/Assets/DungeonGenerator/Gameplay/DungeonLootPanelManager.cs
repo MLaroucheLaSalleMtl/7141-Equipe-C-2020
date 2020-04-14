@@ -141,4 +141,41 @@ public class DungeonLootPanelManager : MonoBehaviour
         }
         return loots;
     }
+
+    public bool IsThereSuchItemInCharactersInventory(int itemID)
+    {
+        foreach (RectTransform characterInventory in charactersInventoryGrids)
+        {
+            if (characterInventory.gameObject.activeInHierarchy)
+            {
+                foreach (RectTransform rectTransform in characterInventory)
+                {
+                    if (rectTransform.GetComponent<DungeonLootItem>().GetItemHolded().ItemID == itemID)
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void RemoveTheseItemsIfPossible(ItemStack[] itemsToRemove)
+    {
+        foreach (var stackToRemove in itemsToRemove)
+        {
+            bool found = false;
+            foreach (var characterInventory in charactersInventoryGrids)
+            {
+                if (found) break;
+                foreach (RectTransform rectTransform in characterInventory)
+                {
+                    if (rectTransform.GetComponent<DungeonLootItem>().GetItemHolded().ItemID == stackToRemove.Item.ItemID)
+                    {
+                        Destroy(rectTransform.gameObject);
+                        found = true;
+                        break;
+                    }
+                }
+            }
+        }
+    }
 }

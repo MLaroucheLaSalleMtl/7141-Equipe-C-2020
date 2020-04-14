@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: -4362951490470176636}
   - component: {fileID: -340925832793199189}
   m_Layer: 0
-  m_Name: Loner 1
+  m_Name: Hungry man
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickable: 1
-  onClickDungeonEvent: {fileID: 0}
+  onClickDungeonEvent: {fileID: 11400000, guid: a2186cbddfa24bc41b8b5a2467a82014,
+    type: 2}
   doneAfterClick: 1
 --- !u!61 &-340925832793199189
 BoxCollider2D:

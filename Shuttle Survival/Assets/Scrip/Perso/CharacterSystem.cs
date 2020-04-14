@@ -351,7 +351,7 @@ public class CharacterSystem : MonoBehaviour
     {
         MessagePopup.MessagePopupManager.SetStringAndShowPopup("This character is now busy.");
         Dispo = false;
-        GameManager.selection = null;
+        GameManager.selection = null;       
     }
     
     public void CancelNowDispo()

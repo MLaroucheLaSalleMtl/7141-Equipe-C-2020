@@ -12,7 +12,7 @@ public class ItemUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stackText.text = "";
+        
     }
 
     // Update is called once per frame
@@ -21,12 +21,24 @@ public class ItemUI : MonoBehaviour
         
     }
 
-    public void SetupItemUI(Sprite itemImage, int quantity, ItemClass itemHolded)
+    public void SetupItemUI(Sprite itemImage, int quantity, ItemClass itemHolded, bool cost = false)
     {
-        GetComponent<Image>().sprite = itemImage;
+        stackText.text = "";
         this.quantity = quantity;
-        stackText.text = quantity.ToString();
         this.itemHolded = itemHolded;
+
+        GetComponent<Image>().sprite = itemImage;
+        if (cost)
+        {
+            int amountInInventory = Inventaire.inventaire.GetAmount(itemHolded.ItemID);
+            stackText.text = amountInInventory + " / " + quantity.ToString();
+            stackText.color = (amountInInventory >= quantity) ? Color.green : Color.red;
+        }
+        else
+        {
+            stackText.color = Color.white;
+            stackText.text = quantity.ToString();
+        }
     }
 
     public int GetCurrentQuantity()

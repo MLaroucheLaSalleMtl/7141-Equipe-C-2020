@@ -61,6 +61,9 @@ public class DungeonEffectsHandler : MonoBehaviour
                     ResourcesPack lootedItems = RandomisedLootDecrypter.GetInstance().DecryptRandomisedLoot(dungeonEffects[i].randomisedLoot);
                     DungeonLootPanelManager.dungeonLootPanelManager.ReceiveLootAndFeedThePanel(lootedItems.resources);
                     break;
+                case DungeonEffectType.LoseSpecificItems:
+                    DungeonLootPanelManager.dungeonLootPanelManager.RemoveTheseItemsIfPossible(dungeonEffects[i].specificItemsToReceive);
+                    break;
             }
         }
         DungeonEffectPanelHandler.dungeonEffectPanelHandler.SetupDungeonEventEffectPanel(dungeonEffects);

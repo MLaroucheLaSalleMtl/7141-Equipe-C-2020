@@ -15,5 +15,6 @@ public enum DungeonStatsToCheck
     TinkeringSingle,
     TinkeringParty,
     CharismaSingle,
-    CharismaParty
+    CharismaParty,
+    HasFood
 }

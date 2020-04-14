@@ -9,5 +9,6 @@ public enum DungeonEffectType
     UnlockDoor,
     SpecificItemsLoot,
     IncreaseTimeCounter,
-    RandomisedItemsLoot    
+    RandomisedItemsLoot,
+    LoseSpecificItems
 }

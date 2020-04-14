@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44e6af68f2051648af6c3a8d65b2963, type: 3}
+  m_Name: HungryMan
+  m_EditorClassIdentifier: 
+  eventName: HungryMan
+  eventMessage: There is a man crouched in the corner of the room. He is in a really
+    bad shape. "Food... please, I'm gonna die here, have mercy" he begs.
+  dungeonOptions:
+  - {fileID: 11400000, guid: 67ce4fb09de38a0498ed087b7e3435e0, type: 2}
+  - {fileID: 11400000, guid: d72a1933458043b4b9ca1e760d00e647, type: 2}
+  eventEffects: []

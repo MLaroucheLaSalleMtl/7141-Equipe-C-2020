@@ -74,6 +74,7 @@ public class Asteroid : MonoBehaviour
 
     private void RemoveThisAsteroid(bool harvested = false)
     {
+        AudioManager.audioManager.PlaySoundEffect(SoundEffectsType.AsteroidBlowUp);
         TimeManager.timeManager.OnTimeChanged -= OnTimeChanged;
         GetComponent<TooltipHandler>().OnPointerExit(null);
         AsteroidsManager.asteroidsManager.RemoveAsteroid(spawn, harvested, asteroidLoot);

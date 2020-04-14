@@ -56,7 +56,7 @@ public class RewardsDisplayer : MonoBehaviour // cette classe soccupe aussi daff
         {
             ItemUI newResourceCost = Instantiate(itemUIPrefab, itemGridToUse);
             newResourceCost.GetComponent<RectTransform>().pivot = new Vector2(0.45f, 2.6f);
-            newResourceCost.SetupItemUI(itemStack.Item.icon, itemStack.Quantite, itemStack.Item);
+            newResourceCost.SetupItemUI(itemStack.Item.icon, itemStack.Quantite, itemStack.Item, true);
             currentResourcesCost.Add(newResourceCost);
         }
     }

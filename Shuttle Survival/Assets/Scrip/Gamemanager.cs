@@ -18,11 +18,13 @@ public class GameManager : MonoBehaviour
     #endregion UI
     [SerializeField] private GameObject fog;
     [SerializeField] private GameObject[] modules;
+    [SerializeField] private GameObject panelPause;
     //
     public static GameObject actions;
     public static CharacterSystem selection;
     public static GameManager GM;
     public static bool surSelectable;
+    private bool panelCheck;
     private void Awake()
     {
         if(GM == null)
@@ -45,6 +47,18 @@ public class GameManager : MonoBehaviour
             Invoke("CloseActionPanel", 0.1f);
            if (!surSelectable)
                Invoke("Deselect", 0.1f);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            if(panelCheck == false){
+                panelPause.SetActive(true);
+                Time.timeScale = 0;
+                panelCheck = true;
+            } else {
+                panelPause.SetActive(false);
+                Time.timeScale = 1;
+                panelCheck = false;
+            }  
         }
         
     }
@@ -106,7 +120,8 @@ public class GameManager : MonoBehaviour
         fog.SetActive(true);
         foreach (GameObject mod in modules) { mod.SetActive(false); }
         //CharacterSystem[] temp = GameObject.FindObjectsOfType<CharacterSystem>();
-        //foreach (CharacterSystem perso in temp) { personnages.Add(perso); }//(int i = 0; i<temp.Length; i++) { personnages.Add(temp[i]); }        
+        //foreach (CharacterSystem perso in temp) { personnages.Add(perso); }//(int i = 0; i<temp.Length; i++) { personnages.Add(temp[i]); }
+        panelPause.SetActive(false);
     }
  
 

@@ -84,10 +84,12 @@ public class ModuleManager : MonoBehaviour
         {
             if (hoveredModule.moduleType != ModuleType.UnderConstruction)
             {
+                AudioManager.audioManager.PlaySoundEffect(SoundEffectsType.ButtonClick);
                 GenerateModulePanel(hoveredModule);
             }
             else
             {
+                AudioManager.audioManager.PlaySoundEffect(SoundEffectsType.ButtonClick);
                 GenerateUnderConstructionPanel((UnderConstructionModule)hoveredModule);
             }
         }
@@ -143,6 +145,8 @@ public class ModuleManager : MonoBehaviour
         createModuleButton.onClick.RemoveAllListeners();
         createModuleButton.onClick.AddListener(() => CreateModule(moduleIndex));
         createModuleButton.onClick.AddListener(() => createModuleButton.GetComponentInChildren<TooltipHandler>().OnPointerExit(null));
+        createModuleButton.onClick.AddListener(() => AudioManager.audioManager.PlaySoundEffect(SoundEffectsType.ButtonClick));
+
         RewardsDisplayer.rewardsDisplayer.DisplayResourcesCost(moduleOfInterest.ressourcesCost.resources, moduleResourcesCostGrid);
         buildingTimeTextField.text = "Building time : " + moduleOfInterest.turnsToBuild + " <sprite=0>";
         detailedInformationsPanel.SetActive(true);
@@ -226,7 +230,11 @@ public class ModuleManager : MonoBehaviour
         modulePanelTitle.text = currentModule.moduleName;
         ClearGridOfPastButtons(currentGrid);
         GameObject newGO = Instantiate(createModuleMenuButton, currentGrid);
-        newGO.GetComponent<Button>().onClick.AddListener(() => GenerateModuleCreationPanel());
+        newGO.GetComponent<Button>().onClick.AddListener(() => 
+        {
+            GenerateModuleCreationPanel();
+            AudioManager.audioManager.PlaySoundEffect(SoundEffectsType.ButtonClick);
+        });
     }
 
     private void SetupCreatedModulePanel(Module currentModule)
@@ -238,21 +246,24 @@ public class ModuleManager : MonoBehaviour
         moduleNameInDetailedPanel.text = currentModule.moduleName;
         detailedInformationsTextField.text = currentModule.longModuleDescriptionForPanels;
         ClearGridOfPastButtons(currentGrid);
+        GameObject newGO = null;
         if (currentModule.useable)
         {
-            GameObject newGO = Instantiate(useModuleButton, currentGrid);
+            newGO = Instantiate(useModuleButton, currentGrid);
             newGO.GetComponent<Button>().onClick.AddListener(() => UseModule());
         }
         if (currentModule.salvageable)
         {
-            GameObject newGO = Instantiate(salvageModuleButton, currentGrid);
+            newGO = Instantiate(salvageModuleButton, currentGrid);
             newGO.GetComponent<Button>().onClick.AddListener(() => SalvageModule());
         }
         if (currentModule.upgradable)
         {
-            GameObject newGO = Instantiate(upgradeModuleButton, currentGrid);
+            newGO = Instantiate(upgradeModuleButton, currentGrid);
             newGO.GetComponent<Button>().onClick.AddListener(() => UpgradeModuleButton());
         }
+        if(newGO != null)
+            newGO.GetComponent<Button>().onClick.AddListener(() => AudioManager.audioManager.PlaySoundEffect(SoundEffectsType.ButtonClick));
     }
 
     private static void ClearGridOfPastButtons(Transform currentGrid)

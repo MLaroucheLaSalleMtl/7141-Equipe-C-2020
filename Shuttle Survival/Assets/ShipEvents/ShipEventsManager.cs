@@ -157,6 +157,7 @@ public class ShipEventsManager : MonoBehaviour
                     }
                     break;
             }
+            AudioManager.audioManager.PlaySoundEffect(SoundEffectsType.ShipEventWindowPopup);
         }
         else
         {

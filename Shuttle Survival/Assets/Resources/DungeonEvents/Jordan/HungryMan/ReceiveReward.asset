@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44e6af68f2051648af6c3a8d65b2963, type: 3}
+  m_Name: ReceiveReward
+  m_EditorClassIdentifier: 
+  eventName: ReceiveReward
+  eventMessage: '"Hmm, this is so good, thank you, I will survive a few more hours
+    now before my inevitable death. Here, take this useless piece of junk as a reward."
+
+
+    He
+    hands something to you.'
+  dungeonOptions: []
+  eventEffects:
+  - dungeonEffectType: 6
+    dungeonEffectIntensity: 0
+    specificItemsToReceive:
+    - item: {fileID: 11400000, guid: ef701c2a1edc51a43b53384049058ff8, type: 2}
+      quantite: 1
+    randomisedLoot:
+      resourcesPossible: []
+      chancesToGive: []
+      resourcesVariation: []
+  - dungeonEffectType: 3
+    dungeonEffectIntensity: 0
+    specificItemsToReceive:
+    - item: {fileID: 11400000, guid: 0b3000ea1f6355c49aa2784ad8f9a296, type: 2}
+      quantite: 1
+    randomisedLoot:
+      resourcesPossible: []
+      chancesToGive: []
+      resourcesVariation: []

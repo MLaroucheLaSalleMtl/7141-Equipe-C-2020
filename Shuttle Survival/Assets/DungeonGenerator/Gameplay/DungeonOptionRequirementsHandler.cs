@@ -121,6 +121,9 @@ public static class DungeonOptionRequirementsHandler
                     }
                     passedAllTests = partyCharisma >= requirementToMeet.quantityRequired;
                     break;
+                case DungeonStatsToCheck.HasFood:
+                    passedAllTests = DungeonLootPanelManager.dungeonLootPanelManager.IsThereSuchItemInCharactersInventory(1);
+                    break;
             }           
         }
         if (passedAllTests)

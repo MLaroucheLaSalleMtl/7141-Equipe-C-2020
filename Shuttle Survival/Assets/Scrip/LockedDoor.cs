@@ -80,6 +80,7 @@ public class LockedDoor : MonoBehaviour
         if(turnsRemaining <= 0)
         {
             GetComponent<SpriteRenderer>().sprite = DoorManager.doorManager.openDoorSprite;
+            AudioManager.audioManager.PlaySoundEffect(SoundEffectsType.UnlockDoor);
             GetComponent<BoxCollider2D>().enabled = false;
             TimeManager.timeManager.OnTimeChanged -= OnTimeChanged;
             ShipEventsManager.shipEventsManager.AddShipEventToQueue(ShipEvent.DoorEvent(gameObject, transform.position, unlockedRoomPosition,

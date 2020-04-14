@@ -42,4 +42,9 @@ public class DialogueEvents : MonoBehaviour
             button.SetActive(true);
         }
     }
+
+    public void PlaySoundEffect(int enumIndex)
+    {
+        AudioManager.audioManager.PlaySoundEffect(enumIndex);
+    }
 }

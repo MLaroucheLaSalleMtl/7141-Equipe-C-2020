@@ -49,6 +49,7 @@ public class ScrapsManager : MonoBehaviour
 
     public void OpenScrapsPanel(Scraps currentScraps)
     {
+        AudioManager.audioManager.PlaySoundEffect(SoundEffectsType.ButtonClick);
         PanelManager.panelManager.OnPanelOpened_Caller();
         this.currentScraps = currentScraps;
         scrapsPanel.SetActive(true);
