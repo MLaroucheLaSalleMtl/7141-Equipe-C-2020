@@ -28,6 +28,8 @@ Touche i
 La touche i permet d’ouvrir l’inventaire.
 Touche O
 Permet de consulter l'état du vaisseau
+Touche C
+Permet d'ouvrir les arbres d'habiletés
 
 Gameplay :
 Le joueur doit au travers du tutoriel compléter des tâches avec un astronaute. Il doit ramasser des déchets pour avoir assez de ressources pour construire un module de chauffage. Puis, il doit construire ce module. Par la suite, il allume la console du système. Après il ouvre une porte pour rencontrer un autre astronaute qu’il peut utiliser à sa guise. Au fil du temps, le joueur peut construire d’autres modules comme le bras mécanique pour ramasser des ressources. Il faudra aussi débloquer les portes pour accéder à des nouvelles pièces. Il est important de faire tout cela en gardant nos astronautes en vie en gérant leur gauge de nourriture, d’oxygène et leur fatigue. Puis, quand l’occasion se présentera le joueur pourra amener ses astronautes sur des expéditions dans des donjons pour récolter une variété de ressources rares.
@@ -56,3 +58,21 @@ Space Background
 
 Icons et UI Sprites 
 https://assetstore.unity.com/publishers/13229
+
+editor script tutorial
+https://www.youtube.com/watch?v=SB1R_mD1cAw&list=PL4CCSwmU04MiCnps1DRmwIEEH7gP9X3qq&index=15
+
+fonts : 
+https://www.dafont.com/fr/fake-boss.font
+
+Space ships sprites : 
+https://opengameart.org/content/spaceships-1
+
+SFX Pro Sound Collection :
+ https://assetstore.unity.com/packages/audio/sound-fx/pro-soundcollection-50235 
+
+SFX Universal Sound FX :
+ https://assetstore.unity.com/packages/audio/sound-fx/universal-sound-fx-17256 
+ 
+ Gradients pour les ui :
+ https://uigradients.com/
