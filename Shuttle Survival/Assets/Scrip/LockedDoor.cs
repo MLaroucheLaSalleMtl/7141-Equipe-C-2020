@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(PourTousLesSelectable))]
+
 public class LockedDoor : MonoBehaviour
 {
     [SerializeField] private GameObject fog;
@@ -79,6 +79,7 @@ public class LockedDoor : MonoBehaviour
         turnsRemaining--;
         if(turnsRemaining <= 0)
         {
+            DoorManager.doorManager.IncrementUnlockedDoorCount();
             GetComponent<SpriteRenderer>().sprite = DoorManager.doorManager.openDoorSprite;
             AudioManager.audioManager.PlaySoundEffect(SoundEffectsType.UnlockDoor);
             GetComponent<BoxCollider2D>().enabled = false;

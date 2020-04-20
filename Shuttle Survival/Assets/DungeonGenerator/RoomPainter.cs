@@ -136,7 +136,7 @@ public class RoomPainter : MonoBehaviour
             if (NeighborRoomHaveSameOpening(DoorOpening.Right))
             {
                 tileToPaint = floorTile;
-                GameObject door = Instantiate(bottomDoorPrefab, zeroCoord);
+                GameObject door = Instantiate(rightDoorPrefab, zeroCoord);
                 door.transform.localPosition = position - new Vector3(1, 1, 0);
                 door.GetComponent<DungeonDoor>().SetLinkedRoomPositionAndOpening(linkedRoom, DoorOpening.Right);
                 GetComponent<AddRoom>().ReceiveDungeonDoor(DoorOpening.Right, door.GetComponent<DungeonDoor>());

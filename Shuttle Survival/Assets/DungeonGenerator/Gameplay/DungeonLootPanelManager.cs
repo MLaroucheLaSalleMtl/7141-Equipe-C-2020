@@ -170,6 +170,7 @@ public class DungeonLootPanelManager : MonoBehaviour
                 {
                     if (rectTransform.GetComponent<DungeonLootItem>().GetItemHolded().ItemID == stackToRemove.Item.ItemID)
                     {
+                        rectTransform.GetComponentInParent<DungeonCharacterUI>().RemoveItemFromBackpack();
                         Destroy(rectTransform.gameObject);
                         found = true;
                         break;

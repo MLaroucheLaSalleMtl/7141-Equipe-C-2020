@@ -27,6 +27,7 @@ public class ArmModule : Module
     {
         base.OnCreation();
         DialogueTriggers.dialogueTriggers.TriggerDialogue(7);
+        TimeManager.timeManager.AddTurns(1);
         
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,52 +7,66 @@ using UnityEngine.UI;
 public class InfoPerso : MonoBehaviour
 {
     [SerializeField] private Text hpTxt, foodTxt, SleepTxt, nameTxt, lvlTxt;
-    [SerializeField] private GameObject meals;
-    [SerializeField] private Image hpBar,sleepBar;
-    
+    [SerializeField] private Image hpBar,sleepBar, characterImage, mealsBar;
+    private CharacterSystem work;
+    private void Start()
+    {
+        TimeManager.timeManager.OnTimeChanged += OnTimeChanged;
+    }
+
+    private void OnTimeChanged(object sender, EventArgs e)
+    {
+        InfoUpdate();
+    }
+
     private void MealsAJour()
     {
-        int cap, current;
-        cap = GameManager.selection.FoodCap;
-        current = GameManager.selection.CurrFood;
-        int x = cap - current;
-        for(int i = meals.transform.childCount - 1; i >= x; i--) 
-        {
-            meals.transform.GetChild(i).gameObject.SetActive(true);
-        }
-        for (int i = 0; i < x; i++)
-        {
-            meals.transform.GetChild(i).gameObject.SetActive(false);
-        }
-        foodTxt.text = current.ToString() + "/" + cap.ToString();
+        float cap, current;
+        cap = work.FoodCap;
+        current = work.CurrFood;
+        float x = current / cap;
+        mealsBar.fillAmount = x;
+        foodTxt.text = current.ToString("0") + "/" + cap.ToString("0");
+        
     }
     private void HpAJour()
     {
         float cap, current;
-        cap = GameManager.selection.HPMax;
-        current = GameManager.selection.CurrHp;
+        cap = work.HPMax;
+        current = work.CurrHp;
         float x = current / cap;
-        Debug.Log(x);
+
         hpBar.fillAmount = x;
         hpTxt.text = current.ToString("0") + "/" + cap.ToString("0");
     }
 
     private void SleepUpdate()
     {
-        int cap, current;
-        cap = GameManager.selection.SleepCap;
-        current = GameManager.selection.CurrSleep;
+        float cap, current;
+        cap = work.SleepCap;
+        current = work.CurrSleep;
         float x = current / cap;
         sleepBar.fillAmount = x;
-        SleepTxt.text = current.ToString() + "/" +cap.ToString() ;
+        SleepTxt.text = current.ToString("0") + "/" +cap.ToString("0") ;
     }
 
     public void InfoUpdate()
-    {
-        nameTxt.text = GameManager.selection.name;
-        lvlTxt.text = "lvl.1" + "";
+    {   
+        nameTxt.text = work.CharacterName;
+        lvlTxt.text = "lvl." + work.GetComponent<CharacterSkillsManager>().level;
+        characterImage.sprite = work.CharacterSprite;
         MealsAJour();
         HpAJour();
         SleepUpdate();
+        
+    }
+
+    public void FullInfoUpdate()
+    {
+        if (GameManager.selection)
+        {
+            work = GameManager.selection;
+            InfoUpdate();
+        }
     }
 }

@@ -1,51 +1,73 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PerkButton : MonoBehaviour
 {
-    [SerializeField] GameObject[] bouttonsSkill;
+    private Button travail;
     //[SerializeField] Button trav;
     [SerializeField] Color disCol;
-    private void Awake()
-    {
-       // disable les bouton des skills
-        Button travail = this.GetComponent<Button>();
-        CharacterPerk thisPerk = this.GetComponent<CharacterPerk>();
-        CharacterSkillsManager thisChar = GameManager.selection.GetComponent<CharacterSkillsManager>();
+    [SerializeField] Image perkImg;
+    public CharacterPerk thisPerk;
 
-        /*Debug.Log(this.GetComponent<Button>());            
-        Debug.Log(travail);   */
-        if (!thisChar.HasSkill(thisPerk.preRequis.perkType))            
-        {                
-            travail.interactable = false;
-        }
-        else
+    
+
+    private void Start()
+    {
+        GameManager.GM.OnSkillOpen += open;
+    }
+
+    private void open(object sender, EventArgs e)
+    {
+        perkImg.sprite = thisPerk.perkSprite;
+
+        //check pour eviter les erreurs
+        travail = this.GetComponent<Button>();
+        travail.onClick.RemoveAllListeners();
+        if (GameManager.selection)
         {
+            CharacterSkillsManager thisChar = GameManager.selection.gameObject.GetComponent<CharacterSkillsManager>();
 
+            if (thisChar.HasSkill(thisPerk.perkType))//disable si il a deja le skill
+            {
+                ButtonUnSelectable();
+            }
+            else
+            {
+                if (!thisChar.HasSkill(thisPerk.preRequis.perkType) && thisPerk.preRequis != thisPerk)//disable si il a pas le prerequis et que c'est pas le premier skill
+                {
+                    ButtonUnSelectable();
+                }
+                else
+                {
+                    Debug.Log("Bouton accessible");
+                    travail.interactable = true;
+                    travail.onClick.AddListener(() =>
+                    {
+
+                        if (thisChar.AddSkill(thisPerk.perkType))
+                        {
+                            ButtonUnSelectable();
+                            GameManager.GM.OnSkillOpen_Caller();
+                        }
+
+                    });
+                }
+            }
         }
-        /*else  //si le prérequis est actif
-        {               
-            if (obj.GetComponent<CharacterPerk>().actif) { 
-                travail.interactable = false;
-                ColorBlock temp = travail.colors;
-                temp.disabledColor = disCol;
-                travail.colors = temp;
-            }
-            else {                 
-                travail.interactable = true;
-                Selected(obj.GetComponent<Button>());
-            }
-        } */
-
-
     }
 
-    private void Selected(Button work)
+
+    private void ButtonUnSelectable()
     {
-        
+        travail.interactable = false;
+        ColorBlock temp = travail.colors;
+        temp.disabledColor = disCol;
+        travail.colors = temp;
     }
+    
 }
 //il faut que je déactive les boutons lorsque le prérequis n'est pas activé
 //désactivé le bouton une fois qu'il a été activé

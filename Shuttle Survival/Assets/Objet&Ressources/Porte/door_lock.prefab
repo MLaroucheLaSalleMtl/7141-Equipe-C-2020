@@ -56,7 +56,6 @@ GameObject:
   - component: {fileID: 948580943}
   - component: {fileID: 948580939}
   - component: {fileID: 948580942}
-  - component: {fileID: 6768214529328671759}
   m_Layer: 0
   m_Name: door_lock
   m_TagString: Untagged
@@ -200,15 +199,3 @@ MonoBehaviour:
 
     Click for info'
   tooltipsType: 1
---- !u!114 &6768214529328671759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4405024309570264054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2317651bea6d89443a35017781d4c918, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

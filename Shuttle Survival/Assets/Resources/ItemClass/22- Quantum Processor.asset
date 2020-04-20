@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb784c3abfd7a224c9cc36c9048a2a57, type: 3}
   m_Name: 22- Quantum Processor
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: f47371d270698ce498fd8af31c03afa4, type: 3}
+  icon: {fileID: 21300000, guid: fbaef7459034d244fae6f5b4753c51ea, type: 3}
   description: The most advanced type of processor available, used in navigation
     systems amongst other thing
   nom: Quantum Processor

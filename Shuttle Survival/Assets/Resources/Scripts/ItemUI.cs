@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -49,5 +50,10 @@ public class ItemUI : MonoBehaviour
     public ItemClass GetItemHolded()
     {
         return itemHolded;
+    }
+
+    private void OnDestroy()
+    {
+        GetComponent<TooltipHandler>().OnPointerExit(null);
     }
 }

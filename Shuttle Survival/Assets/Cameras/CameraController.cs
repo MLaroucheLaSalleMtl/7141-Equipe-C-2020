@@ -48,19 +48,21 @@ public class CameraController : MonoBehaviour
         {
             Vector3 newPos = transform.position;
 
-            if (Input.GetKey(KeyCode.W) || Input.mousePosition.y >= Screen.height - panBorderThickness)
+            float h = InputHandler.inputHandler.h;
+            float v = InputHandler.inputHandler.v;
+            if (v > 0 || Input.mousePosition.y >= Screen.height - panBorderThickness)
             {
                 newPos.y += panSpeed * Time.deltaTime;
             }
-            if (Input.GetKey(KeyCode.S) || Input.mousePosition.y <= panBorderThickness)
+            if (v < 0 || Input.mousePosition.y <= panBorderThickness)
             {
                 newPos.y -= panSpeed * Time.deltaTime;
             }
-            if (Input.GetKey(KeyCode.D) || Input.mousePosition.x >= Screen.width - panBorderThickness)
+            if (h > 0 || Input.mousePosition.x >= Screen.width - panBorderThickness)
             {
                 newPos.x += panSpeed * Time.deltaTime;
             }
-            if (Input.GetKey(KeyCode.A) || Input.mousePosition.x <= panBorderThickness)
+            if (h < 0 || Input.mousePosition.x <= panBorderThickness)
             {
                 newPos.x -= panSpeed * Time.deltaTime;
             }

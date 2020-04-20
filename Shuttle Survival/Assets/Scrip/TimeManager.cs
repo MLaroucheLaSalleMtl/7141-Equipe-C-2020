@@ -12,7 +12,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI dayText;
     public int currentDays = 1;
     public int currentMins;
-    [SerializeField] int turnInMinutes = 30;
+    [SerializeField] int turnInMinutes = 60;
     [SerializeField] GameObject timeManagerUIHolder;
     [SerializeField] Button skipTimeButton;
     int elapsedTimeInDungeon = 0;
@@ -74,7 +74,7 @@ public class TimeManager : MonoBehaviour
 
     public void AddTurns(int turnsAmount)
     {
-        currentMins += turnsAmount * 30;
+        currentMins += turnsAmount * turnInMinutes;
         RefreshClock();
         PanelManager.panelManager.OnPanelOpened_Caller();
         for (int i = 0; i < turnsAmount; i++)

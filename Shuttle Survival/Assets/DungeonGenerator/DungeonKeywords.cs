@@ -12,5 +12,7 @@ public enum DungeonKeywords
     FormsOfLife,
     HeavyDamagedShip,
     AdvancedTechnology,
-    Salvageable
+    Salvageable,
+    Food,
+    Survivors
 }

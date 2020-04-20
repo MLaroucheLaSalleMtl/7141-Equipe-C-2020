@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44e6af68f2051648af6c3a8d65b2963, type: 3}
+  m_Name: Punch-Success
+  m_EditorClassIdentifier: 
+  eventName: Punch-Success
+  eventMessage: Your punch was so strong it knocked the alien out.
+  dungeonOptions:
+  - {fileID: 11400000, guid: 84fba930c1e18c64590acf1758760451, type: 2}
+  - {fileID: 11400000, guid: 8c1352ba73a47b14fbf22fa8d8b69930, type: 2}
+  eventEffects: []

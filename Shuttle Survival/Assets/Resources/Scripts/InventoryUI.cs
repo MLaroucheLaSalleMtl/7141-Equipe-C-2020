@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public enum InventoryFilter { AllItems, Collapsed, Consumables, Tier1, Tier2, Tier3, Tier4}
 public class InventoryUI : MonoBehaviour
 {
+    public static InventoryUI inventoryUi;
+    
     [SerializeField] GameObject inventoryUIHolder;
     [SerializeField] Inventaire mainInventory;
     [SerializeField] ItemUI itemPrefab;
@@ -17,31 +19,33 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] GameObject selectedTabArrow;
     int currentFilter;
     bool uiActivable = false;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.I) && uiActivable)
+        if (inventoryUi == null)
         {
-            currentFilter = 0;
-            ToggleMainInventoryUIPanel();
+            inventoryUi = this;
+        }
+        else
+        {
+            Destroy(this);
         }
     }
 
     public void ToggleMainInventoryUIPanel()
     {
-        if (!inventoryUIHolder.activeInHierarchy)
+        if (uiActivable)
         {
-            OpenInventoryPanel();
-        }
-        else
-        {
-            DesactivateInventoryPanel();
+            currentFilter = 0;
+            if (!inventoryUIHolder.activeInHierarchy)
+            {
+                OpenInventoryPanel();
+            }
+            else
+            {
+                DesactivateInventoryPanel();
+            }
         }
     }
 

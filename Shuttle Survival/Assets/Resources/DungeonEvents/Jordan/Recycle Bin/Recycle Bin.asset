@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44e6af68f2051648af6c3a8d65b2963, type: 3}
+  m_Name: Recycle Bin
+  m_EditorClassIdentifier: 
+  eventName: Recycle Bin
+  eventMessage: There is a recycle bin. Who knows what might be in there ? We might
+    be able to salvage some of the materials for our own needs.
+  dungeonOptions:
+  - {fileID: 11400000, guid: 788ac26c718a40d4da8582aea9645704, type: 2}
+  - {fileID: 11400000, guid: abcd74601498bd947a8b7e0efd559221, type: 2}
+  - {fileID: 11400000, guid: 7fc0b024674a2214e9274764fc2c37d6, type: 2}
+  eventEffects: []

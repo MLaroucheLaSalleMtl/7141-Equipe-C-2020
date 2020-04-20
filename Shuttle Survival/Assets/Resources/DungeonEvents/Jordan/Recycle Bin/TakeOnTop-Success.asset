@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44e6af68f2051648af6c3a8d65b2963, type: 3}
+  m_Name: TakeOnTop-Success
+  m_EditorClassIdentifier: 
+  eventName: TakeOnTop-Success
+  eventMessage: You found some interesting materials on top of the bin.
+  dungeonOptions: []
+  eventEffects:
+  - dungeonEffectType: 5
+    dungeonEffectIntensity: 0
+    specificItemsToReceive: []
+    randomisedLoot:
+      resourcesPossible:
+      - item: {fileID: 11400000, guid: b58dc59b1ce8f6e4683ec54e35514375, type: 2}
+        quantite: 3
+      - item: {fileID: 11400000, guid: acf87b4909a24064f9e451bd345ec232, type: 2}
+        quantite: 3
+      chancesToGive:
+      - 1
+      - 0.8
+      resourcesVariation:
+      - 0.4
+      - 0.4

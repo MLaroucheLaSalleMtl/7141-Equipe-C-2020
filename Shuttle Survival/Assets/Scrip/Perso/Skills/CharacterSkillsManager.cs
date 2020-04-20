@@ -8,18 +8,23 @@ public class CharacterSkillsManager : MonoBehaviour
     public int level = 0;
     private int expToNext = 2;
     public int AbilityPoints = 0;
+    public readonly int maxLvl = 6;
     public PrerequisObj[] skills;
-    [SerializeField] GameObject tree;
+    private int xpMultiplier = 1;
+    [SerializeField] private GameObject tree;
     public int Experience { get => experience; set => experience = value; }
+    public int ExpToNext { get => expToNext;}
+
     //sur les perso
 
     private void Start()
-    {
-        CharacterPerk[] temp = tree.transform.GetComponentsInChildren<CharacterPerk>();
-        skills = new PrerequisObj[temp.Length];
-        for (int i = 0; i<temp.Length; i++)
+    { 
+        
+        PerkButton[] temp2 = tree.transform.GetComponentsInChildren<PerkButton>();
+        skills = new PrerequisObj[temp2.Length];      
+        for (int i = 0; i<temp2.Length; i++)
         {
-            skills[i] = new PrerequisObj(temp[i].perkType);
+            skills[i] = new PrerequisObj(temp2[i].thisPerk.perkType);
         }
         
     }
@@ -32,11 +37,31 @@ public class CharacterSkillsManager : MonoBehaviour
 
     public void ExpUP(int xp)
     {
-        experience += xp;
+        
+        experience += xp*xpMultiplier;
         if(experience >= expToNext) 
         { 
             LevelUp(); 
             //Visuel de lvl up
+        }
+    }
+
+    public float XpMarginal()
+    {
+        float b = expToNext - 2 * level;
+        return b;
+    }
+
+    public float XpLast()
+    {
+        if(level> 0) {
+            float b = 2;
+            b += (level-1) * 2;
+        return b;
+        }
+        else
+        {
+            return 0;
         }
     }
 
@@ -52,22 +77,38 @@ public class CharacterSkillsManager : MonoBehaviour
         return false;
     }
 
-    public void AddSkill(CharacterPerkType type)
+    public bool AddSkill(CharacterPerkType type)
     {
-        foreach (PrerequisObj perk in skills)
-        {
-            if (type == perk.type)
+        if (AbilityPoints > 0) 
+        { 
+            AllSkills skillSwitch = new AllSkills();
+            skillSwitch.SkillSwitch(type, this);           
+            foreach (PrerequisObj perk in skills)
             {
-                perk.actif = true;
+                if (type == perk.type)
+                {
+                    AbilityPoints--;
+                    perk.actif = true;
+                    if (type == CharacterPerkType.Looter)
+                        RandomisedLootDecrypter.GetInstance().ActivateModifier();
+                    return true;
+                }
             }
+            
         }
+
+        return false;
     }
 
     public void AddSkill(int pos)
     {
         skills[pos].actif = true;
+        
     }
 
-
+    public void XpMult(int x)
+    {
+        xpMultiplier = x;
+    }
    
 }

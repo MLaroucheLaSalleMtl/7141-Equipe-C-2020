@@ -65,11 +65,16 @@ public static class DungeonOptionRequirementsHandler
                 case DungeonStatsToCheck.HasEngineerToolbox:
                     foreach (DungeonCharacterUI characterUI in partyCharacters)
                     {
-                        passedAllTests = (characterUI.GetLinkedCharacter().EquipedTool.GetToolType() == CharacterToolType.EngineersToolbox);
-                        if (passedAllTests == true) break;
+                        passedAllTests = (characterUI.GetLinkedCharacter().Tinkering);
+                        if (passedAllTests) break;
                     }
                     break;
                 case DungeonStatsToCheck.HasDigitalKey:
+                    foreach (DungeonCharacterUI characterUI in partyCharacters)
+                    {
+                        passedAllTests = (characterUI.GetLinkedCharacter().GetComponent<CharacterSkillsManager>().HasSkill(CharacterPerkType.Hacker));
+                        if (passedAllTests) break;
+                    }
                     break;
                 case DungeonStatsToCheck.StrengthParty:
                     int partyStrength = 0;
@@ -82,7 +87,7 @@ public static class DungeonOptionRequirementsHandler
                 case DungeonStatsToCheck.TinkeringSingle:
                     foreach (DungeonCharacterUI characterUI in partyCharacters)
                     {
-                        if (characterUI.GetLinkedCharacter().Tinkering >= requirementToMeet.quantityRequired)
+                        if (characterUI.GetLinkedCharacter().Tinkering)
                         {
                             numberOfPassingCharacter++;
                         }
@@ -96,14 +101,15 @@ public static class DungeonOptionRequirementsHandler
                     int partyTinkering = 0;
                     foreach (DungeonCharacterUI characterUI in partyCharacters)
                     {
-                        partyTinkering += characterUI.GetLinkedCharacter().Tinkering;
+                        if (characterUI.GetLinkedCharacter().Tinkering)
+                            partyTinkering++;
                     }
                     passedAllTests = partyTinkering >= requirementToMeet.quantityRequired;
                     break;
                 case DungeonStatsToCheck.CharismaSingle:
                     foreach (DungeonCharacterUI characterUI in partyCharacters)
                     {
-                        if (characterUI.GetLinkedCharacter().Charisma >= requirementToMeet.quantityRequired)
+                        if (characterUI.GetLinkedCharacter().Charisma)
                         {
                             numberOfPassingCharacter++;
                         }
@@ -117,7 +123,8 @@ public static class DungeonOptionRequirementsHandler
                     int partyCharisma = 0;
                     foreach (DungeonCharacterUI characterUI in partyCharacters)
                     {
-                        partyCharisma += characterUI.GetLinkedCharacter().Charisma;
+                        if(characterUI.GetLinkedCharacter().Charisma)
+                            partyCharisma++; ;
                     }
                     passedAllTests = partyCharisma >= requirementToMeet.quantityRequired;
                     break;
@@ -128,7 +135,6 @@ public static class DungeonOptionRequirementsHandler
         }
         if (passedAllTests)
         {
-            Debug.Log(currentListOfPassingCharacters.Count);
             DungeonOptionsHandler.dungeonOptionsHandler.SetCurrentListOfPassingCharacters(currentListOfPassingCharacters);
         }
         return passedAllTests;

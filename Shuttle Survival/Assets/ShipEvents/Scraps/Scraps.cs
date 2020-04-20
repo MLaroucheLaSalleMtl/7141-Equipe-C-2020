@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PourTousLesSelectable))]
+
 public class Scraps : MonoBehaviour, ISelectable
 {
     public RandomisedLoot scrapsLoot;
@@ -63,7 +63,7 @@ public class Scraps : MonoBehaviour, ISelectable
         if(!ScrapsManager.scrapsManager.firstScrapsCleanedUp)
         {
             ScrapsManager.scrapsManager.firstScrapsCleanedUp = true;
-            //DialogueTriggers.dialogueTriggers.TriggerDialogue(2);
+            DialogueTriggers.dialogueTriggers.TriggerDialogue(2);
         }
         beingCleaned = true;
         TimeManager.timeManager.OnTimeChanged += OnTimeChanged;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PourTousLesSelectable))]
+
 public class PointOfInterestObject : MonoBehaviour
 {
     [SerializeField] bool clickable = true;

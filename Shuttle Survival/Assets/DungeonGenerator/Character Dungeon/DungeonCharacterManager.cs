@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class DungeonCharacterManager : MonoBehaviour
 {
     public static DungeonCharacterManager dungeonCharacterManager;
-    [SerializeField] DungeonCharacterUI[] charactersUI;
+    [SerializeField] DungeonCharacterUI[] charactersUI;  
 
     private void Awake()
     {
@@ -41,7 +41,6 @@ public class DungeonCharacterManager : MonoBehaviour
         }
         for (int i = 0; i < charactersInDungeons.Length; i++)
         {
-            Debug.Log(i);
             charactersUI[i].SetupUI(charactersInDungeons[i]);
             charactersUI[i].gameObject.SetActive(true);
         }
@@ -103,5 +102,16 @@ public class DungeonCharacterManager : MonoBehaviour
             }
         }
         return partyCharacters;
+    }
+
+    public void AddExpToEveryone()
+    {
+        foreach (DungeonCharacterUI character in charactersUI)
+        {
+            if (character.isActiveAndEnabled)
+            {
+                character.GetLinkedCharacter().GetComponent<CharacterSkillsManager>().ExpUP(1);
+            }
+        }
     }
 }

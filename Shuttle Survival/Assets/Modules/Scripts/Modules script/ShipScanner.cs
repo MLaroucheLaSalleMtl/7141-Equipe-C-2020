@@ -23,11 +23,12 @@ public class ShipScanner : Module
         ShipScanManager.shipScanManager.SetUpShipScannerDungeonPanel();
     }
 
-    
-
     public override void OnCreation()
     {
         base.OnCreation();
+        DialogueTriggers.dialogueTriggers.TriggerDialogue(9);
         ShipScanManager.shipScanManager.ActivateScannerCountdown();
+        TimeManager.timeManager.AddTurns(1);
+
     }
 }

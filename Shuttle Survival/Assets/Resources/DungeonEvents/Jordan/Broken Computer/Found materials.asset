@@ -24,6 +24,8 @@ MonoBehaviour:
       quantite: 3
     - item: {fileID: 11400000, guid: 23898349c121e684e93c0d8d51cc227a, type: 2}
       quantite: 2
+    - item: {fileID: 11400000, guid: 9e456b4c5041cbd48906e9a074e411b2, type: 2}
+      quantite: 2
     randomisedLoot:
       resourcesPossible: []
       chancesToGive: []

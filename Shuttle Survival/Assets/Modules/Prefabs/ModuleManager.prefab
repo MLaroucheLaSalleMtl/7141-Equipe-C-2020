@@ -47,14 +47,16 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4285164138
   currentModule: {fileID: 0}
-  modulePanel: {fileID: 0}
+  hoveredModule: {fileID: 0}
+  emptyModulePanel: {fileID: 0}
   moduleCreationPanel: {fileID: 0}
+  sceneHolder: {fileID: 0}
   moduleCreationPrefab: {fileID: 1454476509448547356, guid: c1c13b1b822c7634297b19c5b3369cb9,
     type: 3}
   moduleCreationGrid: {fileID: 0}
   modulePanelTitle: {fileID: 0}
   moduleOptionsGrid: {fileID: 0}
-  createModuleButton: {fileID: 5132089435791375102, guid: b99d2ecf2e358de4992cd7343b0311be,
+  createModuleMenuButton: {fileID: 5132089435791375102, guid: b99d2ecf2e358de4992cd7343b0311be,
     type: 3}
   salvageModuleButton: {fileID: 2432022914553297143, guid: d532fbf2304780d48a118539cad540ee,
     type: 3}
@@ -62,10 +64,23 @@ MonoBehaviour:
     type: 3}
   upgradeModuleButton: {fileID: 5119136126004782073, guid: a2d63a0f6023f0a44ae17f30153e81e4,
     type: 3}
-  modulePrefabs:
-  - {fileID: 4034520693683049931, guid: c61f2c67493c5844ba7153ce73f1f146, type: 3}
+  underConstructionPanel: {fileID: 0}
+  underConstructionProgressBar: {fileID: 0}
+  turnsRemainingText: {fileID: 0}
+  buildingModuleText: {fileID: 0}
+  standardModulePrefabs:
   - {fileID: 4034520693683049931, guid: 5a9c144d70b53434ca62d173fee8b62c, type: 3}
+  - {fileID: 4034520693683049931, guid: c61f2c67493c5844ba7153ce73f1f146, type: 3}
   emptyModule: {fileID: 6630272795529094907, guid: 358ae44332f59bd4c8c6dfdf98832cf1,
     type: 3}
-  healthModule: {fileID: 4034520693683049931, guid: c61f2c67493c5844ba7153ce73f1f146,
+  underConstructionModulePrefab: {fileID: 6630272795529094907, guid: ee6a79c19d41204439e4e2a989e23b57,
     type: 3}
+  inventaire: {fileID: 0}
+  detailedInformationsPanel: {fileID: 0}
+  moduleNameInDetailedPanel: {fileID: 0}
+  detailedInformationsTextField: {fileID: 0}
+  createModuleButton: {fileID: 0}
+  moduleResourcesCostGrid: {fileID: 0}
+  buildingTimeTextField: {fileID: 0}
+  moduleOptionsGridForCreatedModule: {fileID: 0}
+  resourcesCostPanel: {fileID: 0}

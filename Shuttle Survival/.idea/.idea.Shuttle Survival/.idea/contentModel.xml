@@ -77,6 +77,7 @@
           <e p="DungeonEventMakerWindow.cs" t="Include" />
           <e p="WarningCreationWindow.cs" t="Include" />
         </e>
+        <e p="InputHandler.cs" t="Include" />
         <e p="Menu" t="Include">
           <e p="ButtonAction.cs" t="Include" />
           <e p="ButtonHandler.cs" t="Include" />
@@ -92,6 +93,7 @@
             <e p="Modules script" t="Include">
               <e p="ArmModule.cs" t="Include" />
               <e p="CoreModule.cs" t="Include" />
+              <e p="Farm.cs" t="Include" />
               <e p="HealthModule.cs" t="Include" />
               <e p="ShipScanner.cs" t="Include" />
               <e p="UnderConstructionModule.cs" t="Include" />
@@ -100,6 +102,8 @@
           </e>
           <e p="UIModule.cs" t="Include" />
         </e>
+        <e p="MotorModule.cs" t="Include" />
+        <e p="MyInput.cs" t="Include" />
         <e p="Objet&amp;Ressources" t="Include">
           <e p="DissolveEffect.cs" t="Include" />
           <e p="Effects" t="Include">
@@ -110,6 +114,7 @@
             </e>
           </e>
         </e>
+        <e p="PanelHover.cs" t="Include" />
         <e p="PathFinding" t="Include">
           <e p="AstarPathfindingProject" t="Include">
             <e p="Behaviors" t="Include">
@@ -366,6 +371,7 @@
           <e p="TimeManager.cs" t="Include" />
           <e p="UIButtonHoverColorChanger.cs" t="Include" />
         </e>
+        <e p="ScrollingEnd.cs" t="Include" />
         <e p="ShipEvents" t="Include">
           <e p="Asteroids" t="Include">
             <e p="Asteroid.cs" t="Include" />
@@ -381,6 +387,7 @@
           <e p="ShipEventsManager.cs" t="Include" />
           <e p="ShipEventType.cs" t="Include" />
         </e>
+        <e p="SkillTreePanelManager.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
             <e p="LiberationSans - OFL.txt" t="Include" />

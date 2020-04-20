@@ -17,7 +17,7 @@ public class MainCompScript : MonoBehaviour
         computerOffSprite = spriteRenderer.sprite;
     }
 
-    private void OnMouseDown()
+    public void OnMouseDown()
     {        
         panelInfo.GetComponent<InfoPanelScript>().PanelUpdate();
     }

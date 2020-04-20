@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,12 +20,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject fog;
     [SerializeField] private GameObject[] modules;
     [SerializeField] private GameObject panelPause;
+    [SerializeField] private GameObject panelSkills;
+    [SerializeField] private GameObject panelVictory;
     //
     public static GameObject actions;
     public static CharacterSystem selection;
     public static GameManager GM;
     public static bool surSelectable;
     private bool panelCheck;
+    private int motorCount;
     private void Awake()
     {
         if(GM == null)
@@ -32,6 +36,15 @@ public class GameManager : MonoBehaviour
             GM = this;
         }
         else { Destroy(this); }
+    }
+
+    public event EventHandler OnSkillOpen;
+    public void OnSkillOpen_Caller()
+    {
+        if (OnSkillOpen != null)
+        {
+            OnSkillOpen(this, EventArgs.Empty);
+        }
     }
 
     #region accessors
@@ -45,20 +58,22 @@ public class GameManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Invoke("CloseActionPanel", 0.1f);
-           if (!surSelectable)
-               Invoke("Deselect", 0.1f);
+           
         }
         
         if (Input.GetKeyDown(KeyCode.Escape)){
-            if(panelCheck == false){
-                panelPause.SetActive(true);
-                Time.timeScale = 0;
-                panelCheck = true;
-            } else {
-                panelPause.SetActive(false);
-                Time.timeScale = 1;
-                panelCheck = false;
-            }  
+            
+                panelPause.SetActive(!panelPause.activeSelf);           
+             
+        }
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            Deselect();
+        }
+        if (Input.GetKeyDown(KeyCode.C) && selection)
+        {                      
+            panelSkills.SetActive(!panelSkills.activeSelf);
+            Invoke("OnSkillOpen_Caller",0.1f);
         }
         
     }
@@ -76,7 +91,7 @@ public class GameManager : MonoBehaviour
     public void GetInfo()
     {
         panelInfoPersos.SetActive(true);
-        panelInfoPersos.GetComponent<InfoPerso>().InfoUpdate();
+        panelInfoPersos.GetComponent<InfoPerso>().FullInfoUpdate();
     }
 
     public void Deselect()
@@ -121,9 +136,15 @@ public class GameManager : MonoBehaviour
         foreach (GameObject mod in modules) { mod.SetActive(false); }
         //CharacterSystem[] temp = GameObject.FindObjectsOfType<CharacterSystem>();
         //foreach (CharacterSystem perso in temp) { personnages.Add(perso); }//(int i = 0; i<temp.Length; i++) { personnages.Add(temp[i]); }
-        panelPause.SetActive(false);
+        Invoke("ClosePauseMenu", 0.01f);
+        panelVictory.SetActive(false);
+               
     }
  
+    void ClosePauseMenu()
+    {
+        panelPause.SetActive(false);
+    }
 
     public void AddBouton(string txt, System.Action action)
     {
@@ -133,5 +154,13 @@ public class GameManager : MonoBehaviour
         boutonTravail.transform.SetParent(actions.transform, true);//met le bouton enfant du paneau action
         boutonTravail.onClick.AddListener(() =>action());
         boutonTravail.onClick.AddListener(CloseActionPanel);
+    }
+
+    public void motorCheck()
+    {
+        motorCount++;
+
+        panelVictory.SetActive(true);
+        
     }
 }

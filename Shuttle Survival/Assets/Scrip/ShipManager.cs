@@ -6,7 +6,7 @@ using UnityEngine;
 public class ShipManager : MonoBehaviour
 {
     //connecté à l'inventaire du vaisseau et le GameManager
-    [SerializeField] private Inventaire shipInv; 
+    [SerializeField] private Inventaire shipInv;
     private GameManager gameM;
     public static ShipManager shipM;
     private int persoQte;
@@ -14,7 +14,7 @@ public class ShipManager : MonoBehaviour
     [SerializeField] private int powerCap = 20;
     [SerializeField] private int batteriePwr = 10;
     [SerializeField] private int bonbonneQte = 32;
-    
+
     private int o2Qte;
     private int powerQte;
 
@@ -22,11 +22,11 @@ public class ShipManager : MonoBehaviour
     [SerializeField] private int o2Usage = 1;
 
     #region accesseurs
-    public int O2Qte { get => o2Qte;}
-    public int O2Capacity { get => o2Capacity;}
-    public int BatteriePwr { get => batteriePwr;}
-    public int PowerQte { get => powerQte;}
-    public int PowerCap { get => powerCap;}
+    public int O2Qte { get => o2Qte; }
+    public int O2Capacity { get => o2Capacity; }
+    public int BatteriePwr { get => batteriePwr; }
+    public int PowerQte { get => powerQte; }
+    public int PowerCap { get => powerCap; }
     #endregion
 
     //public Inventaire ShipInv { get => shipInv;}
@@ -34,6 +34,7 @@ public class ShipManager : MonoBehaviour
     public Inventaire ShipInv()
     {
         return shipInv;
+
     }
 
     private void Start()
@@ -53,12 +54,12 @@ public class ShipManager : MonoBehaviour
 
     private void Awake()
     {
-        if(ShipManager.shipM is null)
+        if (ShipManager.shipM is null)
         {
             ShipManager.shipM = this;
         }
         else { Destroy(this); }
-        
+
     }
 
     //pour ajouter de la cap d'o2 quand on debloque une salle
@@ -76,6 +77,12 @@ public class ShipManager : MonoBehaviour
     public void AddO2()
     {
         o2Qte += bonbonneQte;
+        o2Qte = Mathf.Clamp(o2Qte, 0, o2Capacity);
+    }
+
+    public void AddAir(int qte) 
+    {
+        o2Qte += qte;
         o2Qte = Mathf.Clamp(o2Qte, 0, o2Capacity);
     }
 

@@ -51,7 +51,7 @@ public class ShipEventsManager : MonoBehaviour
                     CameraController.cameraController.GetToThisPosition(currentShipEvent.positionOfTheEvent, () =>
                     {
                         eventTitleText.text = currentShipEvent.createdModuleOrDoor.GetComponent<Module>().moduleName + " completed !";
-                        eventDescriptionText.text = "CharacterName " + currentShipEvent.createdModuleOrDoor.GetComponent<Module>().onCreationPopupString;
+                        eventDescriptionText.text = "Your character " + currentShipEvent.createdModuleOrDoor.GetComponent<Module>().onCreationPopupString;
                         closeButton.onClick.AddListener(FreeShipEventsQueue);
                         shipEventPopup.SetActive(true);
                     });
@@ -61,7 +61,7 @@ public class ShipEventsManager : MonoBehaviour
                     {
                         currentShipEvent.onEventPosition?.Invoke();
                         eventTitleText.text = "Door repair completed !";
-                        eventDescriptionText.text = "CharacterName " + currentShipEvent.createdModuleOrDoor.GetComponent<LockedDoor>().onDoorUnlockedPopupString;
+                        eventDescriptionText.text = "Your character " + currentShipEvent.createdModuleOrDoor.GetComponent<LockedDoor>().onDoorUnlockedPopupString;
                         closeButton.onClick.AddListener(() =>
                         {
                             NewRoomUnlockedEvent(currentShipEvent);

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Character Related/Character Perk")]
-public class CharacterPerk : MonoBehaviour //: ScriptableObject
+[CreateAssetMenu(menuName = "Character Perk")]
+public class CharacterPerk : ScriptableObject
 {
     
     public CharacterPerk preRequis;
@@ -13,7 +13,10 @@ public class CharacterPerk : MonoBehaviour //: ScriptableObject
     [SerializeField] public string perkDescription;
 }
 
-
+public class CharPerkClass : MonoBehaviour
+{
+    public CharacterPerk perk;
+}
 
 
 // 1per - le perk. 1autre perso - une autre instance du perk//n instance du perk <- dégoutant

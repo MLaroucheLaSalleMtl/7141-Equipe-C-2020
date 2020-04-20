@@ -5,7 +5,18 @@ using UnityEngine;
 
 public enum CharacterPerkType
 {
-    Lucky,
-    Thief,
-    Quickdraw
+    Base,//all
+    Backpacker,
+    //combat branche
+    Combat,
+    Attack,
+    Defence,
+    //branche leader   
+    Leader,
+    Soignant,
+    SmoothTalker,
+    //branche ingénieur
+    Ingenieur,
+    Hacker,
+    Looter,
 }

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 667909499e7fc6546b6dacea5102acb4, type: 3}
+  m_Name: Attack the alien
+  m_EditorClassIdentifier: 
+  optionName: Attack the alien
+  optionText: Attack the alien with a big punch.
+  chooseCharacterForOption: 1
+  requirementsToBeActive:
+  - statsToCheck: 0
+    quantityRequired: 3
+  relatedDungeonRoll:
+    baseChanceOfSucess: 0.75
+    rollChanceModifiers:
+    - statsToCheck: 0
+      percentIncreasePerRelatedStatsPoint: 0.05
+      decreaser: 0
+      partyWide: 0
+    successEvent: {fileID: 11400000, guid: b0912a7e6904d284d8ba48e38d396aad, type: 2}
+    failureEvent: {fileID: 11400000, guid: 667ed08f309d2ad459c1ba1cf5c1399c, type: 2}
+    critFailPossible: 0
+    criticalFailureEvent: {fileID: 0}
+    critSucessPossible: 0
+    criticalSuccessEvent: {fileID: 0}

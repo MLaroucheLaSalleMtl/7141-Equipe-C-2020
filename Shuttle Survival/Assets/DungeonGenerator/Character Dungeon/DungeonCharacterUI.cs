@@ -11,7 +11,6 @@ public class DungeonCharacterUI : MonoBehaviour
     [SerializeField] Image healthBarFillImage;
     [SerializeField] TextMeshProUGUI healthBarText;
     [SerializeField] Image toolImage;
-    [SerializeField] Image perk1Image, perk2Image;
     [SerializeField] Transform characterInventoryGridTransform;
     [SerializeField] GameObject inGameItemPrefab;
     [SerializeField] GameObject chooseCharacterButtonForOption;
@@ -61,16 +60,16 @@ public class DungeonCharacterUI : MonoBehaviour
             healthBarFillImage.fillAmount = ci.currentHp / (float)ci.maxHp;
             healthBarText.text = ci.currentHp + " / " + ci.maxHp;
 
-            toolImage.sprite = ci.equipedTool ? ci.equipedTool.toolSprite : null;
-            perk1Image.sprite = ci.perk1 ? ci.perk1.perkSprite : null;
-            perk2Image.sprite = ci.perk2 ? ci.perk2.perkSprite : null;
-            toolImage.GetComponent<TooltipHandler>().simpleTextString = ci.equipedTool.toolDescription;
-            perk1Image.GetComponent<TooltipHandler>().simpleTextString = ci.perk1.perkDescription;
-            perk2Image.GetComponent<TooltipHandler>().simpleTextString = ci.perk2.perkDescription;
+            //toolImage.sprite = ci.equipedTool ? ci.equipedTool.toolSprite : null;
+           /* if (ci.PerksChar != null && ci.PerksChar.Length > 0)
+            {
+                //toolImage.GetComponent<TooltipHandler>().simpleTextString = ci.equipedTool.toolDescription;
+            }
+            */
             backPackCapacityText.text = "Backpack : " + carriedItemCount + " / " + backPackCapacity;
-            statsPointsText.text = "<color=\"red\">" + ci.strength + " str \n" +
-                                   "<color=\"yellow\">" + ci.tinkering + " tink \n" +
-                                   "<color=\"purple\">" + ci.charisma + " char ";               
+            //statsPointsText.text = "<color=\"red\">" + ci.strength + " str \n" +
+                                  // "<color=\"yellow\">" + ci.tinkering + " tink \n" +
+                                //   "<color=\"purple\">" + ci.charisma + " char ";               
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,7 +17,7 @@ public class ShipScanManager : MonoBehaviour
     [SerializeField] GameObject boardingCrewSelectionPanel;
     [SerializeField] ScannedShipSlot[] scannedShipSlots;
     [SerializeField] ScannedShipSlot choosedScannedShipSlot;
-
+    private bool firstTimeDungeon = true;
     [Range(0, 3)]
     [SerializeField] int scannerCapacity;
     [SerializeField] GameObject SHIP_SCENE_HOLDER;
@@ -95,7 +96,11 @@ public class ShipScanManager : MonoBehaviour
 
         Action onFadeInEndAction = () =>
         {
-
+            if (firstTimeDungeon)
+            {
+                firstTimeDungeon = false;
+                DialogueTriggers.dialogueTriggers.TriggerDialogue(10);
+            }
         };
 
         ScreenTransitionManager.screenTransitionManager.ScreenTransition(onFadeOutEndAction, onFadeInEndAction);              

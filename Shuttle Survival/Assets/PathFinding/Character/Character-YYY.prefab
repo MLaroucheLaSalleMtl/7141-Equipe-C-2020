@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5703947021894492785}
   - component: {fileID: 5703947021894492792}
   - component: {fileID: 5703947021894492799}
+  - component: {fileID: 3420485372787513800}
   m_Layer: 0
   m_Name: Character-YYY
   m_TagString: Player
@@ -56,9 +57,13 @@ MonoBehaviour:
   foodValue: 4
   sleepCap: 36
   backpackCapacity: 5
-  perk1: {fileID: 0}
-  perk2: {fileID: 0}
+  perksChar: []
+  perksTool: []
   equipedTool: {fileID: 0}
+  defence: 1
+  strenght: 1
+  tinkering: 2
+  charisma: 2
   characterAlertTypes: 
   addOnStart: 1
 --- !u!114 &5703947021894492796
@@ -119,7 +124,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 5703947021894492784}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: bf5634da31f0c7641b172ddbead1fe37, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
@@ -207,3 +212,18 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 5d883fb8164e141459bb7a897bb71661, type: 2}
   outlineColor: {r: 0.28235295, g: 1, b: 0, a: 255}
   outlineThickness: 3
+--- !u!114 &3420485372787513800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5703947021894492784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa31b4bf5a8cff743a459c7f006182b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 0
+  AbilityPoints: 0
+  tree: {fileID: 1066815817306057288, guid: 57d96cc6c6564074b8a9822257a402d6, type: 3}

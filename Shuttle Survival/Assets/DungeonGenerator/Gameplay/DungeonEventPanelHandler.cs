@@ -57,6 +57,7 @@ public class DungeonEventPanelHandler : MonoBehaviour
         busyWithDungeonEvent = false;
         dungeonEventPanel.SetActive(false);
         toggleUIButton.SetActive(false);
+        DungeonCharacterManager.dungeonCharacterManager.AddExpToEveryone();
     }
 
     public void SetCharacterForOption(CharacterSystem choosenCharacter)

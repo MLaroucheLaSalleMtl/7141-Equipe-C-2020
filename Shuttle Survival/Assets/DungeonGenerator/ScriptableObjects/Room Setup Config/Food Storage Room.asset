@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 877a0ae64fca07c449ecc44cbdac4621, type: 3}
+  m_Name: Food Storage Room
+  m_EditorClassIdentifier: 
+  roomSetupName: Scraps and bin room
+  possiblePointsOfInterests:
+  - x: 2
+    y: 5
+    pointsOfInterest:
+    - {fileID: -4362951490470176636, guid: 5f06a101bfde2124eb6cafc05c4ff194, type: 3}
+    chancesToSpawn:
+    - 1
+  - x: 10
+    y: 4
+    pointsOfInterest:
+    - {fileID: -4362951490470176636, guid: 5f06a101bfde2124eb6cafc05c4ff194, type: 3}
+    chancesToSpawn:
+    - 1
+  - x: 2
+    y: 1
+    pointsOfInterest:
+    - {fileID: -551647211163852907, guid: 1524c05ff8baec3469812de244b2501e, type: 3}
+    chancesToSpawn:
+    - 1

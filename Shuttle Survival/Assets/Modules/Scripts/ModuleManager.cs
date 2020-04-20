@@ -16,6 +16,7 @@ public class ModuleManager : MonoBehaviour
     public GameObject emptyModulePanel;
     public GameObject moduleCreationPanel;
     UIModule currentUImodule;
+    [SerializeField] public GameObject sceneHolder;
     [SerializeField] Image moduleCreationPrefab;
     [SerializeField] Transform moduleCreationGrid;
     [SerializeField] Text modulePanelTitle;
@@ -167,6 +168,7 @@ public class ModuleManager : MonoBehaviour
                 GameObject underConstructionModule = Instantiate(underConstructionModulePrefab, currentModule.transform.position, Quaternion.identity);
                 underConstructionModule.GetComponent<UnderConstructionModule>().SetTurnsToBuild(listOfPossibleModules[moduleIndex].GetComponent<Module>().turnsToBuild);
                 underConstructionModule.GetComponent<UnderConstructionModule>().moduleToBuild = listOfPossibleModules[moduleIndex];
+                underConstructionModule.transform.SetParent(sceneHolder.transform);
                 
                 //trouver le bon endroit pour envoyer bob      
                 NPC.NeedAHandOverHere(underConstructionModule.transform);

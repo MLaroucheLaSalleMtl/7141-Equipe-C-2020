@@ -1,5 +1,75 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &402991462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 402991463}
+  - component: {fileID: 402991464}
+  m_Layer: 0
+  m_Name: Dialogue 8
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &402991463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402991462}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.955268, y: -1.6944561, z: 8.637577}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6609614699247504693}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &402991464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402991462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueEntries:
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: This is it. The scanner is damaged, but if you managed to repair
+      it, I'll be able to contact nearby ships and ask for assistance.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4209925459091687797}
+          m_MethodName: GetCameraToPosition
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 5
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogueSpeaker: {fileID: 11400000, guid: 9a6bc1e00c2a3194ea8a74ffac9a96af, type: 2}
+    dialogueMessage: Yes! We're basically saved. Let's do this. We must clean these
+      scraps and continue harvesting asteroids.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  onDialogueEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &603656430
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,6 +100,182 @@ Transform:
   m_Father: {fileID: 2092664703}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &626478139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 626478140}
+  - component: {fileID: 626478141}
+  m_Layer: 0
+  m_Name: Dialogue 11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &626478140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626478139}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.955268, y: -1.6944561, z: 8.637577}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6609614699247504693}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &626478141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626478139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueEntries:
+  - dialogueSpeaker: {fileID: 11400000, guid: 11b1c5ea534aac640ba5063c1ed558c9, type: 2}
+    dialogueMessage: We're back. We got plenty of useful things. Anything happened
+      while we were gone PAIA?
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: Yes. I didn't want to disturb you on your mission, but I heard
+      someone screaming near the engine room. You might want to investigate. You
+      will have to force a door.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4209925459091687797}
+          m_MethodName: GetCameraToPosition
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 6
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogueSpeaker: {fileID: 11400000, guid: 9a6bc1e00c2a3194ea8a74ffac9a96af, type: 2}
+    dialogueMessage: 'Someone else ? Hurry, we must rescue this person. '
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4209925459091687797}
+          m_MethodName: ActivateCollider
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 6
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  onDialogueEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &868832080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 868832081}
+  - component: {fileID: 868832082}
+  m_Layer: 0
+  m_Name: Dialogue 9
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &868832081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868832080}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.955268, y: -1.6944561, z: 8.637577}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6609614699247504693}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &868832082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868832080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueEntries:
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: Well done. I'm currently calling all nearby ships for assistance.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4209925459091687797}
+          m_MethodName: GetCameraToPosition
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 5
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogueSpeaker: {fileID: 11400000, guid: 9a6bc1e00c2a3194ea8a74ffac9a96af, type: 2}
+    dialogueMessage: I can't wait to get out of here ! Hooray !
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: ...There must be something wrong with the system. No one is
+      answering. I can detect ships but their communications systems are down.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogueSpeaker: {fileID: 11400000, guid: 11b1c5ea534aac640ba5063c1ed558c9, type: 2}
+    dialogueMessage: Oh no.. This is bad. We don't have enough resources on this
+      ship to properly repair the engines. We must get our spacesuits and use our
+      capsule to get to these ships.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: That is a great suggestion. This is why you are captain. It
+      would take about 2 years to find the approriate materials on asteroids. Your
+      best chance at survival is to harvest from other ships. I'll gather as much
+      informations as I can on these ships.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  onDialogueEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &904228108
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +352,8 @@ MonoBehaviour:
   dialogueEntries:
   - dialogueSpeaker: {fileID: 11400000, guid: 9a6bc1e00c2a3194ea8a74ffac9a96af, type: 2}
     dialogueMessage: Here we go, it's fixed. Now we gotta wait and see if some asteroids
-      are passing by. The system should alert us.
+      are passing by. The system should alert us. Let's skip some turns until we
+      detect some !
     dialogueEvent:
       m_PersistentCalls:
         m_Calls:
@@ -117,6 +364,24 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 4
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: Once you have gathered enough resources from asteroids, I suggest
+      you unlock the door to the south. There's the ship scanner there. I might be
+      able to detect nearby ships if you repair it correctly.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4209925459091687797}
+          m_MethodName: GetCameraToPosition
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 5
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -135,6 +400,66 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1670409581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1670409582}
+  m_Layer: 0
+  m_Name: Dialogue Transform 7
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1670409582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670409581}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.3, y: 3.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2092664703}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1713365814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1713365815}
+  m_Layer: 0
+  m_Name: Dialogue Transform 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1713365815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713365814}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.08, y: -4.82, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2092664703}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2092664702
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,6 +492,8 @@ Transform:
   - {fileID: 2143770392}
   - {fileID: 7908830228195405102}
   - {fileID: 515937156440259530}
+  - {fileID: 1713365815}
+  - {fileID: 1670409582}
   m_Father: {fileID: 4209925459091687787}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -200,6 +527,67 @@ Transform:
   m_Father: {fileID: 2092664703}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3805095197584273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1891251351323271313}
+  - component: {fileID: 2044055891650611257}
+  m_Layer: 0
+  m_Name: Dialogue 10
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1891251351323271313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3805095197584273}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.955268, y: -1.6944561, z: 8.637577}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6609614699247504693}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2044055891650611257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3805095197584273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueEntries:
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: I'm talking to you through our communication system. Be careful,
+      we don't know what you could find on this ship. Click different points of interest
+      to interact with them. Try to get as much resources as possible, but be careful,
+      the more rooms you explore, the more time passes.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogueSpeaker: {fileID: 11400000, guid: 663f1c96ad76adb4a8255c71459e6c3c, type: 2}
+    dialogueMessage: Whenever you think you are done with this ship. Use the menu
+      to leave. Good luck.
+    dialogueEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  onDialogueEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &168668718936818173
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +718,8 @@ MonoBehaviour:
   - {fileID: 2143770392}
   - {fileID: 7908830228195405102}
   - {fileID: 515937156440259530}
+  - {fileID: 1713365815}
+  - {fileID: 1670409582}
   amountOfButtonFlickers: 3
   timeBetweenFlickers: 0.25
 --- !u!114 &4209925459091687786
@@ -366,6 +756,10 @@ MonoBehaviour:
   - {fileID: 5901500847201838883}
   - {fileID: 5901500847831122060}
   - {fileID: 1257399794}
+  - {fileID: 402991464}
+  - {fileID: 868832082}
+  - {fileID: 2044055891650611257}
+  - {fileID: 626478141}
 --- !u!1001 &5901500846516864533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -505,6 +899,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1927939737, guid: 0fb55e08e710000008c55e08e7100000, type: 3}
+      propertyPath: dialogueEntries.Array.data[2].dialogueMessage
+      value: 'There was an <i>incident</i>. I have other priorities. The engine needs
+        to be fixed as soon as possible. Briefing you would only delay this mission. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927939737, guid: 0fb55e08e710000008c55e08e7100000, type: 3}
       propertyPath: dialogueEntries.Array.data[3].dialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4209925459091687797}
@@ -615,24 +1014,6 @@ PrefabInstance:
       objectReference: {fileID: 4209925459091687797}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fb55e08e710000008c55e08e7100000, type: 3}
---- !u!4 &6609614699247504693 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 746548931081997088, guid: 0fb55e08e710000008c55e08e7100000,
-    type: 3}
-  m_PrefabInstance: {fileID: 5901500846516864533}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6609614699453180726 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 746548931966889251, guid: 0fb55e08e710000008c55e08e7100000,
-    type: 3}
-  m_PrefabInstance: {fileID: 5901500846516864533}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6609614699234439267 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 746548931078370934, guid: 0fb55e08e710000008c55e08e7100000,
@@ -645,9 +1026,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6003042083370036771 stripped
+--- !u!114 &6609614699453180726 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 191756171012728886, guid: 0fb55e08e710000008c55e08e7100000,
+  m_CorrespondingSourceObject: {fileID: 746548931966889251, guid: 0fb55e08e710000008c55e08e7100000,
     type: 3}
   m_PrefabInstance: {fileID: 5901500846516864533}
   m_PrefabAsset: {fileID: 0}
@@ -657,21 +1038,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5773598900352946736 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 142327780348105765, guid: 0fb55e08e710000008c55e08e7100000,
+--- !u!4 &6609614699247504693 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 746548931081997088, guid: 0fb55e08e710000008c55e08e7100000,
     type: 3}
   m_PrefabInstance: {fileID: 5901500846516864533}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5901500846104933210 stripped
+--- !u!114 &5901500847831122060 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 462320975, guid: 0fb55e08e710000008c55e08e7100000,
+  m_CorrespondingSourceObject: {fileID: 1927939737, guid: 0fb55e08e710000008c55e08e7100000,
     type: 3}
   m_PrefabInstance: {fileID: 5901500846516864533}
   m_PrefabAsset: {fileID: 0}
@@ -693,9 +1068,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5901500847831122060 stripped
+--- !u!114 &5901500846104933210 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1927939737, guid: 0fb55e08e710000008c55e08e7100000,
+  m_CorrespondingSourceObject: {fileID: 462320975, guid: 0fb55e08e710000008c55e08e7100000,
+    type: 3}
+  m_PrefabInstance: {fileID: 5901500846516864533}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5773598900352946736 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 142327780348105765, guid: 0fb55e08e710000008c55e08e7100000,
+    type: 3}
+  m_PrefabInstance: {fileID: 5901500846516864533}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a320fbd4cb9a1143b549a6e52bcf8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6003042083370036771 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 191756171012728886, guid: 0fb55e08e710000008c55e08e7100000,
     type: 3}
   m_PrefabInstance: {fileID: 5901500846516864533}
   m_PrefabAsset: {fileID: 0}

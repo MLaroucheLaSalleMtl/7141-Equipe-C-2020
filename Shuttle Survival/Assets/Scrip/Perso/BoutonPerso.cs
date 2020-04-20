@@ -19,11 +19,8 @@ public class BoutonPerso : MonoBehaviour, IPointerEnterHandler,IPointerExitHandl
 
     public void MisAJour(CharacterSystem perso)
     {
-        GameObject temp;
         bouton = this.GetComponent<Button>();
-        temp = this.transform.GetChild(0).gameObject;
-        temp.GetComponent<Image>().sprite = perso.CharacterSprite;
-        //this.gameObject.GetComponentInChildren<Image>().sprite = perso.CharacterSprite;//pourquoi ça change le sprite du bouton pis pas de l'enfant? 
+        transform.GetChild(0).GetComponent<Image>().sprite = perso.CharacterSprite;
         bouton.onClick.AddListener(() => {       gameM.Select(perso);    });//cette ligne OK
     }
     // Update is called once per frame

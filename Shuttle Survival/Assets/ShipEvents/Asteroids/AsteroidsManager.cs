@@ -307,7 +307,7 @@ public class AsteroidsManager : MonoBehaviour
         //guaranteed asteroids on first turn
     }
 
-    private void DisableOtherUI()
+    public void DisableOtherUI()
     {
         TimeManager.timeManager.ToggleUI();
         foreach (GameObject item in otherUIToDisable)

@@ -64,6 +64,9 @@ public class DungeonKeywordsTranslater : MonoBehaviour
                 case DungeonKeywords.Salvageable:
                     description += "<color=#CCFF00>- Salvageable parts</color>\n";
                     break;
+                case DungeonKeywords.Food:
+                    description += "<color=#99cc99>- Presence of food </color>\n";
+                    break;
             }
         }
         return description;

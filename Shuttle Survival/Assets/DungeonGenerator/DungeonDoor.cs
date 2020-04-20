@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(PourTousLesSelectable))]
+
 public class DungeonDoor : MonoBehaviour
 {
     [SerializeField] DungeonEvent dungeonDoorEvent;
@@ -12,6 +13,7 @@ public class DungeonDoor : MonoBehaviour
     bool hovered;
     bool unlocked;
     DoorOpening doorOpening;
+    [SerializeField] Sprite unlockedSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +64,7 @@ public class DungeonDoor : MonoBehaviour
     {
         //change sprite
         unlocked = true;
+        GetComponentInChildren<SpriteRenderer>().sprite = unlockedSprite;
         switch (doorOpening)
         {
             case DoorOpening.Top:
@@ -81,6 +84,7 @@ public class DungeonDoor : MonoBehaviour
 
     public void LinkedUnlock()
     {
+        GetComponentInChildren<SpriteRenderer>().sprite = unlockedSprite;
         unlocked = true;
     }
 

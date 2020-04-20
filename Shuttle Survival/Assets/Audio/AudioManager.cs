@@ -68,9 +68,6 @@ public class AudioManager : MonoBehaviour
                 break;
             case SoundEffectsType.EventPopup:
                 break;
-            case SoundEffectsType.ComputerBooting:
-                audioToPlay = computerBootingSFX;
-                break;
             case SoundEffectsType.ButtonClick:
                 audioToPlay = buttonClickSFX;
                 break;
@@ -83,6 +80,7 @@ public class AudioManager : MonoBehaviour
     public void PlaySoundEffect(int enumIndex)
     {
         PlaySoundEffect(enumIndex);
+        //cause un stack overflow please fix
     }
 
 

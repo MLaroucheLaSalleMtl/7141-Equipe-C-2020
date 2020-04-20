@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1454476509448547356}
   - component: {fileID: 9077033166413407432}
   - component: {fileID: -402653664610642229}
+  - component: {fileID: -1852131003090218490}
   m_Layer: 5
   m_Name: UICreatableModule
   m_TagString: Untagged
@@ -103,3 +104,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   simpleTextString: 
   tooltipsType: 0
+--- !u!114 &-1852131003090218490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632633766481156733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2317651bea6d89443a35017781d4c918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

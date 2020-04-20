@@ -26,7 +26,8 @@ public class UnderConstructionModule : Module
         turnsRemainingToBuild--;
         if(turnsRemainingToBuild <= 0)
         {
-            Instantiate(moduleToBuild, transform.position, Quaternion.identity);
+            GameObject module = Instantiate(moduleToBuild, transform.position, Quaternion.identity);
+            module.transform.SetParent(ModuleManager.moduleManager.sceneHolder.transform);
             TimeManager.timeManager.OnTimeChanged -= OnTimeChanged;
             if(!(moduleToBuild.GetComponent<Module>() is CoreModule))
             {

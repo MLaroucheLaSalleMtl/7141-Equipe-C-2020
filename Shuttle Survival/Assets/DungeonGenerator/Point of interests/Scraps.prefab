@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 5082502277143266595}
   - component: {fileID: -551647211163852907}
   - component: {fileID: 6029096308990456340}
+  - component: {fileID: -5281511405611541603}
   m_Layer: 0
   m_Name: Scraps
   m_TagString: Untagged
@@ -156,3 +157,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-5281511405611541603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7438250675439143789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2317651bea6d89443a35017781d4c918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

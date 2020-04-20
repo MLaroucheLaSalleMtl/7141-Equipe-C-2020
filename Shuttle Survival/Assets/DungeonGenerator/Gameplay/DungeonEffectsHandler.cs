@@ -36,6 +36,7 @@ public class DungeonEffectsHandler : MonoBehaviour
 
         for (int i = 0; i < dungeonEffects.Count; i++)
         {
+            print(i);
             switch (dungeonEffects[i].dungeonEffectType)
             {
                 case DungeonEffectType.AffectHealthSingle:

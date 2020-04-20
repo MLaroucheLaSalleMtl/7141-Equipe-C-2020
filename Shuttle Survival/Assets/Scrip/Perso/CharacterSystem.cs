@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(PathFinding))]
 [RequireComponent(typeof(Collider2D))]
-[RequireComponent(typeof(PourTousLesSelectable))]
+
 public class CharacterSystem : MonoBehaviour
 {
     
@@ -20,25 +20,27 @@ public class CharacterSystem : MonoBehaviour
     [SerializeField] private string characterName;
     [SerializeField] private Sprite characterSprite;
     [SerializeField] private int hPMax = 6;
-    [SerializeField] private int foodCap = 8;//12 = 2 jours
+    private readonly int foodCap = 8;//8*4=32heures
     [SerializeField] private int foodValue = 1;
-    [SerializeField] private int sleepCap = 36;//18 heures ->36
+    private readonly int sleepCap = 18;//18 heures
+    public static int healValue = 2;
  
     //pour dongeon
     [SerializeField] int backpackCapacity = 5;
-    [SerializeField] CharacterPerk perk1, perk2;
-    [SerializeField] CharacterTool equipedTool;
+    [SerializeField] private CharacterPerk[] perksChar;
+    //[SerializeField] private  CharacterPerk[] perksTool;
+    //[SerializeField] CharacterTool equipedTool;
     [SerializeField] int defence = 1;
     [SerializeField] int strenght = 1;
-    [SerializeField] int tinkering = 2;
-    [SerializeField] int charisma = 2;
+    [SerializeField] bool tinkering = false;
+    [SerializeField] bool charisma = false;
 
     public List<CharacterAlertType> characterAlertTypes = new List<CharacterAlertType>();
     [SerializeField] private bool addOnStart = true;
     private GameObject boutonLink;
     private PathFinding perso;
     
-    public static readonly int hunger = 12; //6heure, 4 fois par jour
+    public static readonly int hunger = 6; //6heure, 4 fois par jour
     // hunger * temps q'un tour represente = nombre d'heure avant de decrementer la satiete
     int incrementHunger = 0;
 
@@ -58,13 +60,13 @@ public class CharacterSystem : MonoBehaviour
     public int HPMax { get => hPMax;}
     public string CharacterName { get => characterName; set => characterName = value; }
     public int Strenght { get => strenght; set => strenght = value; }
-    public int Tinkering { get => tinkering; set => tinkering = value; }
-    public int Charisma { get => charisma; set => charisma = value; }
-    public CharacterPerk Perk1 { get => perk1; set => perk1 = value; }
-    public CharacterPerk Perk2 { get => perk2; set => perk2 = value; }
-    public CharacterTool EquipedTool { get => equipedTool; set => equipedTool = value; }
-    public int Defence { get => defence; set => defence = value; }
+    public bool Tinkering { get => tinkering; set => tinkering = value; }
+    public bool Charisma { get => charisma; set => charisma = value; }
 
+    //public CharacterTool EquipedTool { get => equipedTool; set => equipedTool = value; }
+    public int Defence { get => defence; set => defence = value; }
+    public CharacterPerk[] PerksChar { get => perksChar; set => perksChar = value; }
+    public int BackpackCapacity { get => backpackCapacity; set => backpackCapacity = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -116,7 +118,7 @@ public class CharacterSystem : MonoBehaviour
         if (currSleep == 0)
         {
             Debug.Log("Message de confirmation : le perso est fatigué");
-            //GoToBed();
+            GoToBed(true);
         }
         #endregion
 
@@ -262,8 +264,14 @@ public class CharacterSystem : MonoBehaviour
             healing = false;
             ship.ShipInv().PayFromID(4, 1);
             Dispo = true;
-            this.currHp = this.HPMax;
+            this.currHp += healValue;
+            this.currHp = Mathf.Clamp(currHp,0, HPMax);
         }
+    }
+
+    public void ChangeHealValue(int x)
+    {
+        healValue = x;
     }
     #endregion
     #endregion
@@ -272,7 +280,6 @@ public class CharacterSystem : MonoBehaviour
         currHp -= dmg;
         if (currHp <= 0)
         {
-            Debug.Log("big oof");           
             Destroy(this.gameObject);
         }
     }
@@ -364,6 +371,15 @@ public class CharacterSystem : MonoBehaviour
 
     public CharacterInfo GetInfoForCharacterDungeonUI()
     {
-        return new CharacterInfo(CharacterName, CharacterSprite, HPMax, currHp, backpackCapacity, Perk1, Perk2, EquipedTool, Strenght, defence, Tinkering, Charisma);
+        
+        return new CharacterInfo(CharacterName, CharacterSprite, HPMax, currHp, backpackCapacity, PerksChar, Strenght, defence, Tinkering, Charisma);
     }
+
+    #region skills
+    public void IncreaseHP(int number)
+    {
+        hPMax += number;
+        currHp += number;
+    }
+    #endregion
 }

@@ -10,14 +10,18 @@ public class CharacterInfo
     [SerializeField] public int maxHp;
     [SerializeField] public int currentHp;
     [SerializeField] public int backPackCapacity;
-    [SerializeField] public CharacterPerk perk1, perk2;
-    [SerializeField] public CharacterTool equipedTool;
+    [SerializeField] private CharacterPerk[] perksChar;
+    [SerializeField] private CharacterPerk[] perksTool;
+   // [SerializeField] public CharacterTool equipedTool;
     [SerializeField] public int strength;
-    [SerializeField] public int tinkering;
-    [SerializeField] public int charisma;
+    [SerializeField] public bool tinkering;
+    [SerializeField] public bool charisma;
     [SerializeField] public int defence;
 
-    public CharacterInfo(string characterName, Sprite characterSprite, int maxHp, int currentHp, int backPackCapacity, CharacterPerk perk1, CharacterPerk perk2, CharacterTool equipedTool, int strength,int defence, int tinkering, int charisma)
+    public CharacterPerk[] PerksChar { get => perksChar; set => perksChar = value; }
+    //public CharacterPerk[] PerksTool { get => perksTool; set => perksTool = value; }
+    //pas eu le temps parceque j'étais trop patate pendant la quarantaine :/ s: E.D
+    public CharacterInfo(string characterName, Sprite characterSprite, int maxHp, int currentHp, int backPackCapacity, CharacterPerk[] perks, int strength,int defence, bool tinkering, bool charisma)
     {
         this.defence = defence;
         this.characterName = characterName;
@@ -25,9 +29,8 @@ public class CharacterInfo
         this.maxHp = maxHp;
         this.currentHp = currentHp;
         this.backPackCapacity = backPackCapacity;
-        this.perk1 = perk1;
-        this.perk2 = perk2;
-        this.equipedTool = equipedTool;
+        this.PerksChar = perks;
+        
         this.strength = strength;
         this.tinkering = tinkering;
         this.charisma = charisma;

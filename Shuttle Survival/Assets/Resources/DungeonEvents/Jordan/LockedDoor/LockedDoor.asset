@@ -17,6 +17,4 @@ MonoBehaviour:
     next room.
   dungeonOptions:
   - {fileID: 11400000, guid: ace90b5328313d143925033a7544175b, type: 2}
-  - {fileID: 11400000, guid: 9bc0aa1dc41885d4ca85473b9d9c18b5, type: 2}
-  - {fileID: 11400000, guid: 5048565f9327e344fa48176aa813f0bd, type: 2}
   eventEffects: []

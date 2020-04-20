@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -19,6 +20,7 @@ public class DoorManager : MonoBehaviour
     [SerializeField] Image doorProgressFill;
     [SerializeField] GameObject turnsRemainingText;
     [SerializeField] TextMeshProUGUI repairTimeTextField;
+    private int unlockedDoorCount = 0;
     [HideInInspector]
     public LockedDoor hoveredDoor;
     LockedDoor currentDoor;
@@ -50,7 +52,7 @@ public class DoorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hoveredDoor != null && PanelManager.panelManager.IsInteractablesEnabled() &&Input.GetMouseButtonDown(0))
+        if (hoveredDoor != null && PanelManager.panelManager.IsInteractablesEnabled() && Input.GetMouseButtonDown(0))
         {
             AudioManager.audioManager.PlaySoundEffect(SoundEffectsType.ButtonClick);
             GenerateDoorPanel(hoveredDoor);
@@ -127,5 +129,22 @@ public class DoorManager : MonoBehaviour
         currentDoor.CancelRepair();
         doorPanel.SetActive(false);
         repairButton.GetComponent<TooltipHandler>().OnPointerExit(null);
+    }
+
+    public void IncrementUnlockedDoorCount()
+    {
+        unlockedDoorCount++;
+        if (unlockedDoorCount == 3)
+        {
+            DialogueTriggers.dialogueTriggers.TriggerDialogue(8);
+        }
+        else if (unlockedDoorCount == 4)
+        {
+            DialogueTriggers.dialogueTriggers.TriggerDialogue(12);
+        }
+        else if (unlockedDoorCount == 5)
+        {
+            DialogueTriggers.dialogueTriggers.TriggerDialogue(13);
+        }
     }
 }

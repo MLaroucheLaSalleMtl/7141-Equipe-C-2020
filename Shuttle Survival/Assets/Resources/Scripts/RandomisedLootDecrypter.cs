@@ -7,6 +7,8 @@ public class RandomisedLootDecrypter
 {
     private static RandomisedLootDecrypter instance;
 
+    float modifier = 1;
+
     private RandomisedLootDecrypter()
     {
         
@@ -30,8 +32,8 @@ public class RandomisedLootDecrypter
             float rand = UnityEngine.Random.Range(0.00f, 1.00f);
             if (randomisedLoot.chancesToGive[i] >= rand)
             {
-                int quantity = UnityEngine.Random.Range(Mathf.RoundToInt(randomisedLoot.resourcesPossible[i].Quantite * (1 - randomisedLoot.resourcesVariation[i])),
-                                                        Mathf.RoundToInt(randomisedLoot.resourcesPossible[i].Quantite * (1 + randomisedLoot.resourcesVariation[i])));
+                int quantity = UnityEngine.Random.Range(Mathf.RoundToInt(randomisedLoot.resourcesPossible[i].Quantite * (1 - randomisedLoot.resourcesVariation[i]) * modifier),
+                                                        Mathf.RoundToInt(randomisedLoot.resourcesPossible[i].Quantite * (1 + randomisedLoot.resourcesVariation[i])* modifier));
                 if (quantity == 0) quantity = 1;
                 ItemStack loot = new ItemStack(quantity, randomisedLoot.resourcesPossible[i].Item);
                 itemStacks[i] = loot;
@@ -41,5 +43,10 @@ public class RandomisedLootDecrypter
         ResourcesPack rolledLoot = new ResourcesPack();
         rolledLoot.resources = cleanedUpItemStacks;
         return rolledLoot;
+    }
+
+    public void ActivateModifier()
+    {
+        modifier = 1.5f;
     }
 }

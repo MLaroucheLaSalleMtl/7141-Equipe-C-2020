@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2032379186592297754}
   - component: {fileID: 9163465250614311266}
   - component: {fileID: 4331689461397243360}
+  - component: {fileID: -7119970460253223361}
   m_Layer: 0
   m_Name: ShipScanner
   m_TagString: Untagged
@@ -123,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bddf5fa9d63034647a0eacd5471700dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simpleTextString: Fire Module
+  simpleTextString: Ship Scanner
   tooltipsType: 1
 --- !u!114 &4331689461397243360
 MonoBehaviour:
@@ -148,13 +149,29 @@ MonoBehaviour:
   limitedChoice: 0
   limitedModulePrefabsChoices: []
   ressourcesCost:
-    resources: []
+    resources:
+    - item: {fileID: 11400000, guid: 5ed498840d114de459f60f5fcb3506f5, type: 2}
+      quantite: 10
+    - item: {fileID: 11400000, guid: b7979b4401f57bb498bc85db23f2efde, type: 2}
+      quantite: 5
+    - item: {fileID: 11400000, guid: 5c5a5043fb6357a4aa702c9c64345373, type: 2}
+      quantite: 1
   onCreationPopupString: has completed the ship scanner ! We might be able to reach
     other ships now.
   createMenuModuleDescriptionTooltip: "Ship Scanner\nScans for nearby \nspaceships."
   longModuleDescriptionForPanels: Ship scanner does things.
-  shipScannerDungeonsPanel: {fileID: 0}
-  turnsBeforeScanningForNewShips: 3
+--- !u!114 &-7119970460253223361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4034520693683049931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2317651bea6d89443a35017781d4c918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7474204763681054369
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class ButtonAction : MonoBehaviour
 {
     [SerializeField] private GameObject[] panels;
     [SerializeField] private Selectable[] selectionDefault;
+    [SerializeField] private GameObject credits;
     private AsyncOperation async;
     public void LoadScene(int sceneID)
     {
@@ -32,13 +33,16 @@ public class ButtonAction : MonoBehaviour
         for(int i = 0; i< panels.Length; i++)
         {
             panels[i].SetActive(panelNumber == i);
-            if (panelNumber == i) { selectionDefault[i].Select(); }
+            if (panelNumber == i) { 
+                selectionDefault[i].Select(); 
+            }
         }
     }
 
     private void Start()
     {
         ChangeMenu(0);
+        credits.SetActive(false);
     }
 
     public void Quitter()
@@ -50,6 +54,17 @@ public class ButtonAction : MonoBehaviour
 #endif
     }
 
+    public void Credits()
+    {
+        credits.SetActive(true);
+    }
 
+    public void CloseAllPanels()
+    {
+        foreach (GameObject panel in panels)
+        {
+            panel.SetActive(false);
+        }
+    }
 
 }

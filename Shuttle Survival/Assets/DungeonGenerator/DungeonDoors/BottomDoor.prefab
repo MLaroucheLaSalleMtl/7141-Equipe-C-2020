@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6521630115063823895}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 4}
   m_Children: []
   m_Father: {fileID: 5784248054408068800}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &1820233872840015593
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1756876341494356692, guid: 02c518d9398f3ae4c90b079b9ba43b2c,
+  m_Sprite: {fileID: -8611851019959977110, guid: 89218963df792784d9807a798aa15eef,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -155,3 +155,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dungeonDoorEvent: {fileID: 11400000, guid: 3624e6fb08fbe3b4ca0a9b6263851ab1, type: 2}
   numberOfTurnsToUnlock: 1
+  unlockedSprite: {fileID: -3264149062874125838, guid: 89218963df792784d9807a798aa15eef,
+    type: 3}
